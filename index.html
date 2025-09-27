@@ -16,7 +16,7 @@
     @keyframes drift{0%{background-position:0 0,0 0}100%{background-position:600px 600px,600px 600px}}
     @keyframes aur{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(18deg)}}
     .cursor{position:fixed;left:0;top:0;width:220px;height:220px;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);z-index:1;opacity:.18;filter:blur(30px);mix-blend-mode:screen;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 60%)}
-    .nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);background:rgba(10,11,16,.35);border-bottom:1px solid var(--line);transition:background .3s ease,box-shadow .3s ease}
+    .nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);background:rgba(10,11,16,.35);border-bottom:1px solid var(--line);transition:background .3s ease,box-shadow .3s ease}
     .nav.scrolled{background:rgba(10,11,16,.6);box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.2px;filter:saturate(1.15)}
@@ -92,6 +92,82 @@
     footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted)}
     @media (max-width:900px){.hero .container{grid-template-columns:1fr;padding-top:96px}.grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr}.join{grid-template-columns:1fr}svg#dna{transform:translate(-50%,-50%) scale(1)}.chips{display:none}}
     @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  
+    /* ===== NEW: Scroll-to-top button, modal, ripples, pulse ===== */
+    .to-top{position:fixed;right:22px;bottom:26px;z-index:70;appearance:none;border:none;cursor:pointer;padding:12px 14px;border-radius:999px;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));color:#0b1020;font-weight:900;box-shadow:0 10px 30px rgba(0,0,0,.35);transform:translateY(20px) scale(.9);opacity:0;pointer-events:none;transition:transform .35s ease,opacity .35s ease,box-shadow .3s}
+    .to-top.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    .to-top:active{transform:translateY(0) scale(.96)}
+
+    /* Ripple effect on buttons/links */
+    .nav a.btn, .button{position:relative;overflow:hidden}
+    .ripple{position:absolute;left:0;top:0;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);transform:translate(-50%,-50%) scale(0);animation:ripple .6s ease-out forwards;pointer-events:none}
+    @keyframes ripple{to{transform:translate(-50%,-50%) scale(12);opacity:0}}
+
+    /* Pulse highlight for section headers after scroll */
+    .pulse{animation:pulseGlow 1.2s ease-out}
+    @keyframes pulseGlow{0%{text-shadow:0 0 0 rgba(255,255,255,0)}30%{text-shadow:0 0 30px rgba(99,102,241,.6)}100%{text-shadow:0 0 0 rgba(255,255,255,0)}}
+
+    /* Welcome modal */
+    .modal{position:fixed;inset:0;background:rgba(5,7,12,.6);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal.show{display:flex;animation:fadeIn .25s ease-out}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modal .card{width:min(560px,92vw);border-radius:20px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));box-shadow:var(--shadow);transform:scale(.94);opacity:0}
+    .modal.show .card{animation:popIn .4s cubic-bezier(.22,1,.36,1) .08s forwards}
+    @keyframes popIn{to{transform:scale(1);opacity:1}}
+    .modal .head{display:flex;align-items:center;gap:12px;font-weight:900}
+    .modal .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+    .modal .badge{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px}
+
+    /* ===== Responsive: Mobile nav (hamburger) ===== */
+    .hamburger{display:none; width:42px; height:42px; align-items:center; justify-content:center; gap:4px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:10px; cursor:pointer}
+    .hamburger span{display:block; width:20px; height:2px; background:#e8ecf8; border-radius:2px; transform-origin:left center; transition:transform .25s ease, opacity .25s ease}
+    .hamburger.active span:nth-child(1){transform:rotate(38deg) translate(2px, -1px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-38deg) translate(2px, 2px)}
+
+    @media (max-width: 900px){
+      .hamburger{display:flex}
+      .nav-links{position:fixed; top:68px; left:0; right:0; display:none; flex-direction:column; gap:8px; padding:12px; background:rgba(10,11,16,.95); backdrop-filter: blur(12px); border-bottom:1px solid var(--line); z-index:99; pointer-events:auto}
+      .nav-links.open{display:flex}
+      .nav a.btn{display:block; width:100%; padding:14px 16px}
+    }
+
+    /* ===== More responsive tweaks ===== */
+    @media (max-width: 1100px){ .container{padding:0 16px} }
+    @media (max-width: 900px){
+      .section{padding:72px 0}
+      .headline{font-size:clamp(30px,7.5vw,46px)}
+      .section h2{font-size:28px}
+      .hero .container{gap:22px}
+      .hero-actions{flex-direction:column}
+      .button{width:100%}
+      .stats{padding:36px 0}
+      .stat .num{font-size:34px}
+      .date{width:52px; height:52px}
+    }
+    @media (max-width: 600px){
+      .section{padding:60px 0}
+      .headline{font-size:clamp(26px,8.2vw,40px)}
+      .section h2{font-size:24px}
+      .stat .num{font-size:30px}
+      .card .body{padding:20px}
+      .grid{gap:16px}
+      .events{gap:10px}
+      .event{padding:12px}
+      .date{width:46px; height:46px; border-radius:12px}
+    }
+
+    /* === Responsive tweaks for the 4-card "What we offer" section === */
+    #offer .grid{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){#offer .grid{grid-template-columns:1fr}}
+    @media (max-width:600px){#offer .grid{gap:14px}}
+
+    /* Ensure mobile menu panel displays when open (safety duplicate) */
+    @media (max-width:900px){
+      .nav-links{position:fixed; top:68px; left:0; right:0; display:none; flex-direction:column; gap:8px; padding:12px; background:rgba(10,11,16,.95); backdrop-filter: blur(12px); border-bottom:1px solid var(--line); z-index:99}
+      .nav-links.open{display:flex}
+      .nav a.btn{display:block; width:100%; padding:14px 16px}
+    }
   </style>
 </head>
 <body>
@@ -102,14 +178,17 @@
   <nav class="nav" id="nav">
     <div class="container nav-inner">
       <div class="brand reveal"><span class="logo" aria-hidden="true"></span> UTGEC • Genetic Engineering Club</div>
+      <button id="navToggle" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <div class="nav-links">
-        <a class="btn reveal" href="#home">Home</a>
-        <a class="btn reveal" href="#about">About us</a>
-        <a class="btn reveal" href="#team">Meet our team</a>
-        <a class="btn reveal" href="#offer">What we offer</a>
-        <a class="btn reveal" href="#opportunities">Opportunities</a>
-        <a class="btn reveal" href="#events">Events</a>
-        <a class="btn cta reveal" href="#contact">Contact Us</a>
+        <a class="btn" href="#home">Home</a>
+        <a class="btn" href="#about">About us</a>
+        <a class="btn" href="#team">Meet our team</a>
+        <a class="btn" href="#offer">What we offer</a>
+        <a class="btn" href="#opportunities">Opportunities</a>
+        <a class="btn" href="#events">Events</a>
+        <a class="btn cta" href="#contact">Contact Us</a>
       </div>
     </div>
   </nav>
@@ -172,7 +251,7 @@
           <div class="bar"></div>
           <div class="body">
             <div class="photo-wrap">
-              <img src="https://uoftgenetic.wordpress.com/wp-content/uploads/2025/07/screenshot-2025-07-03-124508.png" alt="Ammar Adlan" class="team-photo">
+              <img src="https://uoftgenetic.wordpress.com/wp-content/uploads/2025/07/screenshot-2025-07-03-124508.png" alt="Ammar Adlan" class="team-photo" onerror="this.style.display='none'; this.closest('.photo-wrap').querySelector('.avatar-fallback').style.display='grid'" />
               <div class="avatar-fallback" style="display:none">AA</div>
             </div>
             <div class="tag">President</div>
@@ -187,7 +266,7 @@
   <section id="offer" class="section">
     <div class="container">
       <h2 class="reveal">What we offer</h2>
-      <p class="muted reveal" style="max-width:60ch">Get involved through projects, panels, and mentorship — whether you’re new to genetics or leveling up.</p>
+      <p class="muted reveal" style="max-width:60ch">Get involved through projects, panels, workshops, and mentorship — whether you’re new to genetics or leveling up.</p>
       <div class="grid">
         <div class="card reveal" data-tilt>
           <div class="bar"></div>
@@ -211,6 +290,14 @@
             <div class="tag">Community</div>
             <h3>Discover • Learn • Connect</h3>
             <p class="muted">An inclusive community with events and resources that make genetics accessible for every background.</p>
+          </div>
+        </div>
+        <div class="card reveal" data-tilt>
+          <div class="bar"></div>
+          <div class="body">
+            <div class="tag">Skills & Workshops</div>
+            <h3>Hands‑on learning</h3>
+            <p class="muted">Practical workshops to build lab techniques, coding skills, and critical thinking applied to genetics.</p>
           </div>
         </div>
       </div>
@@ -279,6 +366,25 @@
     </div>
   </footer>
 
+  <!-- ===== NEW: Scroll-to-top button ===== -->
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
+  <!-- ===== NEW: Welcome Modal on first open ===== -->
+  <div id="welcome" class="modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="card" style="padding:22px 22px 18px 22px">
+      <div class="head">
+        <span class="logo" aria-hidden="true"></span>
+        <div id="welcome-title">Welcome to UTGEC</div>
+        <span class="badge">New</span>
+      </div>
+      <p class="muted" style="margin:10px 0 0">Join our community and hear about wet‑lab bootcamps, panels, and new opportunities first.</p>
+      <div class="actions">
+        <button class="button ghost" id="welcome-close">Not now</button>
+        <a href="#contact" class="button primary" id="welcome-join">Join us</a>
+      </div>
+    </div>
+  </div>
+
   <canvas id="field" aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
   <canvas id="bio" aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
 
@@ -303,6 +409,90 @@
     console.assert(!!document.querySelector('#contact form'),'Contact form missing');
     console.assert(document.querySelectorAll('#stats .num[data-plus="true"]').length===3,'Stats + not applied');
     console.assert(!!document.getElementById('dna'),'DNA svg missing');
+    
+    // ===== NEW: Scroll-to-top button behavior =====
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=>{ if(window.scrollY>500){ toTop.classList.add('show'); } else { toTop.classList.remove('show'); } }, {passive:true});
+    toTop && toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // ===== NEW: Welcome modal (first visit) =====
+    (function welcomeModal(){
+      const key='utgec_welcome_v1';
+      const modal=document.getElementById('welcome');
+      if(!modal) return;
+      const closeBtn=document.getElementById('welcome-close');
+      const joinBtn=document.getElementById('welcome-join');
+      const open=()=> modal.classList.add('show');
+      const close=()=>{ modal.classList.remove('show'); try{localStorage.setItem(key,'1')}catch(_){} };
+      try{ if(!localStorage.getItem(key)) setTimeout(open, 600); }catch(_){ setTimeout(open, 600); }
+      closeBtn && closeBtn.addEventListener('click', (e)=>{ e.preventDefault(); close(); });
+      joinBtn && joinBtn.addEventListener('click', (e)=>{ close(); scrollToId('contact'); });
+      modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+      addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('show')) close(); });
+    })();
+
+    // ===== NEW: Ripple on navbar links & buttons =====
+    function addRipple(el, x, y){
+      const rect = el.getBoundingClientRect();
+      const r = Math.hypot(rect.width, rect.height);
+      const s = document.createElement('span');
+      s.className='ripple';
+      s.style.left = x + 'px'; s.style.top = y + 'px';
+      s.style.width = s.style.height = (r*2) + 'px';
+      el.appendChild(s);
+      s.addEventListener('animationend', ()=> s.remove());
+    }
+    document.querySelectorAll('.nav a.btn, .button').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        const rect = el.getBoundingClientRect();
+        addRipple(el, e.clientX - rect.left, e.clientY - rect.top);
+      });
+    });
+
+    // ===== NEW: Smooth scroll + pulse highlight on navbar clicks =====
+    document.querySelectorAll('.nav a.btn[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          try { history.pushState(null, '', '#' + id); } catch(_){ }
+          scrollToId(id);
+          const h2 = target.querySelector('h2');
+          if(h2){ h2.classList.add('pulse'); setTimeout(()=> h2.classList.remove('pulse'), 1200); }
+        }
+      });
+    });
+
+    // Smoke tests for new features
+    console.assert(!!document.getElementById('toTop'), 'toTop button missing');
+    console.assert(!!document.getElementById('welcome'), 'welcome modal missing');
+  
+    // ===== Responsive: Mobile nav toggle =====
+    (function mobileNav(){
+      const btn = document.getElementById('navToggle');
+      const links = document.querySelector('.nav-links');
+      if(!btn || !links) return;
+      const open = ()=>{ links.classList.add('open'); btn.classList.add('active'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+      const close = ()=>{ links.classList.remove('open'); btn.classList.remove('active'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+      btn.addEventListener('click', ()=> links.classList.contains('open') ? close() : open());
+      links.querySelectorAll('a').forEach(a=> a.addEventListener('click', close));
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+      window.addEventListener('resize', ()=>{ if(innerWidth>900) close(); });
+    })();
+
+    // ===== Performance: reduce parallax on small screens =====
+    (function tuneParallax(){
+      const mq = window.matchMedia('(max-width: 900px)');
+      const apply = (m)=> document.documentElement.style.setProperty('--parallax-scale', m.matches ? '0.55' : '1');
+      apply(mq);
+      if(mq.addEventListener){ mq.addEventListener('change', apply); }
+    })();
+
+    // ===== Disable card tilt on touch devices =====
+    (function noTiltOnTouch(){ if('ontouchstart' in window){ document.querySelectorAll('[data-tilt]').forEach(el=>{ el.replaceWith(el.cloneNode(true)); }); } })();
+
+    // Smoke checks for UX features
+    console.assert(typeof IntersectionObserver==='function', 'IntersectionObserver missing');
+    console.assert(!!document.querySelector('.nav a.btn'), 'Nav links missing');
   </script>
-</body>
-</html>
