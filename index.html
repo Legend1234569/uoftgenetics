@@ -283,29 +283,48 @@
   </nav>
 
   <header class="hero" id="home">
-    <div class="container">
-      <svg class="dna-bg" viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="gstroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#60a5fa"/>
-            <stop offset="50%" stop-color="#a78bfa"/>
-            <stop offset="100%" stop-color="#34d399"/>
-          </linearGradient>
-        </defs>
-        <path id="helixL" d="M150 0 C 180 120, 90 240, 150 360 C 180 480, 90 600, 150 720" stroke="url(#gstroke)" stroke-width="2" fill="none" opacity=".7"/>
-        <path id="helixR" d="M750 0 C 720 120, 810 240, 750 360 C 720 480, 810 600, 750 720" stroke="url(#gstroke)" stroke-width="2" fill="none" opacity=".55"/>
-        <g id="rungs"></g>
-      </svg>
-      <div class="reveal">
-        <div class="headline">Welcome to the UofT Genetics Club — <span class="highlight">Discover, Learn, Connect.</span></div>
-        <div class="hero-actions">
-          <button class="button primary" onclick="scrollToId('contact')">Contact Us</button>
-          <button class="button ghost" onclick="scrollToId('offer')">Explore What We Offer</button>
-        </div>
+  <div class="hero-intro reveal">
+    <div>
+      <div class="headline">
+        Welcome to UTGEC — <span class="highlight">Discover, Learn, Connect.</span>
       </div>
-    
-
+      <div class="hero-actions">
+        <button class="button primary" onclick="scrollToId('contact')">Contact Us</button>
+        <button class="button ghost" onclick="scrollToId('offer')">Explore What We Offer</button>
+      </div>
     </div>
+
+  <!-- Animated DNA on the right (only shows beside text on laptops/large screens) -->
+  <svg class="dna-badge" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="dnaGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#60a5fa"/>
+        <stop offset="50%" stop-color="#a78bfa"/>
+        <stop offset="100%" stop-color="#34d399"/>
+      </linearGradient>
+    </defs>
+
+    <!-- border ring -->
+    <circle cx="70" cy="70" r="64" fill="#0d1120" stroke="url(#dnaGrad)" stroke-width="3"/>
+
+    <!-- helical rails -->
+    <path d="M40 12 C 55 28, 35 48, 40 70 C 45 92, 35 112, 40 128"
+          stroke="url(#dnaGrad)" stroke-width="2" fill="none" opacity=".8"/>
+    <path d="M100 12 C 85 28, 105 48, 100 70 C 95 92, 105 112, 100 128"
+          stroke="url(#dnaGrad)" stroke-width="2" fill="none" opacity=".6"/>
+
+    <!-- rungs -->
+    <g class="spin" stroke="url(#dnaGrad)" stroke-width="1.6" opacity=".85">
+      <line x1="48" y1="26" x2="92" y2="24"/>
+      <line x1="48" y1="42" x2="92" y2="40"/>
+      <line x1="48" y1="58" x2="92" y2="56"/>
+      <line x1="48" y1="74" x2="92" y2="72"/>
+      <line x1="48" y1="90" x2="92" y2="88"/>
+      <line x1="48" y1="106" x2="92" y2="104"/>
+      <line x1="48" y1="122" x2="92" y2="120"/>
+    </g>
+  </svg>
+</div>
   </header>
 
   <section id="about" class="section">
