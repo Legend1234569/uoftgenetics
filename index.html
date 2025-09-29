@@ -82,35 +82,7 @@
 
     /* Reveal */
     .reveal{opacity:1;transform:none}.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}.js .reveal.show{opacity:1;transform:none}
-    /* changes */
-    /* Hide the old moving orb in the hero */
-.hero-visual{display:none !important}
-
-/* New layout: headline + DNA badge side-by-side on large screens */
-.hero-intro{
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:center;
-  gap:28px;
-}
-
-/* Center both on smaller screens */
-@media (max-width:900px){
-  .hero-intro{
-    grid-template-columns:1fr;
-    justify-items:center;
-    text-align:center;
-  }
-}
-
-/* DNA badge sizing + reuse existing spin/float keyframes */
-.dna-badge{
-  width:140px;
-  height:140px;
-  filter:drop-shadow(0 20px 40px rgba(0,0,0,.45));
-}
-.dna-badge .spin{animation:spin 14s linear infinite}
-.dna-badge .float{animation:float 10s ease-in-out infinite}
+  
 
     /* Sections */
     .stats{padding:50px 0}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
