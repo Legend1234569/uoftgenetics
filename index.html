@@ -82,6 +82,35 @@
 
     /* Reveal */
     .reveal{opacity:1;transform:none}.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}.js .reveal.show{opacity:1;transform:none}
+    /* changes */
+    /* Hide the old moving orb in the hero */
+.hero-visual{display:none !important}
+
+/* New layout: headline + DNA badge side-by-side on large screens */
+.hero-intro{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:28px;
+}
+
+/* Center both on smaller screens */
+@media (max-width:900px){
+  .hero-intro{
+    grid-template-columns:1fr;
+    justify-items:center;
+    text-align:center;
+  }
+}
+
+/* DNA badge sizing + reuse existing spin/float keyframes */
+.dna-badge{
+  width:140px;
+  height:140px;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.45));
+}
+.dna-badge .spin{animation:spin 14s linear infinite}
+.dna-badge .float{animation:float 10s ease-in-out infinite}
 
     /* Sections */
     .stats{padding:50px 0}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -275,34 +304,52 @@
           <button class="button ghost" onclick="scrollToId('offer')">Explore What We Offer</button>
         </div>
       </div>
-      <div class="hero-visual reveal" aria-hidden="true">
-        <div class="orb-wrap float-slow">
-          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="membrane" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#60a5fa"/>
-                <stop offset="50%" stop-color="#a78bfa"/>
-                <stop offset="100%" stop-color="#34d399"/>
-              </linearGradient>
-            </defs>
-            <circle cx="250" cy="250" r="180" fill="#0d1120" stroke="url(#membrane)" stroke-width="6"/>
-            <circle cx="250" cy="250" r="85" fill="#141a2c" stroke="#9aa7ff" stroke-opacity=".6"/>
-            <g class="spin-mid" transform="translate(250 250)">
-              <path d="M-40 -60 C -20 -30, 20 -30, 40 -60 M-40 -40 C -20 -10, 20 -10, 40 -40 M-40 -20 C -20 10, 20 10, 40 -20 M-40 0 C -20 30, 20 30, 40 0 M-40 20 C -20 50, 20 50, 40 20" stroke="#a78bfa" stroke-width="2" fill="none"/>
-              <line x1="-30" y1="-60" x2="30" y2="-60" stroke="#34d399" stroke-opacity=".7"/>
-              <line x1="-30" y1="-40" x2="30" y2="-40" stroke="#34d399" stroke-opacity=".7"/>
-              <line x1="-30" y1="-20" x2="30" y2="-20" stroke="#34d399" stroke-opacity=".7"/>
-              <line x1="-30" y1="0" x2="30" y2="0" stroke="#34d399" stroke-opacity=".7"/>
-              <line x1="-30" y1="20" x2="30" y2="20" stroke="#34d399" stroke-opacity=".7"/>
-            </g>
-            <g class="spin-slow" transform="translate(250 250)">
-              <circle cx="0" cy="-160" r="8" fill="#60a5fa"/>
-              <circle cx="120" cy="0" r="6" fill="#34d399"/>
-              <circle cx="-120" cy="0" r="6" fill="#a78bfa"/>
-            </g>
-          </svg>
-        </div>
-      </div>
+      <div class="hero-intro reveal">
+  <div>
+    <div class="headline">
+      Welcome to UTGEC — <span class="highlight">Discover, Learn, Connect.</span>
+    </div>
+    <div class="hero-actions">
+      <button class="button primary" onclick="scrollToId('contact')">Contact Us</button>
+      <button class="button ghost" onclick="scrollToId('offer')">Explore What We Offer</button>
+    </div>
+  </div>
+
+  <!-- Animated DNA badge beside the headline -->
+  <svg class="dna-badge" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="dnaGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#60a5fa"/>
+        <stop offset="50%" stop-color="#a78bfa"/>
+        <stop offset="100%" stop-color="#34d399"/>
+      </linearGradient>
+    </defs>
+
+    <!-- border ring (matches your gradient aesthetic) -->
+    <circle cx="70" cy="70" r="64" fill="#0d1120" stroke="url(#dnaGrad)" stroke-width="3"/>
+
+    <!-- helical rails + rungs (animated) -->
+    <g class="float">
+      <!-- rails -->
+      <path d="M40 12 C 55 28, 35 48, 40 70 C 45 92, 35 112, 40 128"
+            stroke="url(#dnaGrad)" stroke-width="2" fill="none" opacity=".8"/>
+      <path d="M100 12 C 85 28, 105 48, 100 70 C 95 92, 105 112, 100 128"
+            stroke="url(#dnaGrad)" stroke-width="2" fill="none" opacity=".6"/>
+
+      <!-- rungs (slow spin) -->
+      <g class="spin" stroke="url(#dnaGrad)" stroke-width="1.6" opacity=".85">
+        <line x1="48" y1="26" x2="92" y2="24"/>
+        <line x1="48" y1="42" x2="92" y2="40"/>
+        <line x1="48" y1="58" x2="92" y2="56"/>
+        <line x1="48" y1="74" x2="92" y2="72"/>
+        <line x1="48" y1="90" x2="92" y2="88"/>
+        <line x1="48" y1="106" x2="92" y2="104"/>
+        <line x1="48" y1="122" x2="92" y2="120"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
     </div>
   </header>
 
