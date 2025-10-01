@@ -106,8 +106,27 @@
     .dna-badge .spin{animation:spin 14s linear infinite}
     .dna-badge .float{animation:float 10s ease-in-out infinite}
     
-
-    /* Reveal */
+    @media (min-width: 1024px) {
+        .dna-background-container {
+          display: flex;
+          flex-direction: row; /* Change from column to row */
+          align-items: center;
+        }
+        
+        .dna-background {
+          position: absolute;
+          right: 0; /* Position to the right */
+          top: 50%; /* Center vertically */
+          transform: translateY(-50%);
+          /* Remove any top positioning */
+        }
+        
+        .text-content {
+          flex: 1;
+          margin-right: 200px; /* Add space for DNA background */
+        }
+      }
+          /* Reveal */
     .reveal{opacity:1;transform:none}.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}.js .reveal.show{opacity:1;transform:none}
   
 
