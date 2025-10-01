@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -538,9 +538,9 @@
       <p class="muted reveal" style="max-width:60ch">Questions, collaborations, or membership? Send us a note and we’ll get back to you.</p>
       <div class="join">
         <form class="panel reveal" name="club-requests" onsubmit="return submitForm(event)" netlify>
-          <div class="row"><input required placeholder="Full name" /><input type="email" required placeholder="Email" /></div>
-          <input placeholder="Program / Year" style="margin-top:12px" />
-          <textarea rows="4" placeholder="What do you want to build or learn this year?" style="margin-top:12px"></textarea>
+          <div class="row"><input required placeholder="Full name" name="full_name" /><input type="email" name = "email" required placeholder="Email" /></div>
+          <input placeholder="Program / Year" name="program" style="margin-top:12px" />
+          <textarea rows="4" placeholder="What do you want to build or learn this year?" name="message" style="margin-top:12px"></textarea>
           <button class="button primary submit" type="submit">Send</button>
           <div id="msg" class="muted" style="margin-top:10px"></div>
         </form>
