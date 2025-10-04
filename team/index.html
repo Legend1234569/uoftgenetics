@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UTGEC • Meet Our Team</title>
+  <meta name="description" content="Meet the UTGEC leadership and mentors. Book a 1-on-1 with mentors for projects, careers, and skills." />
+
+  <!-- ====== SHARED STYLES (copied from home for visual consistency) ====== -->
+  <style>
+    :root{--bg:#06070b;--muted:#a3a8b8;--text:#eef0f7;--line:#1b1f2b;--grad-1:#60a5fa;--grad-2:#a78bfa;--grad-3:#34d399;--gold:#f6d98b;--shadow:0 10px 30px rgba(0,0,0,.45);--radius-2xl:22px}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:
+      radial-gradient(1200px 800px at 10% -20%,#15243f 0%,transparent 60%),
+      radial-gradient(1000px 700px at 90% 10%,#13231b 0%,transparent 60%),
+      var(--bg);
+      overflow-x:hidden; scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+
+    /* Background flourishes (same as home) */
+    .bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.18;background-image:linear-gradient(0deg,rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;animation:drift 40s linear infinite}
+    .aurora{position:fixed;inset:0;pointer-events:none;z-index:0;background:
+      radial-gradient(600px 300px at 20% 15%,rgba(96,165,250,.18),transparent 60%),
+      radial-gradient(700px 350px at 85% 25%,rgba(167,139,250,.14),transparent 60%),
+      radial-gradient(650px 320px at 50% 80%,rgba(52,211,153,.12),transparent 60%);
+      filter:saturate(1.2);mix-blend-mode:screen;animation:aur 12s ease-in-out infinite alternate}
+    @keyframes drift{0%{background-position:0 0,0 0}100%{background-position:600px 600px,600px 600px}}
+    @keyframes aur{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(12deg)}}
+
+     /* === UTGEC navbar logo === */
+    .brand { display:flex; align-items:center; gap:10px } /* you already have this; okay if duplicated */
+    .brand .utgec-logo{width:28px;height:28px;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+    .brand .utgec-logo .ring{transform-origin:50% 50%;animation:spin 18s linear infinite}
+    .brand .utgec-logo .dna{stroke-dasharray:60 14;animation:dash 6s linear infinite}
+    .brand .utgec-logo .orb{animation:float 3.8s ease-in-out infinite}
+    .brand:hover .utgec-logo .ring{animation-duration:12s}    /* a tiny boost on hover */
+    .brand:hover .utgec-logo .orb{animation-duration:2.8s}
+    @media (prefers-reduced-motion: reduce){
+      .brand .utgec-logo .ring,
+      .brand .utgec-logo .dna,
+      .brand .utgec-logo .orb{animation:none}
+    }
+
+    :root{--bg:#06070b;--muted:#a3a8b8;--text:#eef0f7;--line:#1b1f2b;--grad-1:#60a5fa;--grad-2:#a78bfa;--grad-3:#34d399;--gold:#f6d98b;--shadow:0 10px 30px rgba(0,0,0,.45);--radius-2xl:22px}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:radial-gradient(1200px 800px at 10% -20%,#15243f 0%,transparent 60%),radial-gradient(1000px 700px at 90% 10%,#13231b 0%,transparent 60%),var(--bg);overflow-x:hidden;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+
+    /* Background flourishes */
+    .bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.18;background-image:linear-gradient(0deg,rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;animation:drift 40s linear infinite}
+    .aurora{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(600px 300px at 20% 15%,rgba(96,165,250,.18),transparent 60%),radial-gradient(700px 350px at 85% 25%,rgba(167,139,250,.14),transparent 60%),radial-gradient(650px 320px at 50% 80%,rgba(52,211,153,.12),transparent 60%);filter:saturate(1.2);mix-blend-mode:screen;animation:aur 12s ease-in-out infinite alternate}
+    @keyframes drift{0%{background-position:0 0,0 0}100%{background-position:600px 600px,600px 600px}}
+    @keyframes aur{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(12deg)}}
+    .cursor{position:fixed;left:0;top:0;width:220px;height:220px;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);z-index:1;opacity:.18;filter:blur(30px);mix-blend-mode:screen;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 60%)}
+
+
+     /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;padding-top:120px;padding-bottom:100px;align-items:center;position:relative}
+    .headline{font-size:clamp(38px,5.6vw,70px);line-height:1.02;font-weight:1000;letter-spacing:.2px}
+    .highlight{background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
+    @keyframes shimmer{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+    .hero p{color:var(--muted);font-size:18px}
+    .hero-actions{display:flex;gap:14px;margin-top:18px}
+    .button{appearance:none;border:none;padding:14px 18px;border-radius:12px;cursor:pointer;font-weight:900;transform:translateZ(0);position:relative;overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+    .button:hover{transform:translateY(-1px) scale(1.02)}
+    .button:active{transform:translateY(0) scale(.99)}
+    .button.primary{color:#0b1020;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));box-shadow:var(--shadow)}
+    .button.ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.1)}
+    .button.ghost:hover{background:rgba(255,255,255,.09)}
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);background:rgba(10,11,16,.35);border-bottom:1px solid var(--line);transition:background .3s ease,box-shadow .3s ease}
+    .nav.scrolled{background:rgba(10,11,16,.6);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.2px}
+    .nav-links{display:flex;gap:8px}
+    .nav a.btn{padding:10px 14px;border-radius:12px;border:1px solid transparent;position:relative;overflow:hidden}
+    .nav a.btn:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+    .nav a.active{color:var(--gold)}
+    .nav a.active::after{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(255,255,255,.6),var(--gold));border-radius:2px}
+    .cta{background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));color:#0b1020;font-weight:900;box-shadow:0 8px 30px rgba(96,165,250,.28)}
+    .hamburger{display:none;width:42px;height:42px;align-items:center;justify-content:center;gap:4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;cursor:pointer}
+    .hamburger span{display:block;width:20px;height:2px;background:#e8ecf8;border-radius:2px;transform-origin:left center;transition:transform .25s ease,opacity .25s ease}
+    .hamburger.active span:nth-child(1){transform:rotate(38deg) translate(2px,-1px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-38deg) translate(2px,2px)}
+
+    /* Buttons */
+    .button{appearance:none;border:none;padding:14px 18px;border-radius:12px;cursor:pointer;font-weight:900;position:relative;overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+    .button:hover{transform:translateY(-1px) scale(1.02)}
+    .button.primary{color:#0b1020;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));box-shadow:var(--shadow)}
+    .button.ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.1)}
+
+    /* Sections / cards */
+    .section{padding:96px 0}
+    .section h2{font-size:36px;margin:0;position:relative}
+    .section h2::after{content:"";position:absolute;left:0;bottom:-10px;width:120px;height:3px;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));border-radius:2px;filter:saturate(1.2)}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:28px}
+    .card{border:1px solid var(--line);border-radius:var(--radius-2xl);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow);overflow:hidden;position:relative}
+    .card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(120deg,var(--grad-1),var(--grad-2),var(--grad-3));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;animation:borderShift 10s linear infinite}
+    @keyframes borderShift{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+    .card .bar{height:4px;width:0;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));transition:width .6s ease}
+    .card:hover .bar{width:100%}
+    .card .body{padding:26px}
+    .tag{display:inline-block;font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);margin-bottom:10px}
+    .team-photo{width:100%;aspect-ratio: 4/3;object-fit:cover;border-radius:12px;margin-bottom:12px;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+
+    /* Team hero */
+    .hero{position:relative;overflow:hidden}
+    .hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;padding-top:120px;padding-bottom:60px;align-items:center;position:relative}
+    .headline{font-size:clamp(38px,5.6vw,70px);line-height:1.02;font-weight:1000;letter-spacing:.2px}
+    .highlight{background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
+    @keyframes shimmer{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+
+    /* Booking modal */
+    .booking-backdrop{position:fixed;inset:0;background:rgba(8,10,16,.72);backdrop-filter:blur(8px);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .25s ease, visibility .25s ease;z-index:2000}
+    .booking-backdrop.show{opacity:1;visibility:visible}
+    .booking-sheet{width:min(1000px,92vw);height:min(760px,86vh);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:22px;box-shadow:0 25px 60px rgba(0,0,0,.45);position:relative;overflow:hidden;display:flex;flex-direction:column}
+    .booking-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+    .booking-title{font-weight:900}
+    .booking-close{appearance:none;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
+    .booking-frame{border:0;flex:1;background:#0b1020}
+
+    footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);margin-top:40px}
+
+    /* Responsive */
+      @media (max-width:900px){
+        .hero .container{grid-template-columns:1fr;padding-top:96px}
+        .grid{grid-template-columns:1fr}
+      }
+
+      /* Icon micro-animations to match home */
+      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
+      @keyframes dash{to{stroke-dashoffset:-60}}
+      @keyframes spin{to{transform:rotate(360deg)}}
+
+
+      /* Mobile */
+      @media (max-width:900px){
+        .hamburger{display:flex}
+        .nav-links{position:fixed;top:68px;left:0;right:0;display:flex;flex-direction:column;gap:8px;padding:12px;background:rgba(10,11,16,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:10001;height:calc(100vh - 68px);overflow:auto;transform:translateY(-120%);opacity:0;visibility:hidden;pointer-events:none;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s ease,visibility .35s}
+        .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+        .nav a.btn{display:block;width:100%;padding:16px 18px}
+        .hero .container{grid-template-columns:1fr;padding-top:96px;gap:22px}
+        .grid{grid-template-columns:1fr}
+        .stats-grid{grid-template-columns:1fr}
+        .join{grid-template-columns:1fr}
+        .section{padding:72px 0}
+        .headline{font-size:clamp(30px,7.5vw,46px)}
+        .section h2{font-size:28px}
+        .hero-actions{flex-direction:column}
+        .button{width:100%}
+        .stats{padding:36px 0}
+        .stat .num{font-size:34px}
+        .date{width:52px;height:52px}
+        .nav-links{transform:translateY(-120%); opacity:0; visibility:hidden; pointer-events:none; }
+        .nav-links.open{ transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto; }
+
+
+      }
+      @media (max-width:600px){
+        .section{padding:60px 0}
+        .headline{font-size:clamp(26px,8.2vw,40px)}
+        .section h2{font-size:24px}
+        .stat .num{font-size:30px}
+        .card .body{padding:20px}
+        .grid{gap:16px}
+        .events{gap:10px}
+        .event{padding:12px}
+        .date{width:46px;height:46px;border-radius:12px}
+      }
+      @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+      /* Hide biology object on tablets/phones */
+      @media (max-width:1024px){.hero-visual{display:none}}
+        /* Extra topic-specific motion for icons */
+      .mini .w1,.mini .w2{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:120 24;animation:dashWave 6s linear infinite}
+      .mini .w2{animation-duration:7.5s}
+      @keyframes dashWave{to{stroke-dashoffset:-300}}
+      .mini .node circle{transform-origin:center;animation:pulse 3.6s ease-in-out infinite}
+      .mini .dot,.mini .glow{animation:spin 8s linear infinite}
+      svg.mini{will-change:transform}
+      /* Ensure ALL minis visibly animate */
+      @keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+      @keyframes bobX{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+      /* Apply subtle motion fallbacks to basic shapes inside minis */
+      svg.mini.move circle{animation:pulse 4s ease-in-out infinite}
+      svg.mini.move rect, svg.mini.move line{transform-box:fill-box;transform-origin:center;animation:breath 6s ease-in-out infinite}
+      svg.mini.move path:not(.dash):not(.pulse){transform-box:fill-box;transform-origin:center;animation:breath 7s ease-in-out infinite}
+      /* If a mini is flagged as auto, spin its first group softly */
+      svg.mini[data-auto="1"] > g:first-child{transform-box:fill-box;transform-origin:center;animation:spin 18s linear infinite}
+      /* Extra wave motion for "Panels & 1-on-1s" and similar simple icons */
+      #nonlab .card:has(.tag:contains("Panels")) svg.mini path{animation:dash 4.5s linear infinite}
+      /* Safari fallback for :has and :contains not supported: JS will add .auto-dash where needed */
+      .auto-dash path{animation:dash 4.5s linear infinite}
+      .auto-bob *{animation:breath 7s ease-in-out infinite}
+
+      /* === Animated Scroll-to-top Arrow === */
+      .to-top{position:fixed;right:18px;bottom:22px;border-radius:999px;width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.06);display:grid;place-items:center;color:var(--text);cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .3s ease,transform .3s ease,background .2s ease,box-shadow .25s ease;backdrop-filter:blur(10px);z-index:2000}
+      .to-top.show{opacity:1;transform:translateY(0)}
+      .to-top:hover{background:rgba(255,255,255,.1);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+      .to-top svg{width:22px;height:22px;display:block}
+      @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+      @keyframes hueSpin{to{filter:hue-rotate(360deg)}}
+      .to-top.show svg path{animation:arrowBounce 1.6s ease-in-out infinite,hueSpin 8s linear infinite}
+
+
+      /* Seat hero text left and DNA right on desktop */
+      .hero-text{order:1}
+      .hero-visual{order:2; display:grid; place-items:center}
+
+      /* Mobile already stacks to 1 column via your media query; if not, keep this: */
+      @media (max-width:900px){
+        .hero .container{grid-template-columns:1fr}
+      }
+
+      @media (max-width: 900px){
+      .dna-badge { display: none !important; }
+      /* Make hero container single column so the text spans full width */
+      .hero .container{
+        padding-top: 30px;   /* was 120px */
+        padding-bottom: 40px;/* was 100px */
+        gap: 10px;
+      }
+      }
+      /* ================================
+      MOTION TOKENS (one place to tune)
+      ================================ */
+    :root{
+      --motion-ease: cubic-bezier(.22,.9,.24,1);     /* snappy, not harsh */
+      --motion-ease-soft: cubic-bezier(.18,.64,.22,1); /* gentle */
+      --motion-speed-fast: 280ms;
+      --motion-speed-med: 520ms;
+      --motion-speed-slow: 820ms;
+
+      /* micro-movement ranges (px/deg) */
+      --wiggle-y: 6px;       /* vertical bob range */
+      --parallax: 4px;       /* svg parallax on hover */
+      --card-hover-raise: 8px;
+      --icon-rotate: 4deg;   /* tiny rotation for life */
+
+      /* icon loop durations (can scale on mobile/desktop) */
+      --loop-pulse: 1.35s;
+      --loop-dash:  1.7s;
+      --loop-spin:  4.6s;
+
+      /* per-section reveal stagger step */
+      --stagger-step: 90ms;
+    }
+
+    /* Slightly calmer on small screens to match compact layout */
+    @media (max-width: 900px){
+      :root{
+        --wiggle-y: 4px;
+        --parallax: 2px;
+        --card-hover-raise: 6px;
+        --loop-pulse: 1.5s;
+        --loop-dash:  1.9s;
+        --loop-spin:  5.2s;
+        --stagger-step: 70ms;
+      }
+    }
+
+    @keyframes arrowBounce {
+      0%,100% { transform:translateY(0) }
+      50%     { transform:translateY(-3px) }
+    }
+
+    @keyframes hueSpin {
+      to { filter:hue-rotate(360deg) }
+    }
+
+    .to-top.show svg path {
+      animation: arrowBounce 1.6s ease-in-out infinite,
+      hueSpin 8s linear infinite;
+    }
+
+    /* === GENOME CROWN styles === */
+    .crown-wrap{
+      position:relative;
+      display:grid;
+      place-items:center;
+      /* slight lift and shadow for presence */
+      transform: translateZ(0);
+      will-change: transform, filter;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,.45));
+    }
+
+    .crown{
+      width:min(100%, 640px);
+      height:auto;
+      /* gentle entrance reveal */
+      opacity:0; transform:translateY(12px);
+      animation: crownEnter var(--motion-speed-med,520ms) var(--motion-ease-soft, cubic-bezier(.18,.64,.22,1)) forwards;
+    }
+
+    @keyframes crownEnter{
+      to { opacity:1; transform:translateY(0) }
+    }
+
+    /* Ribbon motion (lux, restrained) */
+    .ribbon{
+      stroke-linejoin:round;
+      filter: saturate(1.15) contrast(1.05);
+      animation: ribbonSway 6.8s var(--motion-ease-soft, cubic-bezier(.18,.64,.22,1)) infinite alternate;
+    }
+    .ribbon-front{ animation-delay: .12s }
+    .ribbon-gold{ animation-delay: .24s }
+
+    @keyframes ribbonSway{
+      0%   { transform: translateY(0) rotate(0.2deg) }
+      50%  { transform: translateY(-2px) rotate(-0.2deg) }
+      100% { transform: translateY(0) rotate(0.2deg) }
+    }
+
+    /* Ladder rungs shimmer */
+    .rungs .rung{
+      stroke-dasharray: 18 22;
+      animation: rungDash var(--loop-dash,1.7s) linear infinite;
+    }
+    @keyframes rungDash{ to { stroke-dashoffset:-40 } }
+
+    /* Gold twinkles */
+    .nano .dot{
+      transform-origin:center;
+      opacity:.7;
+      animation: twinkle 2.6s ease-in-out infinite;
+    }
+    .nano .dot:nth-child(odd){ animation-duration:3.2s }
+    .nano .dot:nth-child(3n){ animation-duration:2.1s }
+
+    @keyframes twinkle{
+      0%,100% { transform:scale(1);   opacity:.55 }
+      50%     { transform:scale(1.45);opacity:.95 }
+    }
+
+    /* Parallax hover (desktop) — driven by CSS vars set in JS */
+    .crown-wrap:hover .crown{
+      transform:
+        translateY(0)
+        translateX(var(--parallax-x,0px))
+        translateY(var(--parallax-y,0px));
+    }
+
+    /* Respect user motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      .crown, .ribbon, .rungs .rung, .nano .dot { animation:none !important }
+    }
+    @media (max-width: 600px){
+      .crown{ width: 100%; max-width: 420px }
+    }
+    .crown {
+      background-image: image-set(
+        url('fallback-crown@1x.png') 1x,
+        url('fallback-crown@2x.png') 2x
+      );
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .section h2 {
+      position:relative;
+      display:inline-block; /* makes the ::after stick to the word width */
+      cursor:default;
+    }
+
+    .section h2::after {
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-10px;
+      height:3px;
+      width:0;
+      background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));
+      border-radius:2px;
+      transition:width .5s ease;
+    }
+
+    .section h2:hover::after {
+      width:100%;  /* underline grows to match the word */
+    }
+
+
+    /* Events & forms */
+    .events{display:grid;gap:12px;margin-top:22px}
+    .event{display:flex;align-items:center;gap:16px;}
+
+    .join{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}  /* <- wraps the form + “Connect” panel */
+    .panel{border:1px solid var(--line);border-radius:var(--radius-2xl);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));padding:26px}
+
+    .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}                 /* <- two inputs side-by-side */
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;background:#0d0f16;border:1px solid #1c2230;color:var(--text);outline:none;transition:transform .2s ease,box-shadow .2s ease}
+    input:focus,textarea:focus{border-color:#2a3752;box-shadow:0 0 0 3px rgba(99,102,241,.15);transform:translateY(-1px)}
+    .submit{margin-top:10px}
+
+     /* DNA */
+    @media (min-width: 1024px) {
+    .dna-background-container {
+      display: flex;
+      flex-direction: row; /* Change from column to row */
+      align-items: center;
+    }
+
+    .dna-background {
+      position: absolute;
+      right: 0; /* Position to the right */
+      top: 50%; /* Center vertically */
+      transform: translateY(-50%);
+      /* Remove any top positioning */
+    }
+
+    .text-content {
+      flex: 1;
+      margin-right: 200px; /* Add space for DNA background */
+    }
+    }
+    /* Inline icon motion */
+    @keyframes gentle{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(.15deg)}}
+    svg.mini.move{animation:gentle 6s ease-in-out infinite}
+    .mini .pulse{animation:pulse 3s ease-in-out infinite}
+    .mini .spin{animation:spin 8s linear infinite}
+    .mini .dash{stroke-dasharray:6 6;animation:dash 3.5s linear infinite}
+    @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+    @keyframes dash{to{stroke-dashoffset:-60}}
+
+    /* Events & forms */
+    .events{display:grid;gap:12px;margin-top:22px}
+    .event{display:flex;align-items:center;gap:16px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border-radius:16px;padding:14px;position:relative;overflow:hidden;transition:transform .3s ease}
+    .event:hover{transform:translateY(-2px)}
+    .date{width:58px;height:58px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:#121525;border:1px solid var(--line);font-weight:900}
+    .event::after{content:"";position:absolute;left:-100%;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));transition:left .6s ease}
+    .event:hover::after{left:0}
+    .join{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+    .panel{border:1px solid var(--line);border-radius:var(--radius-2xl);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));padding:26px}
+    .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;background:#0d0f16;border:1px solid #1c2230;color:var(--text);outline:none;transition:transform .2s ease,box-shadow .2s ease}
+    input:focus,textarea:focus{border-color:#2a3752;box-shadow:0 0 0 3px rgba(99,102,241,.15);transform:translateY(-1px)}
+    .submit{margin-top:10px}
+    footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted)}
+
+    /* Focus grid responsive */
+    #focus .grid{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:1100px){#focus .grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:900px){#focus .grid{grid-template-columns:1fr}}
+
+    /* Offer grid */
+    #offer .grid{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){#offer .grid{grid-template-columns:1fr}}
+    @media (max-width:600px){#offer .grid{gap:14px}}
+
+    /* No-Lab grid */
+    #nonlab .grid{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:1100px){#nonlab .grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:900px){#nonlab .grid{grid-template-columns:1fr}}
+
+    /* Mobile */
+    @media (max-width:900px){
+      .hamburger{display:flex}
+      .nav-links{position:fixed;top:68px;left:0;right:0;display:flex;flex-direction:column;gap:8px;padding:12px;background:rgba(10,11,16,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:10001;height:calc(100vh - 68px);overflow:auto;transform:translateY(-120%);opacity:0;visibility:hidden;pointer-events:none;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s ease,visibility .35s}
+      .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+      .nav a.btn{display:block;width:100%;padding:16px 18px}
+      .hero .container{grid-template-columns:1fr;padding-top:96px;gap:22px}
+      .grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr}
+      .join{grid-template-columns:1fr}
+      .section{padding:72px 0}
+      .headline{font-size:clamp(30px,7.5vw,46px)}
+      .section h2{font-size:28px}
+      .hero-actions{flex-direction:column}
+      .button{width:100%}
+      .stats{padding:36px 0}
+      .stat .num{font-size:34px}
+      .date{width:52px;height:52px}
+    }
+    @media (max-width:600px){
+      .section{padding:60px 0}
+      .headline{font-size:clamp(26px,8.2vw,40px)}
+      .section h2{font-size:24px}
+      .stat .num{font-size:30px}
+      .card .body{padding:20px}
+      .grid{gap:16px}
+      .events{gap:10px}
+      .event{padding:12px}
+      .date{width:46px;height:46px;border-radius:12px}
+    }
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    /* Hide biology object on tablets/phones */
+    @media (max-width:1024px){.hero-visual{display:none}}
+      /* Extra topic-specific motion for icons */
+    .mini .w1,.mini .w2{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:120 24;animation:dashWave 6s linear infinite}
+    .mini .w2{animation-duration:7.5s}
+    @keyframes dashWave{to{stroke-dashoffset:-300}}
+    .mini .node circle{transform-origin:center;animation:pulse 3.6s ease-in-out infinite}
+    .mini .dot,.mini .glow{animation:spin 8s linear infinite}
+    svg.mini{will-change:transform}
+    /* Ensure ALL minis visibly animate */
+    @keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+    @keyframes bobX{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+    /* Apply subtle motion fallbacks to basic shapes inside minis */
+    svg.mini.move circle{animation:pulse 4s ease-in-out infinite}
+    svg.mini.move rect, svg.mini.move line{transform-box:fill-box;transform-origin:center;animation:breath 6s ease-in-out infinite}
+    svg.mini.move path:not(.dash):not(.pulse){transform-box:fill-box;transform-origin:center;animation:breath 7s ease-in-out infinite}
+    /* If a mini is flagged as auto, spin its first group softly */
+    svg.mini[data-auto="1"] > g:first-child{transform-box:fill-box;transform-origin:center;animation:spin 18s linear infinite}
+    /* Extra wave motion for "Panels & 1-on-1s" and similar simple icons */
+    #nonlab .card:has(.tag:contains("Panels")) svg.mini path{animation:dash 4.5s linear infinite}
+    /* Safari fallback for :has and :contains not supported: JS will add .auto-dash where needed */
+    .auto-dash path{animation:dash 4.5s linear infinite}
+    .auto-bob *{animation:breath 7s ease-in-out infinite}
+
+    /* === Animated Scroll-to-top Arrow === */
+    .to-top{position:fixed;right:18px;bottom:22px;border-radius:999px;width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.06);display:grid;place-items:center;color:var(--text);cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .3s ease,transform .3s ease,background .2s ease,box-shadow .25s ease;backdrop-filter:blur(10px);z-index:2000}
+    .to-top.show{opacity:1;transform:translateY(0)}
+    .to-top:hover{background:rgba(255,255,255,.1);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .to-top svg{width:22px;height:22px;display:block}
+    @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+    @keyframes hueSpin{to{filter:hue-rotate(360deg)}}
+    .to-top.show svg path{animation:arrowBounce 1.6s ease-in-out infinite,hueSpin 8s linear infinite}
+
+  </style>
+</head>
+<canvas id="bio" aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"></div>
+
+  <!-- ====== NAV (same links as home; “Meet our team” active) ====== -->
+   <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+  <svg class="utgec-logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Uses your site gradient colors via CSS variables -->
+      <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%"  style="stop-color: var(--grad-1)"/>
+        <stop offset="55%" style="stop-color: var(--grad-2)"/>
+        <stop offset="100%" style="stop-color: var(--grad-3)"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Outer animated ring -->
+    <circle class="ring" cx="16" cy="16" r="12" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+
+    <!-- Tiny DNA glyph (two short helices + rungs) -->
+    <path class="dna" d="M8 11 C 11 13.5, 21 13.5, 24 11
+                         M8 21 C 11 18.5, 21 18.5, 24 21"
+          fill="none" stroke="url(#logoGrad)" stroke-width="1.6" stroke-linecap="round"/>
+
+    <path class="dna" d="M10 12 h12 M10 14 h12 M10 16 h12 M10 18 h12 M10 20 h12"
+          fill="none" stroke="url(#logoGrad)" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- Small orbiting node -->
+    <circle class="orb" cx="16" cy="4" r="2.2" fill="var(--gold)"/>
+  </svg>
+  <span>UTGEC</span>
+   </div>
+      <button id='navToggle' class='hamburger' aria-label='Open menu' aria-expanded='false' type='button'><span></span><span></span><span></span></button>
+      <div class="nav-links">
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/blog">Blog</a>
+        <a class="btn" href="/team">Meet our team</a>
+        <a class="btn" href="/opportunities">Opportunities</a>
+        <a class="btn" href="/events">Events</a>
+        <a class="btn cta" href="#contact">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+  <!-- ====== HERO ====== -->
+  <header class="hero">
+    <div class="container">
+      <div>
+        <div class="headline">Meet our team — <span class="highlight">Leads & Mentors</span></div>
+        <p class="muted" style="max-width:60ch;margin-top:8px">
+          Connect with student leads, grad mentors, and industry friends. Book a 1-on-1 for projects, coding help, wet-lab skills, or career chats.
+        </p>
+        <div class="hero-actions" style="margin-top:16px;display:flex;gap:12px">
+          <a class="button primary" href="#mentors">Browse mentors</a>
+          <a class="button ghost" href="index.html#offer">See what we offer</a>
+        </div>
+      </div>
+      <div aria-hidden="true" style="display:grid;place-items:center">
+              <!-- === GENOME CROWN (new top object) === -->
+              <div class="hero-visual crown-wrap" aria-hidden="true">
+                <svg class="crown" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" role="img">
+                  <defs>
+                    <!-- Reuse site gradient colors -->
+                    <linearGradient id="crownGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%"  style="stop-color: var(--grad-1)"/>
+                      <stop offset="55%" style="stop-color: var(--grad-2)"/>
+                      <stop offset="100%" style="stop-color: var(--grad-3)"/>
+                    </linearGradient>
+
+                    <!-- Soft glow for luxury look -->
+                    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  <!-- Back ribbon -->
+                  <path class="ribbon ribbon-back"
+                        d="M 0,260 C 180,120 360,150 540,240 720,330 900,310 1200,200"
+                        fill="none" stroke="url(#crownGrad)" stroke-width="6" stroke-linecap="round" />
+
+                  <!-- Front ribbon (offset/phase shifted for helix vibe) -->
+                  <path class="ribbon ribbon-front"
+                        d="M 0,220 C 180,80 360,120 540,210 720,300 900,280 1200,180"
+                        fill="none" stroke="url(#crownGrad)" stroke-width="6" stroke-linecap="round" />
+
+                  <!-- Gold median (adds “crown” highlight) -->
+                  <path class="ribbon ribbon-gold"
+                        d="M 0,240 C 180,100 360,135 540,225 720,315 900,295 1200,190"
+                        fill="none" stroke="var(--gold)" stroke-opacity=".8" stroke-width="2.5" />
+
+                  <!-- Ladder rungs (thin gradient lines) -->
+                  <g class="rungs" stroke="url(#crownGrad)" stroke-width="1.6" stroke-linecap="round" opacity=".85">
+                    <!-- We’ll animate these with dash offset; they don't need explicit coordinates -->
+                    <path class="rung" d="M 90 235 L 120 205"/>
+                    <path class="rung" d="M 170 230 L 200 200"/>
+                    <path class="rung" d="M 250 225 L 280 195"/>
+                    <path class="rung" d="M 330 235 L 360 205"/>
+                    <path class="rung" d="M 410 240 L 440 210"/>
+                    <path class="rung" d="M 490 245 L 520 215"/>
+                    <path class="rung" d="M 570 255 L 600 225"/>
+                    <path class="rung" d="M 650 265 L 680 235"/>
+                    <path class="rung" d="M 730 270 L 760 240"/>
+                    <path class="rung" d="M 810 270 L 840 240"/>
+                    <path class="rung" d="M 890 265 L 920 235"/>
+                    <path class="rung" d="M 970 255 L 1000 225"/>
+                    <path class="rung" d="M 1050 245 L 1080 215"/>
+                  </g>
+
+                  <!-- Nanoparticles (twinkles) -->
+                  <g class="nano" filter="url(#softGlow)">
+                    <circle class="dot" cx="120" cy="170" r="2.6" fill="var(--gold)"/>
+                    <circle class="dot" cx="280" cy="120" r="2.2" fill="var(--gold)"/>
+                    <circle class="dot" cx="420" cy="260" r="2.4" fill="var(--gold)"/>
+                    <circle class="dot" cx="660" cy="190" r="2.1" fill="var(--gold)"/>
+                    <circle class="dot" cx="880" cy="220" r="2.5" fill="var(--gold)"/>
+                    <circle class="dot" cx="1080" cy="160" r="2.3" fill="var(--gold)"/>
+                  </g>
+                </svg>
+              </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== TEAM GRID (Leads) ====== -->
+  <section class="section" id="leads">
+    <div class="container">
+      <h2>Leadership</h2>
+      <div class="grid">
+        <div class="card"><div class="bar"></div><div class="body">
+          <div class="tag">President</div>
+          <img class="team-photo" src="https://images.unsplash.com/photo-1531123414780-f7420af6db51?q=80&w=1200&auto=format&fit=crop" alt="Ammar Adlan">
+          <h3>Ammar Adlan</h3>
+          <p class="muted">Leads club strategy, partnerships, and project pipelines. Interests: genetics education, bioinformatics, plant physiology.</p>
+          <div style="display:flex;gap:10px;margin-top:10px">
+            <a class="button ghost" href="mailto:uoftgenetic@gmail.com">Email</a>
+          </div>
+        </div></div>
+
+        <div class="card"><div class="bar"></div><div class="body">
+          <div class="tag">VP Operations</div>
+          <img class="team-photo" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop" alt="Operations Lead">
+          <h3>Operations Lead</h3>
+          <p class="muted">Runs events & logistics, member onboarding, and collab workflows. Ask about getting involved and project matching.</p>
+          <div style="display:flex;gap:10px;margin-top:10px">
+            <a class="button ghost" href="mailto:uoftgenetic@gmail.com">Email</a>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== MENTOR GRID (with booking) ====== -->
+  <section class="section" id="mentors">
+    <div class="container">
+      <h2>Mentors — Book a 1-on-1</h2>
+      <p class="muted" style="max-width:60ch">Choose a mentor and click <em>Book 1-on-1</em>. You’ll get a calendar widget in a modal; no page reloads.</p>
+
+      <div class="grid">
+        <!-- Mentor 1 -->
+        <div class="card"><div class="bar"></div><div class="body">
+          <div class="tag">Bioinformatics • Python/R</div>
+          <img class="team-photo" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1200&auto=format&fit=crop" alt="Mentor: Lina Chen">
+          <h3>Lina Chen, MSc</h3>
+          <p class="muted">Pipelines, RNA-seq, single-cell basics, and clean reproducible analysis. Happy to help debug code and demystify data wrangling.</p>
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button class="button primary btn-book" data-mentor="Lina Chen" data-url="https://calendly.com/your-org/lina">
+              Book 1-on-1
+            </button>
+            <a class="button ghost" href="mailto:uoftgenetic@gmail.com">Email</a>
+          </div>
+        </div></div>
+
+        <!-- Mentor 2 -->
+        <div class="card"><div class="bar"></div><div class="body">
+          <div class="tag">Wet-Lab • Cloning</div>
+          <img class="team-photo" src="https://images.unsplash.com/photo-1559757175-08a5f9f3c12d?q=80&w=1200&auto=format&fit=crop" alt="Mentor: Jacob Singh">
+          <h3>Jacob Singh, PhD(c)</h3>
+          <p class="muted">Molecular cloning, CRISPR basics, gel troubleshooting, and good lab notebooks. Bring your protocol — we’ll make it work.</p>
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button class="button primary btn-book" data-mentor="Jacob Singh" data-url="https://calendly.com/your-org/jacob">
+              Book 1-on-1
+            </button>
+            <a class="button ghost" href="mailto:uoftgenetic@gmail.com">Email</a>
+          </div>
+        </div></div>
+
+        <!-- Mentor 3 -->
+        <div class="card"><div class="bar"></div><div class="body">
+          <div class="tag">Genomics • Long-Read</div>
+          <img class="team-photo" src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=1200&auto=format&fit=crop" alt="Mentor: Sara Al-Khalil">
+          <h3>Sara Al-Khalil, MSc</h3>
+          <p class="muted">Library prep tips, variant calling, QC, and interpretation workflows. Can guide literature searches & figure reading.</p>
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button class="button primary btn-book" data-mentor="Sara Al-Khalil" data-url="https://calendly.com/your-org/sara">
+              Book 1-on-1
+            </button>
+            <a class="button ghost" href="mailto:uoftgenetic@gmail.com">Email</a>
+          </div>
+        </div></div>
+
+        <!-- Mentor 4 -->
+        <div class="card"><div class="bar"></div><div class="body">
+          <div class="tag">Careers • Grad Apps</div>
+          <img class="team-photo" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt="Mentor: Priya Raman">
+          <h3>Priya Raman, Industry</h3>
+          <p class="muted">Resume & statement reviews, networking, and “what industry looks for”. Bring a draft; leave with concrete edits.</p>
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button class="button primary btn-book" data-mentor="Priya Raman" data-url="https://calendly.com/your-org/priya">
+              Book 1-on-1
+            </button>
+            <a class="button ghost" href="mailto:uoftgenetic@gmail.com">Email</a>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+<section id="contact" class="section">
+    <div class="container">
+      <h2 class="reveal">Contact Us</h2>
+      <p class="muted reveal" style="max-width:60ch">Questions, collaborations, or membership? Send us a note and we’ll get back to you.</p>
+      <div class="join">
+        <form class="panel reveal" name="club-requests" onsubmit="return submitForm(event)" netlify>
+          <div class="row"><input required placeholder="Full name" name="full_name" /><input type="email" name = "email" required placeholder="Email" /></div>
+          <input placeholder="Program / Year" name="program" style="margin-top:12px" />
+          <textarea rows="4" placeholder="What do you want to build or learn this year?" name="message" style="margin-top:12px"></textarea>
+          <button class="button primary submit" type="submit">Send</button>
+          <div id="msg" class="muted" style="margin-top:10px"></div>
+        </form>
+        <div class="panel reveal">
+          <h3>Connect</h3>
+           <ul style="list-style:none;padding-left:0;margin:14px 0 0 0;color:var(--muted);display:grid;gap:10px">
+            <li>Instagram: <a href="https://instagram.com/uoft.genetics" target="_blank" rel="noopener">@uoftgenetic</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/company/109172110/admin/dashboard/" target="_blank" rel="noopener">UTGEC</a></li>
+            <li>Email: <a href="mailto:uoftgeneticeng@gmail.com">uoftgeneticeng@gmail.com</a></li>
+          </ul>
+          <p class="muted" style="font-size:14px;margin-top:14px">By contacting us, you agree to our community code of conduct and lab safety policies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ====== FAQ SECTION ====== -->
+<section class="section" id="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <h3>How can I join the executive team?</h3>
+        <p class="muted">
+          We open applications for executive and coordinator roles at the start of each semester.
+          Keep an eye on our Instagram and mailing list for announcements!
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I shadow or volunteer before applying for a team role?</h3>
+        <p class="muted">
+          Absolutely! We welcome volunteers to help with events, social media, and outreach.
+          It’s a great way to get involved and learn about the team.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can international or first-year students apply for executive roles?</h3>
+        <p class="muted">
+          Yes! Our team includes students from diverse academic years and backgrounds.
+          First-year and international students are encouraged to apply and bring fresh perspectives to the club.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What kinds of roles are on the team?</h3>
+        <p class="muted">
+          Our team includes:<br><br>
+          • First-Year and General Representatives<br>
+          • President & Vice President<br>
+          • Events Coordinators<br>
+          • Outreach & Communications Leads<br>
+          • Academic & Research Coordinators
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need experience to apply?</h3>
+        <p class="muted">
+          Not necessarily. Passion, commitment, and willingness to learn are the most important.
+          We provide guidance and support for new executives.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How much time do executive members commit weekly?</h3>
+        <p class="muted">
+          On average, 2–5 hours per week. Time commitment may increase slightly
+          during event weeks or team planning meetings.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Got questions?</h3>
+        <p class="muted">
+          Reach out to us via <a href="mailto:uoftgenetic@gmail.com">uoftgenetic@gmail.com</a>
+          or on Instagram — we’d love to hear from you!
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      © <span id="year"></span> UTGEC — University of Toronto Genetic Engineering Club
+      <a class="muted" href="#">Back to top ↑</a>
+    </div>
+  </footer>
+  <button id="toTop" class="to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <!-- Gradient stroke for the arrow -->
+        <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#60a5fa"/>
+          <stop offset="50%" stop-color="#a78bfa"/>
+          <stop offset="100%" stop-color="#34d399"/>
+        </linearGradient>
+      </defs>
+      <!-- The arrow line itself -->
+      <path d="M12 19V5M5 12l7-7 7 7"
+            stroke="url(#arrowGrad)"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"/>
+    </svg>
+  </button>
+
+  <!-- ====== SCRIPTS (tiny, mirrors home behavior) ====== -->
+  <script>
+    // Year
+    document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear()});
+
+    // Sticky nav shadow
+    addEventListener('scroll',()=>{document.getElementById('nav')?.classList.toggle('scrolled',scrollY>4)},{passive:true});
+
+    // Booking modal wiring (same pattern as your home-page snippet)
+    (function(){
+      const backdrop = document.getElementById('booking');
+      const frame = document.getElementById('bookingFrame');
+      const title = document.getElementById('bookingTitle');
+      const closeBtn = document.getElementById('bookingClose');
+
+      function openModal(name, url){
+        title.textContent = `Book with ${name}`;
+        frame.src = url; // Calendly/Google booking link
+        backdrop.classList.add('show');
+        backdrop.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(()=> closeBtn?.focus(), 60);
+      }
+      function closeModal(){
+        backdrop.classList.remove('show');
+        backdrop.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        frame.src = 'about:blank';
+      }
+
+      document.querySelectorAll('.btn-book').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const url = btn.getAttribute('data-url');
+          const name = btn.getAttribute('data-mentor') || 'mentor';
+          if(url) openModal(name,url);
+        });
+      });
+      closeBtn?.addEventListener('click', closeModal);
+      backdrop?.addEventListener('click', e=>{ if(e.target===backdrop) closeModal(); });
+      addEventListener('keydown', e=>{ if(e.key==='Escape' && backdrop?.classList.contains('show')) closeModal(); });
+    })();
+
+    // Mobile nav toggle
+        (function(){
+      const btn = document.getElementById('navToggle');
+      const panel = document.querySelector('.nav-links');
+      if(!btn || !panel) return;
+
+      const open = () => {
+        panel.classList.add('open');
+        btn.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+        document.body.style.overflow='hidden';   // prevents background scroll
+      };
+
+      const close = () => {
+        panel.classList.remove('open');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded','false');
+        document.body.style.overflow='';
+      };
+
+      const toggle = () => panel.classList.contains('open') ? close() : open();
+
+      btn.addEventListener('click', toggle);
+      btn.addEventListener('touchstart', e => { e.preventDefault(); toggle(); }, { passive:false });
+
+      panel.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', close);      // close after selecting a link
+        a.addEventListener('touchend', () => close(), { passive:true });
+      });
+
+      addEventListener('resize', () => { if(innerWidth > 900) close(); });
+      addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+    })();
+
+    (function(){
+      const b = document.getElementById('toTop');
+      addEventListener('scroll', () => {
+        b.classList.toggle('show', scrollY > 500);
+      }, { passive:true });
+
+      b && b.addEventListener('click', () =>
+        scrollTo({ top: 0, behavior: 'smooth' })
+      );
+    })();
+
+
+    (function(){
+      const wrap = document.querySelector('.crown-wrap');
+      if(!wrap) return;
+
+      // skip on touch devices (keeps it crisp on mobile)
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      if(isTouch) return;
+
+      const MAX = 6; // px range (subtle = luxurious)
+      let raf = 0;
+
+      function onMove(e){
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(()=>{
+          const rect = wrap.getBoundingClientRect();
+          const cx = rect.left + rect.width/2;
+          const cy = rect.top  + rect.height/2;
+          const dx = (e.clientX - cx) / (rect.width/2);
+          const dy = (e.clientY - cy) / (rect.height/2);
+          wrap.style.setProperty('--parallax-x', `${(dx*MAX).toFixed(2)}px`);
+          wrap.style.setProperty('--parallax-y', `${(dy*MAX).toFixed(2)}px`);
+        });
+      }
+
+    window.addEventListener('mousemove', onMove, { passive:true });
+  })();
+
+ // Biology objects canvas
+  (function(){const c=document.getElementById('bio'); if(!c) return; const ctx=c.getContext('2d'); let w,h,dpr,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches; function rs(){dpr=Math.min(2,devicePixelRatio||1); w=c.width=innerWidth*dpr; h=c.height=innerHeight*dpr; c.style.width=innerWidth+'px'; c.style.height=innerHeight+'px';} rs(); addEventListener('resize',rs); function rnd(a,b){return a+Math.random()*(b-a)} const types=['cell','plasmid','bacterium']; const orgs=Array.from({length:14},(_,i)=>({type:types[i%3],x:rnd(0,w),y:rnd(0,h),vx:rnd(-0.08,0.08)*dpr,vy:rnd(-0.08,0.08)*dpr,r:rnd(18,34)*dpr,rot:rnd(0,Math.PI*2),spin:rnd(-0.002,0.002),hue:190+Math.random()*140,alpha:0.12+Math.random()*0.12})); function cell(o){const g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r*1.4); g.addColorStop(0,`hsla(${o.hue},85%,70%,${o.alpha*1.2})`); g.addColorStop(1,'hsla(0,0%,0%,0.1)'); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(o.x,o.y,o.r*1.4,0,Math.PI*2); ctx.fill(); ctx.lineWidth=Math.max(1,o.r*0.08); ctx.strokeStyle=`hsla(${o.hue},90%,75%,${o.alpha*1.6})`; ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,Math.PI*2); ctx.stroke(); } function plasmid(o){ctx.save(); ctx.translate(o.x,o.y); ctx.rotate(o.rot); ctx.lineWidth=Math.max(1,o.r*0.12); ctx.strokeStyle=`hsla(${o.hue},85%,70%,${o.alpha*1.4})`; ctx.setLineDash([o.r*0.5,o.r*0.25]); ctx.lineDashOffset=-o.rot*o.r; ctx.beginPath(); ctx.arc(0,0,o.r*0.9,0,Math.PI*2); ctx.stroke(); ctx.setLineDash([]); ctx.restore(); } function bacterium(o){ctx.save(); ctx.translate(o.x,o.y); ctx.rotate(o.rot); const rx=o.r*0.55, ry=o.r*0.9; ctx.fillStyle=`hsla(${o.hue-20},75%,60%,${o.alpha*1.2})`; round(-rx,-ry*0.6,rx*2,ry*1.2,ry*0.6,); ctx.fill(); ctx.lineWidth=Math.max(1,o.r*0.06); ctx.strokeStyle=`hsla(${o.hue-10},80%,70%,${o.alpha*1.5})`; round(-rx,-ry*0.6,rx*2,ry*1.2,ry*0.6); ctx.stroke(); ctx.restore(); function round(x,y,wc,hc,r){const r2=Math.min(r,hc/2,wc/2); ctx.beginPath(); ctx.moveTo(x+r2,y); ctx.lineTo(x+wc-r2,y); ctx.quadraticCurveTo(x+wc,y,x+wc,y+r2); ctx.lineTo(x+wc,y+hc-r2); ctx.quadraticCurveTo(x+wc,y+hc,x+wc-r2,y+hc); ctx.lineTo(x+r2,y+hc); ctx.quadraticCurveTo(x,y+hc,x,y+hc-r2); ctx.lineTo(x,y+r2); ctx.quadraticCurveTo(x,y,x+r2,y);} } function step(){ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation='lighter'; for(const o of orgs){ if(!reduce){o.x+=o.vx;o.y+=o.vy;o.rot+=o.spin;} if(o.x<-100||o.x>w+100)o.vx*=-1; if(o.y<-100||o.y>h+100)o.vy*=-1; ({cell,plasmid,bacterium}[o.type])(o);} ctx.globalCompositeOperation='source-over'; if(!reduce)requestAnimationFrame(step);} step();})();
+
+
+  </script>
+</body>
+</html>
