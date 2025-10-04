@@ -1,4 +1,5 @@
-  <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,18 +8,18 @@
   <meta name="description" content="University of Toronto Genetic Engineering Club — projects, mentorship, and events in synthetic biology." />
   <style>
     /* === UTGEC navbar logo === */
-.brand { display:flex; align-items:center; gap:10px } /* you already have this; okay if duplicated */
-.brand .utgec-logo{width:28px;height:28px;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
-.brand .utgec-logo .ring{transform-origin:50% 50%;animation:spin 18s linear infinite}
-.brand .utgec-logo .dna{stroke-dasharray:60 14;animation:dash 6s linear infinite}
-.brand .utgec-logo .orb{animation:float 3.8s ease-in-out infinite}
-.brand:hover .utgec-logo .ring{animation-duration:12s}    /* a tiny boost on hover */
-.brand:hover .utgec-logo .orb{animation-duration:2.8s}
-@media (prefers-reduced-motion: reduce){
-  .brand .utgec-logo .ring,
-  .brand .utgec-logo .dna,
-  .brand .utgec-logo .orb{animation:none}
-}
+    .brand { display:flex; align-items:center; gap:10px } /* you already have this; okay if duplicated */
+    .brand .utgec-logo{width:28px;height:28px;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+    .brand .utgec-logo .ring{transform-origin:50% 50%;animation:spin 18s linear infinite}
+    .brand .utgec-logo .dna{stroke-dasharray:60 14;animation:dash 6s linear infinite}
+    .brand .utgec-logo .orb{animation:float 3.8s ease-in-out infinite}
+    .brand:hover .utgec-logo .ring{animation-duration:12s}    /* a tiny boost on hover */
+    .brand:hover .utgec-logo .orb{animation-duration:2.8s}
+    @media (prefers-reduced-motion: reduce){
+      .brand .utgec-logo .ring,
+      .brand .utgec-logo .dna,
+      .brand .utgec-logo .orb{animation:none}
+    }
 
     :root{--bg:#06070b;--muted:#a3a8b8;--text:#eef0f7;--line:#1b1f2b;--grad-1:#60a5fa;--grad-2:#a78bfa;--grad-3:#34d399;--gold:#f6d98b;--shadow:0 10px 30px rgba(0,0,0,.45);--radius-2xl:22px}
     *{box-sizing:border-box}html,body{height:100%}
@@ -75,6 +76,53 @@
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
     @keyframes spin{to{transform:rotate(360deg)}}
 
+
+    /* --- Helix Orb (hero right) --- */
+    .helix-orb {
+      width: min(520px, 42vw);
+      height: min(520px, 42vw);
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,.45));
+    }
+
+    .helix-orb-svg { width: 100%; height: 100%; }
+
+    /* Smooth float to add life without chaos */
+    .helix-orb { animation: float 10s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(14px) } }
+
+    /* Rotations */
+    .spin     { animation: spin 12s linear infinite; transform-origin: 150px 150px; }
+    .spin-rev { animation: spin 16s linear infinite reverse; transform-origin: 150px 150px; }
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    /* Helix sway */
+    .helix { animation: helixSway 6s ease-in-out infinite; transform-origin: 150px 150px; }
+    @keyframes helixSway {
+      0%,100% { transform: translateX(0) }
+      50%     { transform: translateX(6px) }
+    }
+
+    /* Rungs animation (dash flow) */
+    .helix .rungs line {
+      stroke-dasharray: 32 16;
+      animation: rungDash 2.2s linear infinite;
+    }
+    @keyframes rungDash { to { stroke-dashoffset: -240 } }
+
+    /* Orbiting nodes with gentle hue spin */
+    .nodes .node { animation: orbit 9s linear infinite; transform-origin: 150px 150px; }
+    .nodes .n1 { animation-duration: 9s; }
+    .nodes .n2 { animation-duration: 12s; animation-direction: reverse; }
+    @keyframes orbit { to { transform: rotate(360deg) } }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .helix-orb, .spin, .spin-rev, .helix, .nodes .node { animation: none !important; }
+    }
+
+
     /* DNA background in hero */
     .dna-bg{position:absolute;inset:-40px 0 -40px 0;z-index:0;opacity:.28;pointer-events:none;filter:saturate(1.1)}
     .hero .reveal,.hero-visual{position:relative;z-index:1}
@@ -108,7 +156,7 @@
       flex-direction: row; /* Change from column to row */
       align-items: center;
     }
-    
+
     .dna-background {
       position: absolute;
       right: 0; /* Position to the right */
@@ -116,7 +164,7 @@
       transform: translateY(-50%);
       /* Remove any top positioning */
     }
-    
+
     .text-content {
       flex: 1;
       margin-right: 200px; /* Add space for DNA background */
@@ -224,7 +272,7 @@
     @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
     @keyframes hueSpin{to{filter:hue-rotate(360deg)}}
     .to-top.show svg path{animation:arrowBounce 1.6s ease-in-out infinite,hueSpin 8s linear infinite}
-   
+
 
    /* Seat hero text left and DNA right on desktop */
   .hero-text{order:1}
@@ -234,7 +282,7 @@
   @media (max-width:900px){
     .hero .container{grid-template-columns:1fr}
   }
-  
+
   @media (max-width: 900px){
   .dna-badge { display: none !important; }
    /* Make hero container single column so the text spans full width */
@@ -244,8 +292,253 @@
     gap: 10px;
   }
   }
+  /* ================================
+   MOTION TOKENS (one place to tune)
+   ================================ */
+:root{
+  --motion-ease: cubic-bezier(.22,.9,.24,1);     /* snappy, not harsh */
+  --motion-ease-soft: cubic-bezier(.18,.64,.22,1); /* gentle */
+  --motion-speed-fast: 280ms;
+  --motion-speed-med: 520ms;
+  --motion-speed-slow: 820ms;
+
+  /* micro-movement ranges (px/deg) */
+  --wiggle-y: 6px;       /* vertical bob range */
+  --parallax: 4px;       /* svg parallax on hover */
+  --card-hover-raise: 8px;
+  --icon-rotate: 4deg;   /* tiny rotation for life */
+
+  /* icon loop durations (can scale on mobile/desktop) */
+  --loop-pulse: 1.35s;
+  --loop-dash:  1.7s;
+  --loop-spin:  4.6s;
+
+  /* per-section reveal stagger step */
+  --stagger-step: 90ms;
+}
+
+/* Slightly calmer on small screens to match compact layout */
+@media (max-width: 900px){
+  :root{
+    --wiggle-y: 4px;
+    --parallax: 2px;
+    --card-hover-raise: 6px;
+    --loop-pulse: 1.5s;
+    --loop-dash:  1.9s;
+    --loop-spin:  5.2s;
+    --stagger-step: 70ms;
+  }
+}
+
+/* ================================
+   FOUNDATIONS: reveal & hover
+   ================================ */
+
+/* Cards/icons start “ready but quiet” (no layout thrash) */
+#focus .card, #offer .card, #nonlab .card {
+  transform: translateY(10px) scale(.995);
+  opacity: .0;
+  will-change: transform, opacity;
+  transition:
+    transform var(--motion-speed-med) var(--motion-ease),
+    opacity   var(--motion-speed-med) var(--motion-ease);
+}
+.section-in #focus .card,
+.section-in #offer .card,
+.section-in #nonlab .card,
+#focus .card.in, #offer .card.in, #nonlab .card.in {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Nesting: ensure icon SVGs are their own composite layer */
+#focus  svg.mini, #offer  svg.mini, #nonlab svg.mini {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Zippier but controlled card hover */
+#focus  .card:hover, #offer  .card:hover, #nonlab .card:hover {
+  transform: translateY(calc(var(--card-hover-raise) * -1)) scale(1.012);
+  transition-duration: var(--motion-speed-fast);
+  transition-timing-function: var(--motion-ease);
+}
+#focus  .card .bar, #offer  .card .bar, #nonlab .card .bar {
+  transition: width var(--motion-speed-fast) var(--motion-ease);
+}
+
+  /* ================================
+    MICRO-MOTION FOR ICONS (smooth)
+    ================================ */
+
+  /* Replace older wiggles with unified, tiny motions */
+  @keyframes micro-bob {
+    0%,100% { transform: translateY(0) rotate(0) }
+    50%     { transform: translateY(calc(var(--wiggle-y) * -1)) rotate(var(--icon-rotate)) }
+  }
+  @keyframes micro-dash {
+    to { stroke-dashoffset: -120 }
+  }
+  @keyframes micro-spin {
+    to { transform: rotate(360deg) }
+  }
+
+  /* Apply: pulse/dash/spin classes now map to our curves & durations */
+  #focus  .mini .pulse, #offer  .mini .pulse, #nonlab .mini .pulse {
+    animation: micro-bob var(--loop-pulse) var(--motion-ease-soft) infinite;
+  }
+  #focus  .mini .dash, #offer  .mini .dash, #nonlab .mini .dash {
+    animation: micro-dash var(--loop-dash) linear infinite;
+    stroke-dasharray: 6 6;
+  }
+  #focus  .mini .spin, #offer  .mini .spin, #nonlab .mini .spin {
+    animation: micro-spin var(--loop-spin) linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  /* Whole-SVG fallback motion (if a mini has no sub-parts) */
+  #focus  svg.mini.move,
+  #offer  svg.mini.move,
+  #nonlab svg.mini.move {
+    animation: micro-bob calc(var(--loop-pulse) * 1.2) var(--motion-ease-soft) infinite;
+  }
+
+  /* Hover parallax for icons to “fit content” interaction */
+  #focus  .card:hover svg.mini,
+  #offer  .card:hover svg.mini,
+  #nonlab .card:hover svg.mini {
+    transform: translate3d(0, calc(var(--parallax) * -1), 0);
+    transition: transform var(--motion-speed-fast) var(--motion-ease);
+  }
+
+  /* ================================
+    STAGGER (fits content rhythm)
+    ================================ */
+
+  /* A stagger map up to 12 items; JS adds .in with index-based delay */
+  #focus  .card.in:nth-child(1),
+  #offer  .card.in:nth-child(1),
+  #nonlab .card.in:nth-child(1)  { transition-delay: calc(var(--stagger-step) * 0); }
+  #focus  .card.in:nth-child(2),
+  #offer  .card.in:nth-child(2),
+  #nonlab .card.in:nth-child(2)  { transition-delay: calc(var(--stagger-step) * 1); }
+  #focus  .card.in:nth-child(3),
+  #offer  .card.in:nth-child(3),
+  #nonlab .card.in:nth-child(3)  { transition-delay: calc(var(--stagger-step) * 2); }
+  #focus  .card.in:nth-child(4),
+  #offer  .card.in:nth-child(4),
+  #nonlab .card.in:nth-child(4)  { transition-delay: calc(var(--stagger-step) * 3); }
+  #focus  .card.in:nth-child(5),
+  #offer  .card.in:nth-child(5),
+  #nonlab .card.in:nth-child(5)  { transition-delay: calc(var(--stagger-step) * 4); }
+  #focus  .card.in:nth-child(6),
+  #offer  .card.in:nth-child(6),
+  #nonlab .card.in:nth-child(6)  { transition-delay: calc(var(--stagger-step) * 5); }
+  #focus  .card.in:nth-child(7),
+  #offer  .card.in:nth-child(7),
+  #nonlab .card.in:nth-child(7)  { transition-delay: calc(var(--stagger-step) * 6); }
+  #focus  .card.in:nth-child(8),
+  #offer  .card.in:nth-child(8),
+  #nonlab .card.in:nth-child(8)  { transition-delay: calc(var(--stagger-step) * 7); }
+  #focus  .card.in:nth-child(9),
+  #offer  .card.in:nth-child(9),
+  #nonlab .card.in:nth-child(9)  { transition-delay: calc(var(--stagger-step) * 8); }
+  #focus  .card.in:nth-child(10),
+  #offer  .card.in:nth-child(10),
+  #nonlab .card.in:nth-child(10) { transition-delay: calc(var(--stagger-step) * 9); }
+  #focus  .card.in:nth-child(11),
+  #offer  .card.in:nth-child(11),
+  #nonlab .card.in:nth-child(11) { transition-delay: calc(var(--stagger-step) * 10); }
+  #focus  .card.in:nth-child(12),
+  #offer  .card.in:nth-child(12),
+  #nonlab .card.in:nth-child(12) { transition-delay: calc(var(--stagger-step) * 11); }
+
+  /* Accessibility: respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    #focus .card, #offer .card, #nonlab .card,
+    #focus svg.mini, #offer svg.mini, #nonlab svg.mini {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
+
+  @keyframes arrowBounce {
+  0%,100% { transform:translateY(0) }
+  50%     { transform:translateY(-3px) }
+  }
+
+  @keyframes hueSpin {
+    to { filter:hue-rotate(360deg) }
+  }
+
+  .to-top.show svg path {
+    animation: arrowBounce 1.6s ease-in-out infinite,
+              hueSpin 8s linear infinite;
+  }
+
   </style>
 </head>
+<script>
+/* View-aware, staggered, smooth section motion
+   - Adds .section-in to the document when any target section is visible.
+   - Adds .in to each card and staggers them for a rhythm that matches the grid.
+   - Pauses unnecessary work offscreen automatically.
+*/
+(function(){
+  const sections = ['#focus', '#offer', '#nonlab']
+    .map(sel => document.querySelector(sel))
+    .filter(Boolean);
+
+  // Gather cards & minis for each section
+  const cards = sections.flatMap(sec => Array.from(sec.querySelectorAll('.card')));
+  const minis = sections.flatMap(sec => Array.from(sec.querySelectorAll('svg.mini')));
+
+  // Helper: mark document when any section is in-view (styling hook)
+  const docIO = new IntersectionObserver(entries => {
+    const anyVisible = entries.some(e => e.isIntersecting);
+    document.documentElement.classList.toggle('section-in', anyVisible);
+  }, { threshold: 0.08 });
+  sections.forEach(s => docIO.observe(s));
+
+  // Staggered reveal for cards
+  const cardIO = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // mark this card "in" once; keeps it smooth on revisit
+        entry.target.classList.add('in');
+        cardIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -5% 0px' });
+  cards.forEach(c => cardIO.observe(c));
+
+  // Optional: pause icon animations off-screen by toggling animation-play-state
+  const miniIO = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const el = entry.target;
+      el.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+      // Also pause known sub-parts if present
+      el.querySelectorAll('.pulse, .dash, .spin').forEach(p =>
+        p.style.animationPlayState = el.style.animationPlayState
+      );
+    });
+  }, { threshold: 0.01 });
+  minis.forEach(m => miniIO.observe(m));
+
+  // Mobile: if user opens the mobile menu or resizes dramatically, reset delays (prevents long queuing)
+  let resetTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => {
+      cards.forEach(c => { c.style.transitionDelay = ''; });
+    }, 150);
+  }, { passive: true });
+})();
+</script>
+
+
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="aurora" aria-hidden="true"></div>
@@ -269,7 +562,7 @@
 
     <!-- Tiny DNA glyph (two short helices + rungs) -->
     <path class="dna" d="M8 11 C 11 13.5, 21 13.5, 24 11
-                         M8 21 C 11 18.5, 21 18.5, 24 21" 
+                         M8 21 C 11 18.5, 21 18.5, 24 21"
           fill="none" stroke="url(#logoGrad)" stroke-width="1.6" stroke-linecap="round"/>
 
     <path class="dna" d="M10 12 h12 M10 14 h12 M10 16 h12 M10 18 h12 M10 20 h12"
@@ -281,12 +574,12 @@
   <span>UTGEC</span>
    </div>
       <button id='navToggle' class='hamburger' aria-label='Open menu' aria-expanded='false' type='button'><span></span><span></span><span></span></button>
-      <div class="nav-links">
-        <a class="btn" href="#home">Home</a>
-        <a class="btn" href="#about">About us</a>
-        <a class="btn" href="#team">Meet our team</a>
-        <a class="btn" href="#opportunities">Opportunities</a>
-        <a class="btn" href="#events">Events</a>
+       <div class="nav-links">
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/blog">Blog</a>
+        <a class="btn" href="/team">Meet our team</a>
+        <a class="btn" href="/opportunities">Opportunities</a>
+        <a class="btn" href="/events">Events</a>
         <a class="btn cta" href="#contact">Contact Us</a>
       </div>
     </div>
@@ -313,41 +606,65 @@
           <button class="button ghost" onclick="scrollToId('offer')">Explore What We Offer</button>
         </div>
       </div>
-      <div class="hero-visual reveal" aria-hidden="true">
-         <div class="orb-wrap float-slow" style="width:min(520px,42vw);height:min(520px,42vw);display:grid;place-items:center">
-          <!-- Animated DNA badge (matches site gradient) -->
-          <svg class="dna-badge" viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="dnaBadgeGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#60a5fa"/>
-                <stop offset="50%" stop-color="#a78bfa"/>
-                <stop offset="100%" stop-color="#34d399"/>
-              </linearGradient>
-              <style>
-                .spinL{animation:spin 14s linear infinite}
-                .spinR{animation:spin 16s linear infinite reverse}
-                .dash{stroke-dasharray:60 18; animation:dash 6s linear infinite}
-                @keyframes spin{to{transform:rotate(360deg)}}
-                @keyframes dash{to{stroke-dashoffset:-300}}
-              </style>
-            </defs>
-            <circle cx="100" cy="100" r="92" fill="#0d1120" stroke="url(#dnaBadgeGrad)" stroke-width="4" opacity=".9"/>
-            <path d="M60 14 C 78 38, 48 66, 60 100 C 72 134, 48 162, 60 186" stroke="url(#dnaBadgeGrad)" stroke-width="2.2" fill="none" opacity=".85" class="spinL"/>
-            <path d="M140 14 C 122 38, 152 66, 140 100 C 128 134, 152 162, 140 186" stroke="url(#dnaBadgeGrad)" stroke-width="2.2" fill="none" opacity=".65" class="spinR"/>
-            <g stroke="url(#dnaBadgeGrad)" stroke-width="2" opacity=".9" class="dash">
-              <line x1="72" y1="28" x2="128" y2="26"/>
-              <line x1="72" y1="46" x2="128" y2="44"/>
-              <line x1="72" y1="64" x2="128" y2="62"/>
-              <line x1="72" y1="82" x2="128" y2="80"/>
-              <line x1="72" y1="100" x2="128" y2="98"/>
-              <line x1="72" y1="118" x2="128" y2="116"/>
-              <line x1="72" y1="136" x2="128" y2="134"/>
-              <line x1="72" y1="154" x2="128" y2="152"/>
-              <line x1="72" y1="172" x2="128" y2="170"/>
-            </g>
-          </svg>
-        </div>
+    <div class="hero-visual reveal" aria-hidden="true">
+      <div class="helix-orb">
+        <svg class="helix-orb-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <!-- Site gradient -->
+            <linearGradient id="orbGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"  stop-color="var(--grad-1)"/>
+              <stop offset="55%" stop-color="var(--grad-2)"/>
+              <stop offset="100%" stop-color="var(--grad-3)"/>
+            </linearGradient>
+
+            <!-- Soft glow -->
+            <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.25)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+
+            <!-- Blur for glow ring -->
+            <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="8" />
+            </filter>
+          </defs>
+
+          <!-- Outer subtle glow disk -->
+          <circle cx="150" cy="150" r="120" fill="url(#orbGlow)"/>
+
+          <!-- Rotating gradient ring (thin) -->
+          <g class="ring spin">
+            <circle cx="150" cy="150" r="115" fill="none" stroke="url(#orbGrad)" stroke-width="2.5" opacity="0.9"/>
+          </g>
+
+          <!-- Secondary dashed ring rotating the other way -->
+          <g class="ring spin-rev">
+            <circle cx="150" cy="150" r="95" fill="none" stroke="url(#orbGrad)" stroke-width="2"
+                    stroke-dasharray="20 12" stroke-linecap="round" opacity="0.75"/>
+          </g>
+
+          <!-- Helix pair (mild sway + dashed rungs) -->
+          <g class="helix">
+            <path class="stemL" d="M110 40 C 125 95, 95 150, 110 205 C 125 260, 95 315, 110 370"
+                  transform="translate(0,-70)" fill="none" stroke="url(#orbGrad)" stroke-width="2"/>
+            <path class="stemR" d="M190 40 C 175 95, 205 150, 190 205 C 175 260, 205 315, 190 370"
+                  transform="translate(0,-70)" fill="none" stroke="url(#orbGrad)" stroke-width="2" opacity="0.8"/>
+            <!-- rungs -->
+            <g class="rungs" stroke="url(#orbGrad)" stroke-width="2" opacity="0.85"></g>
+          </g>
+
+          <!-- Inner soft core -->
+          <circle cx="150" cy="150" r="54" fill="#0d1120" stroke="url(#orbGrad)" stroke-width="2" opacity="0.9" filter="url(#softBlur)"/>
+
+          <!-- Orbiting nodes -->
+          <g class="nodes">
+            <circle class="node n1" cx="150" cy="38" r="5.5" fill="var(--gold)"/>
+            <circle class="node n2" cx="150" cy="262" r="4.5" fill="var(--gold)"/>
+          </g>
+        </svg>
       </div>
+  </div>
+
     </div>
   </header>
 
@@ -512,25 +829,7 @@
     </div>
   </section>
 
-  <section id="team" class="section">
-    <div class="container">
-      <h2 class="reveal">Meet our team</h2>
-      <div class="grid">
-        <div class="card reveal" data-tilt>
-          <div class="bar"></div>
-          <div class="body">
-            <div class="photo-wrap">
-              <img src="https://uoftgenetic.wordpress.com/wp-content/uploads/2025/07/screenshot-2025-07-03-124508.png" alt="Ammar Adlan" class="team-photo" onerror="this.style.display='none'; this.closest('.photo-wrap').querySelector('.avatar-fallback').style.display='grid'" />
-              <div class="avatar-fallback" style="display:none">AA</div>
-            </div>
-            <div class="tag">President</div>
-            <h3>Ammar Adlan</h3>
-            <p class="muted">Ammar is the founding President of UTGEC. He is a third-year Biology student with research interests in molecular genetics and synthetic biology. Passionate about mentorship and innovation.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section id="contact" class="section">
     <div class="container">
@@ -547,10 +846,9 @@
         <div class="panel reveal">
           <h3>Connect</h3>
           <ul style="list-style:none;padding-left:0;margin:14px 0 0 0;color:var(--muted);display:grid;gap:10px">
-            <li>Instagram: <a href="https://instagram.com/utgenetic" target="_blank" rel="noopener">@utgenetic</a></li>
-            <li>LinkedIn: <a href="https://linkedin.com/company/utgec" target="_blank" rel="noopener">UTGEC</a></li>
-            <li>Website: <a href="https://uoftgenetic.wordpress.com/" target="_blank" rel="noopener">uoftgenetic.wordpress.com</a></li>
-            <li>Email: <a href="mailto:uoftgenetic@gmail.com">uoftgenetic@gmail.com</a></li>
+            <li>Instagram: <a href="https://instagram.com/uoft.genetics" target="_blank" rel="noopener">@uoftgenetic</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/company/109172110/admin/dashboard/" target="_blank" rel="noopener">UTGEC</a></li>
+            <li>Email: <a href="mailto:uoftgeneticeng@gmail.com">uoftgeneticeng@gmail.com</a></li>
           </ul>
           <p class="muted" style="font-size:14px;margin-top:14px">By contacting us, you agree to our community code of conduct and lab safety policies.</p>
         </div>
@@ -580,7 +878,7 @@
 
   <script>
     // Smooth anchor scroll
-    function scrollToId(id){const el=document.getElementById(id); if(!el) return; const y=el.getBoundingClientRect().top+window.pageYOffset-72; window.scrollTo({top:y,behavior:'smooth'});} 
+    function scrollToId(id){const el=document.getElementById(id); if(!el) return; const y=el.getBoundingClientRect().top+window.pageYOffset-72; window.scrollTo({top:y,behavior:'smooth'});}
     document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear()});
 
     // DNA rungs build
