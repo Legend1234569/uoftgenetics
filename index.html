@@ -477,6 +477,10 @@
               hueSpin 8s linear infinite;
   }
 
+  /* Disable nav “active” highlight */
+  .nav a.active { color: inherit !important; }
+  .nav a.active::after { content: none !important; }
+
   </style>
 </head>
 <script>
@@ -926,6 +930,14 @@ document.addEventListener("DOMContentLoaded", () => {
     el.classList.add("show");   // ensure visible immediately
   });
 });
+(function(){
+  const nav = document.getElementById('nav');
+  // Keep only the scrolled shadow:
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 4);
+  }, { passive: true });
+})();
+
 </script>
 
 <style>
