@@ -520,6 +520,187 @@
     .to-top.show svg path{animation:arrowBounce 1.6s ease-in-out infinite,hueSpin 8s linear infinite}
 
   </style>
+  <style>
+/* ===== HYPER MOTION PACK (scoped) ===== */
+.fx-events { --fx-tilt: 10deg; --fx-pop: 1.018; --fx-parallax: 8px; --fx-glow: 0 18px 60px rgba(96,165,250,.22); }
+.fx-events .grid { perspective: 1000px; transform-style: preserve-3d; }
+
+/* Card base—enable 3D & glow */
+.fx-events .card {
+  transform: translateZ(0) rotateX(0) rotateY(0) scale(1);
+  transform-style: preserve-3d;
+  transition: transform 300ms var(--motion-ease), box-shadow 300ms var(--motion-ease), filter 300ms var(--motion-ease);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Sheen sweep on hover */
+.fx-events .card::after{
+  content:""; position:absolute; inset:-20%;
+  background: linear-gradient(110deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  transform: translateX(-120%) rotate(8deg);
+  filter: blur(6px);
+  pointer-events:none;
+}
+.fx-events .card:hover::after{ animation: fx-sheen 1100ms var(--motion-ease) forwards; }
+@keyframes fx-sheen { to { transform: translateX(120%) rotate(8deg); } }
+
+/* Subtle neon outline on hover */
+.fx-events .card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06), var(--fx-glow); }
+.fx-events .card:hover .bar { width: 100%; }
+
+/* Sparkle dust (very light) */
+.fx-events .card .body::before{
+  content:""; position:absolute; right:-40px; top:-40px; width:120px; height:120px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(167,139,250,.25) 0 2px, transparent 3px),
+    radial-gradient(circle at 60% 70%, rgba(96,165,250,.25) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 20%, rgba(52,211,153,.25) 0 2px, transparent 3px);
+  filter: blur(0.2px); opacity:.0; transform: rotate(0);
+  transition: opacity 400ms var(--motion-ease);
+  pointer-events:none;
+}
+.fx-events .card:hover .body::before{ opacity:.9; animation: fx-stars 3.6s linear infinite; }
+@keyframes fx-stars { from { transform: rotate(0) } to { transform: rotate(360deg) } }
+
+/* Icon parallax / pop */
+.fx-events .card svg.mini {
+  transform: translateZ(30px);
+  transition: transform 240ms var(--motion-ease);
+}
+.fx-events .card:hover svg.mini { transform: translate3d(0, calc(var(--parallax) * -1), 30px) scale(1.05); }
+
+/* Orbit rings on hover (auto if <circle> exists) */
+.fx-events .card:hover svg.mini circle { animation: micro-spin 4.6s linear infinite; }
+
+/* Click ripple */
+.fx-events .ripple {
+  position:absolute; width:10px; height:10px; border-radius:999px;
+  background: radial-gradient(circle, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 70%);
+  pointer-events:none; transform: translate(-50%, -50%) scale(1);
+  animation: fx-ripple 700ms var(--motion-ease) forwards;
+  mix-blend-mode: screen;
+}
+@keyframes fx-ripple { to { transform: translate(-50%, -50%) scale(20); opacity: 0; } }
+
+/* Confetti */
+.fx-events .confetti {
+  position:absolute; width:6px; height:10px; border-radius:2px; opacity:.95;
+  animation: fx-confetti 700ms cubic-bezier(.25,.7,.2,1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes fx-confetti {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(50px) rotate(180deg); opacity: 0; }
+}
+
+/* 3D tilt active (added by JS) */
+.fx-events .card.fx-tilting { transition: transform 80ms linear; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .fx-events .card, .fx-events .card::after, .fx-events .card .body::before,
+  .fx-events .ripple, .fx-events .confetti, .fx-events svg.mini, .fx-events .bar {
+    animation: none !important; transition: none !important;
+  }
+}
+</style>
+<script>
+(function superMotionPack(){
+  const scope = document.querySelector('#event-types.fx-events');
+  if(!scope) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1) Make all cards tilt-enabled
+  const cards = [...scope.querySelectorAll('.card')];
+  cards.forEach(c => c.dataset.tilt = '1');
+
+  if(!reduce){
+    // 3D Tilt + Parallax
+    const maxTilt = 10; // degrees
+    const parallax = 8; // px
+
+    function onMove(e){
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top  + rect.height/2;
+      const dx = (e.clientX - cx) / (rect.width/2);
+      const dy = (e.clientY - cy) / (rect.height/2);
+      const rx = (+dy * maxTilt).toFixed(2);
+      const ry = (-dx * maxTilt).toFixed(2);
+      card.classList.add('fx-tilting');
+      card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.018)`;
+      // Icon parallax
+      const mini = card.querySelector('svg.mini');
+      if(mini){
+        mini.style.transform = `translate3d(${(-dx*parallax).toFixed(1)}px, ${(-dy*parallax-2).toFixed(1)}px, 30px) scale(1.06)`;
+      }
+    }
+    function onLeave(e){
+      const card = e.currentTarget;
+      card.classList.remove('fx-tilting');
+      card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+      const mini = card.querySelector('svg.mini');
+      if(mini){ mini.style.transform = ''; }
+    }
+    cards.forEach(card=>{
+      card.addEventListener('mousemove', onMove, {passive:true});
+      card.addEventListener('mouseleave', onLeave, {passive:true});
+      card.addEventListener('touchend', onLeave, {passive:true});
+    });
+  }
+
+  // Ripple + tiny confetti on click
+  function spawnRipple(card, x, y){
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    r.style.left = x + 'px'; r.style.top = y + 'px';
+    card.appendChild(r);
+    r.addEventListener('animationend', ()=> r.remove());
+  }
+  function burstConfetti(card, x, y){
+    const colors = ['#60a5fa','#a78bfa','#34d399','#f6d98b'];
+    for(let i=0;i<6;i++){
+      const s = document.createElement('i');
+      s.className = 'confetti';
+      s.style.left = x + (Math.random()*16-8) + 'px';
+      s.style.top  = y + (Math.random()*6-3) + 'px';
+      s.style.background = colors[i%colors.length];
+      s.style.transform = `translateY(0) rotate(${Math.random()*120-60}deg)`;
+      s.style.animationDelay = (Math.random()*0.12)+'s';
+      card.appendChild(s);
+      s.addEventListener('animationend', ()=> s.remove());
+    }
+  }
+  cards.forEach(card=>{
+    card.addEventListener('click', (e)=>{
+      if(reduce) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left, y = e.clientY - rect.top;
+      spawnRipple(card, x, y);
+      burstConfetti(card, x, y);
+    });
+  });
+
+  // Optional: sheen replay on keyboard focus (a11y)
+  cards.forEach(card=>{
+    card.setAttribute('tabindex','0');
+    card.addEventListener('focus', ()=>{
+      if(reduce) return;
+      card.style.setProperty('--replay', Date.now()); // force a style change
+      card.classList.add('fx-focus');
+      // trigger sheen via reflow (toggle hover-like)
+      card.style.animation = 'none';
+      requestAnimationFrame(()=> card.style.animation = '');
+      card.dispatchEvent(new Event('mouseenter'));
+      setTimeout(()=> card.dispatchEvent(new Event('mouseleave')), 350);
+    });
+  });
+})();
+</script>
+
 </head>
 <canvas id="bio" aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
 <body>
@@ -625,8 +806,362 @@
       </div>
     </div>
   </header>
+<section id="events-intro" class="section events-intro">
+  <div class="bg-wave" aria-hidden="true"></div>
+  <div class="bg-spark" aria-hidden="true"></div>
+
+  <div class="container intro-grid">
+    <div class="intro-text">
+      <h2>Events That Inspire Discovery</h2>
+      <p>
+        At UTGEC, events are more than gatherings — they’re catalysts for growth.
+        Each session blends science, creativity, and collaboration to help you explore
+        new ideas, connect with mentors, and experience discovery firsthand.
+      </p>
+      <p>
+        From research symposia to coding workshops, every event is crafted to ignite
+        curiosity and empower students to build the future of biology — one question at a time.
+      </p>
+    </div>
+
+    <div class="intro-visual" aria-hidden="true">
+      <svg class="wave-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="40%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#34d399"/>
+          </linearGradient>
+        </defs>
+
+        <path class="wave" d="M0 200 Q150 150, 300 200 T600 200 T900 200" stroke="url(#waveGrad)" stroke-width="4" fill="none"/>
+        <path class="wave2" d="M0 210 Q150 260, 300 210 T600 210 T900 210" stroke="url(#waveGrad)" stroke-width="3" fill="none" opacity=".7"/>
+        <g class="dots">
+          <circle cx="120" cy="190" r="6"/>
+          <circle cx="280" cy="210" r="5"/>
+          <circle cx="440" cy="195" r="6"/>
+          <circle cx="620" cy="205" r="5.5"/>
+          <circle cx="760" cy="190" r="6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* ===== EVENTS INTRO (Aligned & Animated) ===== */
+.events-intro {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20,25,40,0.6), rgba(12,14,20,0.8));
+  overflow: hidden;
+  padding: 120px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Maintain grid alignment with container sections */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* ---- Text styling ---- */
+.intro-text h2 {
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 900;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #60a5fa, #a855f7, #34d399);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(255,255,255,0.08);
+}
+
+.intro-text p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 14px;
+  animation: fadeSlide 1.2s ease forwards;
+  opacity: 0;
+}
+
+.intro-text p:nth-of-type(1) { animation-delay: .4s; }
+.intro-text p:nth-of-type(2) { animation-delay: .8s; }
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Dynamic wave animation ---- */
+.intro-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wave-svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: drop-shadow(0 10px 40px rgba(96,165,250,0.25));
+}
+
+/* flowing sine waves */
+.wave, .wave2 {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: waveDraw 4s ease-out forwards, wavePulse 6s ease-in-out infinite alternate;
+}
+.wave2 { animation-delay: .3s; }
+
+@keyframes waveDraw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes wavePulse {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-8px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.9; }
+}
+
+/* glowing moving dots */
+.dots circle {
+  fill: #facc15;
+  filter: drop-shadow(0 0 10px rgba(250,204,21,0.6));
+  animation: dotFloat 3s ease-in-out infinite;
+}
+.dots circle:nth-child(2){ animation-delay:.3s; fill:#a855f7; }
+.dots circle:nth-child(3){ animation-delay:.6s; fill:#60a5fa; }
+.dots circle:nth-child(4){ animation-delay:.9s; fill:#34d399; }
+.dots circle:nth-child(5){ animation-delay:1.2s; fill:#fbbf24; }
+
+@keyframes dotFloat {
+  0%,100% { transform: translateY(0); opacity:.9; }
+  50% { transform: translateY(-10px); opacity:1; }
+}
+
+/* ---- Background motion (subtle layer) ---- */
+.bg-wave {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(96,165,250,0.12), transparent 60%),
+              radial-gradient(circle at 30% 60%, rgba(167,139,250,0.08), transparent 60%);
+  animation: bgDrift 20s linear infinite;
+  z-index: 0;
+  opacity: .6;
+}
+@keyframes bgDrift {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(20px,10px) scale(1.05); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+/* glowing spark noise overlay */
+.bg-spark {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+  opacity: .08;
+  animation: sparkShift 12s linear infinite;
+}
+@keyframes sparkShift {
+  to { background-position: 300px 300px; }
+}
+
+/* Hover energy pulse */
+.events-intro:hover .wave-svg {
+  transform: scale(1.04);
+  filter: drop-shadow(0 8px 40px rgba(96,165,250,0.35));
+  transition: all .4s ease;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1000px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .intro-visual { order: -1; }
+  .wave-svg { max-width: 440px; }
+  .intro-text h2 { font-size: 36px; }
+  .intro-text p { font-size: 16.5px; }
+}
+
+/* ---- Accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  .wave, .wave2, .dots circle, .bg-wave, .bg-spark {
+    animation: none !important;
+  }
+}
+</style>
+
 
   <!-- ======  Events GRID (Leads) ====== -->
+
+  <section id="event-types" class="section">
+  <div class="container">
+    <h2 class="reveal">Event Types</h2>
+    <p class="muted reveal" style="max-width:60ch">A quick look at the kinds of sessions we run—hybrid when possible, beginner-friendly always.</p>
+
+    <div class="grid">
+      <!-- 1. Hack Night -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="14" y="18" width="92" height="28" rx="6" stroke="#60a5fa"/>
+          <path class="dash" d="M24 30 h30" stroke="#a78bfa"/>
+          <circle class="pulse" cx="88" cy="30" r="5" fill="#34d399"/>
+        </svg>
+        <div class="tag">Weekly</div>
+        <h3>Hack Night (Bioinformatics)</h3>
+        <p class="muted">Bring a dataset or jump into a shared notebook—pair up, ship small wins.</p>
+      </div></div>
+
+      <!-- 2. Wet-Lab Workshop -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <path d="M40 18 v24" stroke="#60a5fa"/>
+          <path d="M80 18 v24" stroke="#60a5fa"/>
+          <path class="dash" d="M40 30 H80" stroke="#a78bfa"/>
+          <circle class="pulse" cx="60" cy="30" r="6" fill="#34d399"/>
+        </svg>
+        <div class="tag">Hands-on</div>
+        <h3>Wet-Lab Workshop</h3>
+        <p class="muted">Pipetting, dilutions, cloning basics—bench skills with checklists & mentors.</p>
+      </div></div>
+
+      <!-- 3. Lightning Talks -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <polygon class="spin" points="32,20 80,32 32,44" fill="#60a5fa" opacity=".8"/>
+          <circle cx="90" cy="32" r="6" fill="#f6d98b" class="pulse"/>
+        </svg>
+        <div class="tag">5×5</div>
+        <h3>Lightning Talks</h3>
+        <p class="muted">Five speakers, five minutes each—share tools, tips, or results.</p>
+      </div></div>
+
+      <!-- 4. Journal Club -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="20" y="18" width="36" height="28" rx="4" stroke="#a78bfa"/>
+          <rect x="64" y="18" width="36" height="28" rx="4" stroke="#a78bfa"/>
+          <path class="dash" d="M24 26 h28 M68 26 h28" stroke="#60a5fa"/>
+        </svg>
+        <div class="tag">Read • Discuss</div>
+        <h3>Journal Club</h3>
+        <p class="muted">Figure deconstruction, methods critique, and 2-slide summaries.</p>
+      </div></div>
+
+      <!-- 5. Mentor Office Hours -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <circle cx="30" cy="28" r="8" stroke="#34d399"/>
+          <circle cx="90" cy="28" r="8" stroke="#60a5fa"/>
+          <path class="dash" d="M38 28 H82" stroke="#a78bfa"/>
+        </svg>
+        <div class="tag">Drop-in</div>
+        <h3>Mentor Office Hours</h3>
+        <p class="muted">Quick questions on projects, resumes, or course concepts.</p>
+      </div></div>
+
+      <!-- 6. Ethics Debate -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <path d="M24 40 l12 -12 l-12 -12" stroke="#60a5fa"/>
+          <path d="M96 40 l-12 -12 l12 -12" stroke="#a78bfa"/>
+          <circle class="pulse" cx="60" cy="28" r="6" fill="#34d399"/>
+        </svg>
+        <div class="tag">Debate</div>
+        <h3>Ethics & Policy</h3>
+        <p class="muted">Structured pro/con with brief position papers and live rebuttals.</p>
+      </div></div>
+
+      <!-- 7. Build Sprint -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <g class="spin">
+            <circle cx="40" cy="32" r="6" fill="#60a5fa"/>
+            <circle cx="60" cy="32" r="6" fill="#a78bfa"/>
+            <circle cx="80" cy="32" r="6" fill="#34d399"/>
+          </g>
+        </svg>
+        <div class="tag">Weekend</div>
+        <h3>Build Sprint</h3>
+        <p class="muted">48-hour focused push on a shared repo or bench protocol.</p>
+      </div></div>
+
+      <!-- 8. Career Panel -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="28" r="6" fill="#60a5fa"/>
+          <circle cx="60" cy="28" r="6" fill="#a78bfa"/>
+          <circle cx="88" cy="28" r="6" fill="#34d399"/>
+          <path class="dash" d="M20 42 h80" stroke="#a78bfa"/>
+        </svg>
+        <div class="tag">Panel</div>
+        <h3>Careers in Genomics</h3>
+        <p class="muted">Grad students, faculty, and industry—Q&A and networking.</p>
+      </div></div>
+
+      <!-- 9. Tool Demo (IGV / BLAST / Benchling) -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="18" y="16" width="84" height="32" rx="8" stroke="#34d399"/>
+          <path class="dash" d="M28 30 h64" stroke="#60a5fa"/>
+          <circle class="pulse" cx="50" cy="30" r="4" fill="#a78bfa"/>
+        </svg>
+        <div class="tag">Demo</div>
+        <h3>Tool Walkthrough</h3>
+        <p class="muted">Live demo of IGV/BLAST/Benchling with mini datasets.</p>
+      </div></div>
+
+      <!-- 10. Showcase / Poster Night -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="20" y="16" width="80" height="32" rx="4" stroke="#a78bfa"/>
+          <path class="dash" d="M30 24 h60 M30 32 h40" stroke="#60a5fa"/>
+          <circle cx="86" cy="38" r="4" class="pulse" fill="#34d399"/>
+        </svg>
+        <div class="tag">End-of-term</div>
+        <h3>Project Showcase</h3>
+        <p class="muted">Lightning posters & short demos—celebrate wins and lessons.</p>
+      </div></div>
+
+      <!-- 11. Grant & Writing Jam -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <path d="M24 20 h72 v24 h-72 z" stroke="#60a5fa"/>
+          <path class="dash" d="M32 28 h56" stroke="#a78bfa"/>
+          <circle class="pulse" cx="32" cy="36" r="3" fill="#34d399"/>
+        </svg>
+        <div class="tag">Co-write</div>
+        <h3>Grant & Writing Jam</h3>
+        <p class="muted">Draft micro-grants, blog posts, or abstracts together with feedback.</p>
+      </div></div>
+
+      <!-- 12. Lab Tour / Field Trip -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <circle cx="30" cy="32" r="8" stroke="#60a5fa"/>
+          <path d="M38 32 L86 32" stroke="#a78bfa"/>
+          <circle class="pulse" cx="90" cy="32" r="6" fill="#34d399"/>
+        </svg>
+        <div class="tag">Visit</div>
+        <h3>Lab Tour</h3>
+        <p class="muted">Meet researchers, see instruments, and learn lab workflows.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+
   <section class="section" id="leads">
     <div class="container">
       <h2>Upcoming Events</h2>
@@ -649,6 +1184,200 @@
     </div>
   </section>
 
+<section id="hackathon" class="section hackathon-section">
+  <div class="hackathon-bg" aria-hidden="true"></div>
+  <div class="container hackathon-grid">
+
+    <!-- TEXT -->
+    <div class="hackathon-text">
+      <h2>Bioinformatics Hackathon</h2>
+      <h3 class="coming-soon">🚀 Coming Soon</h3>
+      <p>
+        A new kind of challenge is coming to UTGEC — a 48-hour hackathon merging biology, data science,
+        and innovation. Participants will design, analyze, and visualize real biological data to uncover
+        insights hidden in genomes, proteins, and pathways.
+      </p>
+      <p>
+        Whether you’re a coder, a biologist, or simply curious, this event will test how far collaboration
+        and creativity can push modern science.
+        <strong>Get ready to decode life — one algorithm at a time.</strong>
+      </p>
+    </div>
+
+    <!-- ANIMATION -->
+    <div class="hackathon-visual" aria-hidden="true">
+      <svg class="hack-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gridGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22d3ee"/>
+            <stop offset="50%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#6366f1"/>
+          </linearGradient>
+          <radialGradient id="pulseGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#a855f7" stop-opacity="1" />
+            <stop offset="100%" stop-color="transparent" />
+          </radialGradient>
+        </defs>
+
+        <!-- Dynamic pulsing core -->
+        <circle class="pulse" cx="300" cy="200" r="80" fill="url(#pulseGrad)" opacity="0.3" />
+        <circle class="pulse2" cx="300" cy="200" r="40" fill="url(#pulseGrad)" opacity="0.6" />
+
+        <!-- Tech grid lines -->
+        <g class="grid" stroke="url(#gridGrad)" stroke-width="1" opacity="0.5">
+          <line x1="0" y1="100" x2="600" y2="100" />
+          <line x1="0" y1="200" x2="600" y2="200" />
+          <line x1="0" y1="300" x2="600" y2="300" />
+          <line x1="100" y1="0" x2="100" y2="400" />
+          <line x1="300" y1="0" x2="300" y2="400" />
+          <line x1="500" y1="0" x2="500" y2="400" />
+        </g>
+
+        <!-- Floating data nodes -->
+        <g class="data-nodes">
+          <circle cx="150" cy="180" r="5"/>
+          <circle cx="240" cy="120" r="4.5"/>
+          <circle cx="360" cy="260" r="5"/>
+          <circle cx="450" cy="180" r="4"/>
+          <circle cx="520" cy="240" r="4.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* ===== HACKATHON SECTION ===== */
+.hackathon-section {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+  background: radial-gradient(circle at 50% 20%, rgba(56,189,248,0.05), rgba(17,24,39,0.95));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Subtle circuit background grid */
+.hackathon-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: bgMove 20s linear infinite;
+  z-index: 0;
+}
+@keyframes bgMove {
+  to { background-position: 60px 60px; }
+}
+
+/* Layout */
+.hackathon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Text styling */
+.hackathon-text h2 {
+  font-size: clamp(34px, 4vw, 50px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #22d3ee, #10b981, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
+.hackathon-text .coming-soon {
+  font-size: 22px;
+  color: #fbbf24;
+  font-weight: 600;
+  margin-bottom: 20px;
+  animation: flicker 2s infinite alternate;
+}
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: .4; }
+}
+
+.hackathon-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 14px;
+  animation: fadeInUp 1.5s ease forwards;
+  opacity: 0;
+}
+.hackathon-text p:nth-of-type(1){ animation-delay:.3s; }
+.hackathon-text p:nth-of-type(2){ animation-delay:.7s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Visual (SVG) */
+.hack-svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 6px 20px rgba(34,211,238,0.25));
+}
+
+/* Pulsing center */
+.pulse, .pulse2 {
+  animation: pulseAnim 4s ease-in-out infinite;
+  transform-origin: center;
+}
+.pulse2 { animation-delay: 1s; }
+
+@keyframes pulseAnim {
+  0%,100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+/* Data nodes floating */
+.data-nodes circle {
+  fill: #10b981;
+  filter: drop-shadow(0 0 10px rgba(34,197,94,0.5));
+  animation: floatNode 5s ease-in-out infinite;
+}
+.data-nodes circle:nth-child(2){ animation-delay:.5s; fill:#22d3ee; }
+.data-nodes circle:nth-child(3){ animation-delay:1s; fill:#6366f1; }
+.data-nodes circle:nth-child(4){ animation-delay:1.5s; fill:#facc15; }
+.data-nodes circle:nth-child(5){ animation-delay:2s; fill:#34d399; }
+
+@keyframes floatNode {
+  0%,100% { transform: translateY(0) scale(1); opacity:.85; }
+  50% { transform: translateY(-12px) scale(1.15); opacity:1; }
+}
+
+/* Hover effect */
+.hackathon-section:hover .hack-svg {
+  transform: scale(1.03);
+  filter: drop-shadow(0 8px 40px rgba(34,211,238,0.35));
+  transition: all .4s ease;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .hackathon-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .hackathon-visual { order: -1; }
+  .hack-svg { max-width: 440px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hackathon-bg, .pulse, .pulse2, .data-nodes circle {
+    animation: none !important;
+  }
+}
+</style>
 
 
 <section id="contact" class="section">
@@ -885,6 +1614,9 @@ function scrollToId(id){
 }
 
 
+  </script>
+  <script>
+    function submitForm(e){e.preventDefault();const msg=document.getElementById('msg');if(msg){msg.textContent='Thanks! We\'ll get back to you.';}return false;}
   </script>
 </body>
 </html>

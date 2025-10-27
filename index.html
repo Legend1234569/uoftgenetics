@@ -815,9 +815,9 @@
   <section id="opportunities" class="section">
     <div class="container">
       <h2 class="reveal">Opportunities</h2>
-      <p class="muted reveal" style="max-width:60ch">Opportunities will be posted here. Follow us for the latest lab, volunteering, and project openings.</p>
+      <p class="muted reveal" style="max-width:60ch">We offer opportunities in many fields. Follow us for the latest lab, volunteering, and project openings.</p>
       <div class="events">
-        <div class="event reveal"><div class="date">—</div><div><strong>Opportunities Coming Soon</strong><div class="muted">All club openings, projects, and volunteering roles will be posted here. Follow our Instagram and LinkedIn for updates.</div></div></div>
+        <div class="event reveal"><div class="date">—</div><div><strong>Opportunities Coming Soon</strong><div class="muted">All club openings, projects, and volunteering roles will be posted in the opportunities page. Follow our Instagram and LinkedIn for updates.</div></div></div>
       </div>
     </div>
   </section>
@@ -827,12 +827,838 @@
       <h2 class="reveal">Upcoming Events</h2>
       <p class="muted reveal" style="max-width:60ch">Learn by doing, connect with mentors, and present your builds.</p>
       <div class="events">
-        <div class="event reveal"><div class="date">—</div><div><strong>Upcoming Events</strong><div class="muted">All upcoming events will be shown here. Follow our Instagram for updates.</div></div></div>
+        <div class="event reveal"><div class="date">—</div><div><strong>Upcoming Events</strong><div class="muted">All upcoming events will be posted in the events page. Follow our Instagram for updates.</div></div></div>
       </div>
     </div>
   </section>
 
+<section id="connect" class="section connect-section">
+  <div class="container connect-grid">
+    <!-- LEFT: Text -->
+    <div class="connect-text">
+      <h2>Connect with Professors & Mentors</h2>
+      <p>
+        Every UTGEC event is an opportunity to build real scientific connections.
+        Meet professors, graduate researchers, and mentors who are excited to collaborate with students.
+        Whether you’re curious about CRISPR, gene circuits, or data analysis, our sessions help you turn ideas
+        into projects. You’ll learn how to ask research questions, find labs that match your interests, and
+        get feedback on your goals. <strong>Every conversation begins a new collaboration.</strong>
+      </p>
+      <p>
+        Our mentorship events are interactive and focused on growth — expect networking with purpose,
+        open Q&As, and pathways to join ongoing research. UTGEC is not just a club — it’s a living network
+        of future scientists learning from those already pushing the boundaries of genetics.
+      </p>
+    </div>
 
+    <!-- RIGHT: Animated visual -->
+    <div class="connect-visual" aria-hidden="true">
+      <svg class="connect-anim" viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="connectLineGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fbbf24"/>   <!-- amber -->
+            <stop offset="50%" stop-color="#ec4899"/>   <!-- pink -->
+            <stop offset="100%" stop-color="#8b5cf6"/>  <!-- violet -->
+          </linearGradient>
+          <radialGradient id="connectGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Connection lines -->
+        <g class="links" stroke="url(#connectLineGrad)" stroke-width="2" fill="none">
+          <path class="flow" d="M100 320 Q 280 120, 460 280"/>
+          <path class="flow delay1" d="M80 200 Q 280 60, 480 200"/>
+          <path class="flow delay2" d="M120 100 Q 280 180, 440 80"/>
+        </g>
+
+        <!-- Nodes (professors / students) -->
+        <g class="nodes">
+          <circle cx="100" cy="320" r="10" class="prof" />
+          <circle cx="80" cy="200" r="8"  class="student" />
+          <circle cx="120" cy="100" r="8" class="student" />
+          <circle cx="460" cy="280" r="10" class="prof" />
+          <circle cx="480" cy="200" r="9"  class="mentor" />
+          <circle cx="440" cy="80"  r="9"  class="mentor" />
+        </g>
+
+        <!-- Glowing centerpiece -->
+        <circle cx="280" cy="200" r="40" fill="url(#connectGlow)" class="pulse"/>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* === CONNECT SECTION === */
+.connect-section {
+  background: linear-gradient(180deg, rgba(251,191,36,0.06), rgba(139,92,246,0.06));
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.connect-text h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  background: linear-gradient(90deg, #fbbf24, #ec4899, #8b5cf6);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.connect-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 16px;
+  max-width: 65ch;
+}
+
+.connect-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect-anim {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.45));
+}
+
+/* --- Animation Styling --- */
+.connect-section .flow {
+  stroke-dasharray: 12 14;
+  animation: connectFlow 5s linear infinite;
+}
+.connect-section .flow.delay1 { animation-delay: .8s; }
+.connect-section .flow.delay2 { animation-delay: 1.6s; }
+
+.connect-section .nodes circle {
+  animation: connectGlow 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.connect-section .prof { fill: #fbbf24; }     /* amber */
+.connect-section .student { fill: #ec4899; }  /* pink */
+.connect-section .mentor { fill: #8b5cf6; }   /* violet */
+
+.connect-section .pulse {
+  animation: connectPulse 4s ease-in-out infinite;
+}
+
+/* --- Keyframes --- */
+@keyframes connectFlow {
+  to { stroke-dashoffset: -260; }
+}
+@keyframes connectGlow {
+  0%,100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+@keyframes connectPulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Hover interaction (desktop) */
+.connect-visual:hover .connect-anim {
+  transform: scale(1.02);
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 14px 40px rgba(251,191,36,0.3));
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 1000px) {
+  .connect-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 24px;
+  }
+  .connect-visual {
+    order: -1; /* show animation first on small screens */
+  }
+}
+</style>
+<section id="events-importance" class="section events-importance">
+  <div class="container events-grid">
+
+    <!-- LEFT: Text -->
+    <div class="events-text">
+      <h2>The Power of Events</h2>
+      <p>
+        Every UTGEC event begins as an idea — a moment of curiosity that turns into a shared experience.
+        Events are more than calendar dates; they’re catalysts for innovation. By gathering students, researchers,
+        and professionals under one goal, they spark creativity and make learning collaborative. Each workshop,
+        symposium, and showcase builds bridges between disciplines — from biology to computer science to design —
+        proving that discovery happens faster when knowledge is shared.
+      </p>
+      <p>
+        Creating events isn’t just about logistics; it’s about shaping culture. A single conversation at a poster session
+        can inspire a thesis. A casual Q&A can open a career path. Through UTGEC events, students learn to lead,
+        communicate, and collaborate — skills as vital as the science itself. <strong>Events are where ideas find people,
+        and people find purpose.</strong>
+      </p>
+    </div>
+
+    <!-- RIGHT: Neural Network Animation (same as before, recolored) -->
+    <div class="events-visual" aria-hidden="true">
+      <svg class="events-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="eventGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f59e0b"/>  <!-- amber -->
+            <stop offset="50%" stop-color="#ec4899"/>  <!-- pink -->
+            <stop offset="100%" stop-color="#38bdf8"/> <!-- sky blue -->
+          </linearGradient>
+        </defs>
+
+        <!-- connections -->
+        <g class="connections" stroke="url(#eventGrad)" stroke-width="2" opacity="0.7">
+          <line x1="300" y1="200" x2="180" y2="100"/>
+          <line x1="300" y1="200" x2="420" y2="120"/>
+          <line x1="300" y1="200" x2="480" y2="260"/>
+          <line x1="300" y1="200" x2="160" y2="260"/>
+          <line x1="180" y1="100" x2="100" y2="220"/>
+          <line x1="420" y1="120" x2="520" y2="80"/>
+          <line x1="420" y1="120" x2="500" y2="200"/>
+          <line x1="160" y1="260" x2="80" y2="320"/>
+          <line x1="480" y1="260" x2="540" y2="320"/>
+        </g>
+
+        <!-- flowing lines -->
+        <g class="pulse-lines" stroke="url(#eventGrad)" stroke-width="2" stroke-dasharray="6 12">
+          <line x1="300" y1="200" x2="180" y2="100"/>
+          <line x1="300" y1="200" x2="420" y2="120"/>
+          <line x1="300" y1="200" x2="480" y2="260"/>
+          <line x1="300" y1="200" x2="160" y2="260"/>
+        </g>
+
+        <!-- nodes -->
+        <g class="nodes">
+          <circle cx="300" cy="200" r="10" class="core"/>
+          <circle cx="180" cy="100" r="6" class="event"/>
+          <circle cx="420" cy="120" r="6" class="speaker"/>
+          <circle cx="480" cy="260" r="6" class="student"/>
+          <circle cx="160" cy="260" r="6" class="student"/>
+          <circle cx="520" cy="80"  r="5" class="guest"/>
+          <circle cx="500" cy="200" r="5" class="organizer"/>
+          <circle cx="100" cy="220" r="5" class="organizer"/>
+          <circle cx="80"  cy="320" r="5" class="student"/>
+          <circle cx="540" cy="320" r="5" class="speaker"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+<style>
+/* === POWER OF EVENTS (unique palette) === */
+.events-importance {
+  background: radial-gradient(
+    circle at 60% 40%,
+    rgba(251,146,60,0.10),  /* orange glow */
+    rgba(14,165,233,0.07) 40%,  /* sky blue tint */
+    rgba(79,70,229,0.05) 75%,   /* indigo fade */
+    transparent 100%
+  );
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 70px 0;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.events-text h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #fb923c, #facc15, #0ea5e9, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 18px;
+}
+
+.events-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 14px;
+  max-width: 65ch;
+}
+
+/* Animation container */
+.events-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.events-svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(251,146,60,0.3));
+}
+
+/* --- Animation Colors & Motion --- */
+.connections line {
+  stroke: url(#eventGrad);
+  stroke-dasharray: 12 14;
+  animation: networkFlow 8s linear infinite;
+}
+
+.pulse-lines line {
+  stroke: url(#eventGrad);
+  stroke-dasharray: 6 10;
+  animation: pulseFlow 2s linear infinite;
+}
+
+.nodes circle {
+  transform-origin: center;
+  animation: nodePulse 3.2s ease-in-out infinite;
+}
+
+/* Unique node colors (vivid + glowing) */
+.nodes .core       { fill: #f59e0b; animation-delay: 0.2s; } /* orange core */
+.nodes .event      { fill: #0ea5e9; }  /* sky blue */
+.nodes .student    { fill: #22d3ee; }  /* cyan */
+.nodes .organizer  { fill: #facc15; }  /* gold */
+.nodes .speaker    { fill: #fb923c; }  /* orange */
+.nodes .guest      { fill: #6366f1; }  /* indigo */
+
+/* KEYFRAMES */
+@keyframes networkFlow {
+  to { stroke-dashoffset: -400; }
+}
+@keyframes pulseFlow {
+  0%,100% { stroke-dashoffset: 0; opacity: .4; }
+  50% { stroke-dashoffset: -60; opacity: 1; }
+}
+@keyframes nodePulse {
+  0%,100% { transform: scale(1); opacity: .85; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Hover interaction */
+.events-visual:hover .events-svg {
+  transform: scale(1.03);
+  filter: drop-shadow(0 10px 40px rgba(14,165,233,0.45));
+  transition: transform .4s ease, filter .4s ease;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .events-visual {
+    order: -1;
+  }
+  .events-svg { max-width: 440px; }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .connections line,
+  .pulse-lines line,
+  .nodes circle {
+    animation: none !important;
+  }
+}
+</style>
+<section id="guest-speakers" class="section guest-speakers">
+  <div class="container guest-grid">
+
+    <!-- LEFT: Text -->
+    <div class="guest-text">
+      <h2>Guest Speakers</h2>
+      <p>
+        The heartbeat of every UTGEC event is the people who share their stories.
+        Our guest speakers bring science to life — researchers, physicians, innovators, and advocates who
+        connect complex discoveries with human experiences. Each talk is a window into real laboratories,
+        medical breakthroughs, and the challenges that inspire resilience. Through these conversations,
+        students learn that science is not just data — it’s people, passion, and purpose.
+      </p>
+      <p>
+        Listening to a guest speaker means seeing possibility. A single story can redefine how you view your field,
+        your studies, or even your future. These sessions remind us that knowledge grows when shared,
+        and progress begins when we dare to ask the next question.
+      </p>
+    </div>
+
+    <!-- RIGHT: Dynamic animation -->
+    <div class="guest-visual" aria-hidden="true">
+      <svg class="guest-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fb7185"/> <!-- rose -->
+            <stop offset="40%" stop-color="#fbbf24"/> <!-- gold -->
+            <stop offset="100%" stop-color="#f9a8d4"/> <!-- pink-peach -->
+          </linearGradient>
+          <linearGradient id="silhouetteGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fde68a"/>
+            <stop offset="100%" stop-color="#f472b6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Background audio wave motion -->
+        <g class="wave" fill="none" stroke="url(#waveGrad)" stroke-width="3" opacity="0.6">
+          <path d="M0 200 Q60 160, 120 200 T240 200 T360 200 T480 200 T600 200" />
+        </g>
+
+        <!-- Silhouettes of 3 speakers -->
+        <g class="speakers" fill="url(#silhouetteGrad)" opacity="0.95">
+          <path d="M260 220 q-30 -40 0 -80 q30 -40 60 0 q30 40 0 80 z" /> <!-- left -->
+          <path d="M320 220 q-35 -50 0 -90 q35 -40 70 10 q35 50 0 90 z" /> <!-- middle -->
+          <path d="M380 220 q-30 -40 0 -80 q30 -40 60 0 q30 40 0 80 z" /> <!-- right -->
+        </g>
+
+        <!-- Floating speech sparks -->
+        <g class="sparks">
+          <circle cx="280" cy="110" r="5"/>
+          <circle cx="340" cy="70"  r="4.5"/>
+          <circle cx="400" cy="120" r="4"/>
+          <circle cx="460" cy="80"  r="5"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+<style>
+/* === GUEST SPEAKERS SECTION === */
+.guest-speakers {
+  background: linear-gradient(180deg, rgba(251,113,133,0.08), rgba(249,168,212,0.05));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 80px 0;
+}
+
+.guest-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.guest-text h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #fb7185, #fbbf24, #f9a8d4);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 18px;
+}
+
+.guest-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 14px;
+  max-width: 65ch;
+}
+
+/* Animation container */
+.guest-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.guest-svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(251,113,133,0.25));
+}
+
+/* --- Animation motion --- */
+
+/* audio wave motion */
+.wave path {
+  animation: waveMotion 6s ease-in-out infinite alternate;
+}
+
+@keyframes waveMotion {
+  0%   { d: path("M0 200 Q60 160, 120 200 T240 200 T360 200 T480 200 T600 200"); }
+  50%  { d: path("M0 200 Q60 240, 120 200 T240 200 T360 200 T480 200 T600 200"); }
+  100% { d: path("M0 200 Q60 160, 120 200 T240 200 T360 200 T480 200 T600 200"); }
+}
+
+/* subtle breathing for silhouettes */
+.speakers path {
+  transform-origin: center bottom;
+  animation: breathe 4s ease-in-out infinite;
+}
+.speakers path:nth-child(2) { animation-delay: .6s; }
+.speakers path:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); opacity: .9; }
+  50%     { transform: scale(1.05); opacity: 1; }
+}
+
+/* speech sparks rising */
+.sparks circle {
+  fill: #fbbf24;
+  opacity: 0.8;
+  animation: float 5s ease-in-out infinite;
+}
+.sparks circle:nth-child(2){ fill:#f472b6; animation-delay: .5s; }
+.sparks circle:nth-child(3){ fill:#facc15; animation-delay: 1s; }
+.sparks circle:nth-child(4){ fill:#fb7185; animation-delay: 1.5s; }
+
+@keyframes float {
+  0%   { transform: translateY(0) scale(1); opacity:.9; }
+  50%  { transform: translateY(-30px) scale(1.15); opacity:1; }
+  100% { transform: translateY(0) scale(1); opacity:.8; }
+}
+
+/* Hover interaction */
+.guest-visual:hover .guest-svg {
+  transform: scale(1.04);
+  filter: drop-shadow(0 10px 40px rgba(249,168,212,0.4));
+  transition: transform .4s ease, filter .4s ease;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .guest-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .guest-visual {
+    order: -1;
+  }
+  .guest-svg { max-width: 440px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .wave path, .speakers path, .sparks circle {
+    animation: none !important;
+  }
+}
+</style>
+<section id="what-is-genetic-engineering" class="section genetic-section">
+  <div class="container genetic-grid">
+
+    <!-- LEFT: Text -->
+    <div class="genetic-text">
+      <h2>What Is Genetic Engineering?</h2>
+      <p>
+        Genetic engineering is the art and science of editing life’s code —
+        a process where scientists modify an organism’s DNA to enhance, repair, or
+        understand its functions. By altering specific genes, researchers can create
+        crops that resist disease, bacteria that clean pollution, and therapies that
+        correct genetic disorders. It’s where biology meets design: combining molecular
+        precision with imagination to reshape what’s possible in medicine, agriculture,
+        and sustainability.
+      </p>
+      <p>
+        At UTGEC, we see genetic engineering as a language — one that lets humanity
+        converse directly with nature. Learning this language empowers students to not
+        only decode life but to improve it. Every base pair changed carries potential:
+        to heal, to innovate, and to better understand the systems that make us who we are.
+      </p>
+    </div>
+
+    <!-- RIGHT: Animated DNA helix visualization -->
+    <div class="genetic-visual" aria-hidden="true">
+      <svg class="dna-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dnaGrad1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22d3ee"/> <!-- cyan -->
+            <stop offset="50%" stop-color="#06b6d4"/> <!-- teal -->
+            <stop offset="100%" stop-color="#0ea5e9"/> <!-- blue -->
+          </linearGradient>
+          <linearGradient id="dnaGrad2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a855f7"/> <!-- violet -->
+            <stop offset="100%" stop-color="#6366f1"/> <!-- indigo -->
+          </linearGradient>
+        </defs>
+
+        <!-- Left and right backbones -->
+        <path class="backbone left"  d="M180 50 Q200 200, 180 350" stroke="url(#dnaGrad1)" stroke-width="3" fill="none"/>
+        <path class="backbone right" d="M420 50 Q400 200, 420 350" stroke="url(#dnaGrad2)" stroke-width="3" fill="none"/>
+
+        <!-- Connecting rungs -->
+        <g class="rungs" stroke-width="2.5">
+          <line x1="180" y1="70"  x2="420" y2="100" stroke="url(#dnaGrad2)"/>
+          <line x1="180" y1="110" x2="420" y2="140" stroke="url(#dnaGrad1)"/>
+          <line x1="180" y1="150" x2="420" y2="180" stroke="url(#dnaGrad2)"/>
+          <line x1="180" y1="190" x2="420" y2="220" stroke="url(#dnaGrad1)"/>
+          <line x1="180" y1="230" x2="420" y2="260" stroke="url(#dnaGrad2)"/>
+          <line x1="180" y1="270" x2="420" y2="300" stroke="url(#dnaGrad1)"/>
+          <line x1="180" y1="310" x2="420" y2="340" stroke="url(#dnaGrad2)"/>
+        </g>
+
+        <!-- Floating particles -->
+        <g class="particles">
+          <circle cx="300" cy="80"  r="4"/>
+          <circle cx="260" cy="160" r="3"/>
+          <circle cx="340" cy="240" r="3.5"/>
+          <circle cx="310" cy="320" r="4"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+<style>
+/* === GENETIC ENGINEERING SECTION === */
+.genetic-section {
+  background: linear-gradient(180deg, rgba(14,165,233,0.07), rgba(99,102,241,0.05));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 80px 0;
+}
+
+.genetic-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.genetic-text h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #22d3ee, #06b6d4, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
+}
+
+.genetic-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 14px;
+  max-width: 65ch;
+}
+
+/* SVG container */
+.genetic-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dna-svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(14,165,233,0.25));
+}
+
+/* DNA animation */
+.backbone.left {
+  stroke-dasharray: 8 6;
+  animation: waveLeft 6s ease-in-out infinite alternate;
+}
+.backbone.right {
+  stroke-dasharray: 8 6;
+  animation: waveRight 6s ease-in-out infinite alternate;
+}
+
+.rungs line {
+  stroke-dasharray: 8 10;
+  animation: rungShift 4s linear infinite;
+}
+
+.particles circle {
+  fill: #a5f3fc;
+  animation: floatParticle 6s ease-in-out infinite;
+}
+.particles circle:nth-child(2){ animation-delay: .8s; fill:#93c5fd; }
+.particles circle:nth-child(3){ animation-delay: 1.6s; fill:#c084fc; }
+.particles circle:nth-child(4){ animation-delay: 2.4s; fill:#38bdf8; }
+
+/* Keyframes */
+@keyframes waveLeft {
+  0%   { d: path("M180 50 Q200 200, 180 350"); }
+  50%  { d: path("M180 50 Q160 200, 180 350"); }
+  100% { d: path("M180 50 Q200 200, 180 350"); }
+}
+@keyframes waveRight {
+  0%   { d: path("M420 50 Q400 200, 420 350"); }
+  50%  { d: path("M420 50 Q440 200, 420 350"); }
+  100% { d: path("M420 50 Q400 200, 420 350"); }
+}
+@keyframes rungShift {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -140; }
+}
+@keyframes floatParticle {
+  0%,100% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(-20px); opacity: 1; }
+}
+
+/* Hover */
+.genetic-visual:hover .dna-svg {
+  transform: scale(1.04);
+  filter: drop-shadow(0 10px 40px rgba(99,102,241,0.4));
+  transition: transform .4s ease, filter .4s ease;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .genetic-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .genetic-visual {
+    order: -1;
+  }
+  .dna-svg { max-width: 440px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .backbone, .rungs line, .particles circle {
+    animation: none !important;
+  }
+}
+</style>
+<style>
+/* ==== UTGEC Copilot (floating AI) ======================================= */
+:root{
+  --copilot-bg:#0b0f1a; --copilot-card:#12182a; --copilot-line:#22304a;
+  --copilot-text:#eaf0ff; --copilot-muted:#a7b0c7;
+}
+.utgec-copilot{position:fixed;right:18px;bottom:86px;z-index:3000}
+.utgec-copilot .fab{
+  width:56px;height:56px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(120deg,var(--grad-1),var(--grad-2),var(--grad-3));
+  color:#0b1020;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);
+  cursor:pointer;position:relative;overflow:hidden;transition:transform .2s ease, filter .2s ease;
+}
+.utgec-copilot .fab:hover{transform:translateY(-2px) scale(1.03)}
+.utgec-copilot .fab svg{width:26px;height:26px}
+.utgec-copilot .halo{
+  position:absolute;inset:-30%;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.35),transparent 60%);
+  filter:blur(18px);opacity:.35;animation:copilotHalo 6s ease-in-out infinite;pointer-events:none
+}
+@keyframes copilotHalo{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+/* Panel */
+.copilot-panel{
+  position:fixed;right:18px;bottom:156px;width:min(480px,92vw);max-height:min(72vh,720px);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid var(--copilot-line);border-radius:20px;box-shadow:0 18px 60px rgba(0,0,0,.45);
+  overflow:hidden;backdrop-filter:blur(8px);opacity:0;transform:translateY(14px) scale(.98);
+  pointer-events:none;transition:opacity .32s var(--motion-ease),transform .32s var(--motion-ease);
+}
+.copilot-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.copilot-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px;border-bottom:1px solid var(--copilot-line);
+  background:radial-gradient(1200px 400px at 10% -50%,rgba(96,165,250,.15),transparent 60%);
+}
+.copilot-title{display:flex;align-items:center;gap:10px;font-weight:900}
+.copilot-title .badge{
+  padding:4px 8px;border-radius:999px;font-size:12px;color:#0b1020;
+  background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));font-weight:900
+}
+.copilot-body{display:grid;grid-template-rows:1fr auto;min-height:280px;max-height:min(72vh,720px)}
+.copilot-stream{padding:12px 12px 6px 12px;overflow:auto;scroll-behavior:smooth}
+.copilot-msg{display:flex;gap:10px;margin:10px 0;align-items:flex-start}
+.copilot-msg .bubble{
+  max-width:78%;padding:10px 12px;border:1px solid var(--copilot-line);border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));line-height:1.55
+}
+.copilot-msg.user{justify-content:flex-end}
+.copilot-msg.user .bubble{background:#162035}
+.copilot-suggest{display:flex;flex-wrap:wrap;gap:8px;padding:0 12px 8px 12px}
+.copilot-chip{
+  padding:8px 10px;border-radius:999px;border:1px solid var(--copilot-line);cursor:pointer;
+  background:rgba(255,255,255,.04);transition:transform .18s ease,background .18s ease
+}
+.copilot-chip:hover{transform:translateY(-1px);background:rgba(255,255,255,.07)}
+
+.copilot-input{
+  display:flex;gap:8px;padding:10px;border-top:1px solid var(--copilot-line);background:#0d1220
+}
+.copilot-input input{
+  flex:1;padding:12px 12px;border-radius:12px;border:1px solid #1c2235;background:#0c111c;
+  color:var(--copilot-text);outline:none
+}
+.copilot-input button{
+  padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));color:#0b1020;font-weight:900;cursor:pointer
+}
+
+/* Inline utilities */
+.ut-cta{display:inline-grid;grid-auto-flow:column;gap:8px;margin-top:8px}
+.ut-cta a{
+  font-size:12px;padding:6px 8px;border-radius:999px;border:1px solid var(--copilot-line);
+  background:rgba(255,255,255,.05);color:var(--copilot-muted)
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .copilot-panel{transition:none}
+  .utgec-copilot .halo{animation:none}
+}
+
+/* Mobile niceties */
+@media (max-width:600px){
+  .copilot-panel{right:12px;left:12px;width:auto}
+}
+</style>
+<!-- ==== UTGEC Copilot mount ==== -->
+<div class="utgec-copilot" id="utgecCopilot">
+  <button class="fab" id="copilotFab" aria-label="Open UTGEC Copilot" title="UTGEC Copilot">
+    <div class="halo" aria-hidden="true"></div>
+    <!-- DNA chat icon -->
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 17c4 0 6-3 8-5s4-5 8-5" stroke="#0b1020" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M4 7c4 0 6 3 8 5s4 5 8 5" stroke="#0b1020" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <section class="copilot-panel" id="copilotPanel" aria-live="polite">
+    <header class="copilot-head">
+      <div class="copilot-title">
+        <span class="badge">UTGEC Copilot</span>
+        <span>Smart guide for projects, mentors & events</span>
+      </div>
+      <button id="copilotClose" class="button ghost" style="padding:8px 10px;font-weight:700">Close</button>
+    </header>
+
+    <div class="copilot-body">
+      <div class="copilot-stream" id="copilotStream" role="log"></div>
+
+      <!-- Quick suggestions -->
+      <div class="copilot-suggest" id="copilotSuggest">
+        <button class="copilot-chip" data-q="Find me a mentor for any department at uoft">Find a mentor </button>
+        <button class="copilot-chip" data-q="Draft an outreach email to a professor about joining their lab.">Draft a prof email</button>
+        <button class="copilot-chip" data-q="Explain CRISPR like I’m new to genetics in 5 bullet points.">CRISPR in 5 bullets</button>
+        <button class="copilot-chip" data-q="What UTGEC team should I join if I like writing and ethics?">Where should I join?</button>
+        <button class="copilot-chip" data-q="Give me 3 event ideas we could run next month.">Event ideas</button>
+      </div>
+
+      <!-- Input -->
+      <div class="copilot-input">
+        <input id="copilotInput" placeholder="Ask about mentors, events, genetics, or drafting messages…" />
+        <button id="copilotSend">Send</button>
+      </div>
+    </div>
+  </section>
+</div>
 
   <section id="contact" class="section">
     <div class="container">
@@ -921,6 +1747,169 @@
     // Simple form handler
     function submitForm(e){e.preventDefault();const msg=document.getElementById('msg');if(msg){msg.textContent='Thanks! We\'ll get back to you.';}return false;}
   </script>
+  <script>
+/* =======================
+   UTGEC Copilot – client AI
+   ======================= */
+(function(){
+  const qs = s => document.querySelector(s);
+  const qsa = s => Array.from(document.querySelectorAll(s));
+  const fab = qs('#copilotFab');
+  const panel = qs('#copilotPanel');
+  const closeBtn = qs('#copilotClose');
+  const stream = qs('#copilotStream');
+  const input = qs('#copilotInput');
+  const sendBtn = qs('#copilotSend');
+
+  // Open/Close
+  const open = () => panel.classList.add('open');
+  const close = () => panel.classList.remove('open');
+  fab.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if(e.key==='Escape') close(); });
+
+  // Suggestions
+  qsa('.copilot-chip').forEach(ch => ch.addEventListener('click', () => {
+    input.value = ch.dataset.q; send();
+  }));
+
+  // Stream helpers
+  function addMsg(text, who='bot'){
+    const wrap = document.createElement('div');
+    wrap.className = 'copilot-msg ' + (who==='user' ? 'user' : 'bot');
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.innerHTML = text;
+    wrap.appendChild(bubble);
+    stream.appendChild(wrap);
+    stream.scrollTop = stream.scrollHeight;
+  }
+
+  function spinner(){
+    const id = 'sp_'+Math.random().toString(36).slice(2);
+    const wrap = document.createElement('div'); wrap.className='copilot-msg';
+    const bubble = document.createElement('div'); bubble.className='bubble';
+    bubble.innerHTML = `<span id="${id}">Thinking<span class="dots">…</span></span>`;
+    wrap.appendChild(bubble); stream.appendChild(wrap); stream.scrollTop = stream.scrollHeight;
+    let n=0; const t=setInterval(()=>{qs('#'+id).querySelector('.dots').textContent='.'.repeat((n++%3)+1)},300);
+    return ()=>clearInterval(t);
+  }
+
+  // Tiny on-page “RAG”: index headings + cards for quick answers
+  const kb = (() => {
+    const blocks = [];
+    qsa('#about, #focus, #offer, #nonlab, #opportunities, #events, #connect, #events-importance, #guest-speakers, #what-is-genetic-engineering')
+      .forEach(sec=>{
+        const title = sec.querySelector('h2')?.textContent?.trim() || sec.id;
+        const text = Array.from(sec.querySelectorAll('p, h3, .tag')).map(x=>x.textContent.trim()).join(' • ');
+        blocks.push({ id: sec.id, title, text });
+      });
+    return blocks;
+  })();
+
+  // Lightweight fuzzy includes
+  function searchKB(q){
+    const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    const score = (t) => terms.reduce((s,w)=> s + (t.includes(w)?1:0), 0);
+    const ranked = kb
+      .map(b=>({b, s: score((b.title+' '+b.text).toLowerCase())}))
+      .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,4).map(x=>x.b);
+    return ranked;
+  }
+
+  // Utilities: templates & mini knowledge
+  const tools = {
+    emailProfessor(name='Professor', yourName='UTGEC member'){
+      return `
+<strong>Subject:</strong> Undergraduate research inquiry – ${yourName}<br><br>
+Dear ${name},<br>
+My name is ${yourName}, and I’m part of the University of Toronto Genetic Engineering Club (UTGEC). I’m very interested in your work and would love to ask a few questions about how undergraduates can get involved in your lab. If appropriate, I can share a short CV and specific interests.<br><br>
+Would you have 15–20 minutes for a brief chat? I’m flexible and can adapt to your schedule.<br><br>
+Thank you for your time,<br>
+${yourName}<br>
+`;
+    },
+    eventIdeas(){
+      return `
+• <strong>Benchless CRISPR Night:</strong> simulate edits in-browser, ethics debate, and journal figure walk-through.<br>
+• <strong>Bioinformatics Sprint:</strong> 90-min Python + FASTQ to variant mini-pipeline with reproducible notebooks.<br>
+• <strong>Careers Lightning Panel:</strong> grads + industry, 5-minute micro-talks + 30-minute round-tables.
+`;
+    },
+    crisprExplain(){
+      return `
+1) CRISPR is a programmable DNA “find-and-cut” system adapted from bacteria.<br>
+2) <em>Cas</em> proteins (like Cas9) make the cut; a guide RNA tells Cas where to go.<br>
+3) Cells repair the break, causing a small knockout or a precise edit if a template is given.<br>
+4) Delivery matters (plasmid, RNP, AAV), and off-target risk must be minimized.<br>
+5) Applications: functional genomics, gene therapy, diagnostics (e.g., SHERLOCK/DETECTR).
+`;
+    },
+    routeMe(q){
+      // Simple intent router
+      q = q.toLowerCase();
+      if(/email|prof|supervisor|reach out|contact/.test(q)) return { tool:'emailProfessor' };
+      if(/event|workshop|idea/.test(q)) return { tool:'eventIdeas' };
+      if(/crispr|gene edit/.test(q)) return { tool:'crisprExplain' };
+      if(/mentor|which team|where should i join|what team/.test(q)) return { tool:'teamSuggest' };
+      return { tool:'kb' };
+    },
+    teamSuggest(){
+      return `
+If you like to join <strong>our team</strong> → go to <em>the teams's page</em> (see “Meet our team”).<br>
+`;
+    }
+  };
+
+  // Answer generator (deterministic + KB)
+  function answer(q){
+    const intent = tools.routeMe(q);
+    if(intent.tool==='emailProfessor'){
+      return tools.emailProfessor('Professor', 'UTGEC member');
+    }
+    if(intent.tool==='eventIdeas'){
+      return tools.eventIdeas();
+    }
+    if(intent.tool==='crisprExplain'){
+      return tools.crisprExplain();
+    }
+    if(intent.tool==='teamSuggest'){
+      const hits = searchKB('No-Lab Activities Ethics Writing Panels Bioinformatics Synthetic Biology');
+      const links = hits.map(h => `<a href="#${h.id}">Go to “${h.title}”</a>`).join(' ');
+      return tools.teamSuggest() + `<div class="ut-cta"><a href="/team">Go to the teams Page</div>`;
+    }
+    // KB fallback
+    const hits = searchKB(q);
+    if(hits.length){
+      const items = hits.map(h => `<li><a href="#${h.id}"><strong>${h.title}</strong></a> — ${h.text.slice(0,120)}…</li>`).join('');
+      return `Here’s what I found on this page:<ul>${items}</ul>`;
+    }
+    // Generic fallback
+    return `I didn’t find that on this page, but try rephrasing like “Find a mentor in X” or “Draft an email about Y.”`;
+  }
+
+  // Send flow
+  function send(){
+    const v = (input.value||'').trim(); if(!v) return;
+    addMsg(v,'user'); input.value='';
+    const stop = spinner();
+    setTimeout(()=>{ stop(); addMsg(answer(v),'bot'); }, 420);
+  }
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('keydown', e => { if(e.key==='Enter'){ e.preventDefault(); send(); } });
+
+  // First greeting
+  setTimeout(()=>{
+    addMsg(`Hi! I’m <strong>UTGEC Copilot</strong>. I can:
+    <ul>
+      <li>Match you with a <em>team/mentor</em></li>
+      <li>Draft <em>emails/DMs</em></li>
+      <li>Suggest <em>events & workshops</em></li>
+      <li>Summarize sections of this page</li>
+    </ul>Try a chip below or ask anything.`);
+  }, 300);
+})();
+</script>
 
   <script>
 // === Disable scroll reveal animations ===
@@ -948,6 +1937,8 @@ document.addEventListener("DOMContentLoaded", () => {
   transition: none !important;
 }
 </style>
+
+
 
 </body>
 </html>

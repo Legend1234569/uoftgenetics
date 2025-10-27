@@ -809,6 +809,819 @@
       </div>
     </div>
   </header>
+  <section id="opportunities-intro" class="section opportunities-intro">
+  <div class="opportunities-bg" aria-hidden="true"></div>
+
+  <div class="container opportunities-grid">
+    <div class="opportunities-text">
+      <h2>Opportunities Await</h2>
+      <p>
+        Every opportunity begins with a moment of curiosity — the decision to step forward,
+        to learn, and to build something new. At UTGEC, we open doors to experiences that
+        bridge science, innovation, and leadership. Whether you’re seeking research roles,
+        internships, or collaborative projects, each opportunity helps you turn knowledge
+        into impact.
+      </p>
+      <p>
+        The future of genetics and biotechnology depends on young innovators like you.
+        These programs are designed not just to prepare you for a career, but to empower
+        you to create one — where curiosity leads the way.
+      </p>
+    </div>
+
+    <div class="opportunities-visual" aria-hidden="true">
+      <svg class="op-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="oppGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="50%" stop-color="#38bdf8"/>
+            <stop offset="100%" stop-color="#4ade80"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Floating rectangles (doors opening) -->
+        <g class="doors">
+          <rect x="80" y="120" width="60" height="160" rx="6"/>
+          <rect x="180" y="80" width="60" height="200" rx="6"/>
+          <rect x="280" y="140" width="60" height="160" rx="6"/>
+          <rect x="380" y="100" width="60" height="200" rx="6"/>
+          <rect x="480" y="130" width="60" height="160" rx="6"/>
+        </g>
+
+        <!-- Rising grid lines -->
+        <g class="light-grid">
+          <line x1="0" y1="350" x2="600" y2="350"/>
+          <line x1="0" y1="300" x2="600" y2="300"/>
+          <line x1="0" y1="250" x2="600" y2="250"/>
+          <line x1="0" y1="200" x2="600" y2="200"/>
+          <line x1="0" y1="150" x2="600" y2="150"/>
+        </g>
+
+        <!-- Glow points -->
+        <g class="points">
+          <circle cx="150" cy="180" r="4"/>
+          <circle cx="260" cy="220" r="3.5"/>
+          <circle cx="400" cy="180" r="4"/>
+          <circle cx="520" cy="240" r="4.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* === OPPORTUNITIES INTRO SECTION === */
+.opportunities-intro {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+  background: linear-gradient(180deg, rgba(56,189,248,0.07), rgba(147,197,253,0.05), rgba(99,102,241,0.06));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Subtle animated background */
+.opportunities-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 40% 80%, rgba(147,197,253,0.1), transparent 60%),
+                    radial-gradient(circle at 80% 30%, rgba(167,139,250,0.08), transparent 70%);
+  animation: oppGlow 16s linear infinite alternate;
+  opacity: 0.6;
+  z-index: 0;
+}
+@keyframes oppGlow {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.1) translateY(-10px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* Layout */
+.opportunities-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Text */
+.opportunities-text h2 {
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #a78bfa, #38bdf8, #4ade80);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 18px;
+}
+
+.opportunities-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.2s ease-out forwards;
+}
+.opportunities-text p:nth-of-type(1) { animation-delay: .3s; }
+.opportunities-text p:nth-of-type(2) { animation-delay: .7s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Visual */
+.op-svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(56,189,248,0.25));
+}
+
+/* Doors animation (symbolizing opening opportunities) */
+.doors rect {
+  fill: none;
+  stroke: url(#oppGrad);
+  stroke-width: 2.5;
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: doorOpen 3s ease-out forwards;
+  transform-origin: center;
+  opacity: 0.9;
+}
+.doors rect:nth-child(2){ animation-delay:.4s; }
+.doors rect:nth-child(3){ animation-delay:.8s; }
+.doors rect:nth-child(4){ animation-delay:1.2s; }
+.doors rect:nth-child(5){ animation-delay:1.6s; }
+
+@keyframes doorOpen {
+  0% { stroke-dashoffset: 320; transform: scaleY(0.7); opacity: 0; }
+  100% { stroke-dashoffset: 0; transform: scaleY(1); opacity: 1; }
+}
+
+/* Rising grid lines */
+.light-grid line {
+  stroke: url(#oppGrad);
+  stroke-width: 1.5;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: riseLine 3.5s linear forwards;
+  opacity: 0.3;
+}
+.light-grid line:nth-child(2){ animation-delay:.2s; }
+.light-grid line:nth-child(3){ animation-delay:.4s; }
+.light-grid line:nth-child(4){ animation-delay:.6s; }
+.light-grid line:nth-child(5){ animation-delay:.8s; }
+
+@keyframes riseLine {
+  to { stroke-dashoffset: 0; opacity: 0.5; }
+}
+
+/* Points glow */
+.points circle {
+  fill: #4ade80;
+  filter: drop-shadow(0 0 10px rgba(74,222,128,0.6));
+  animation: pointPulse 3s ease-in-out infinite;
+}
+.points circle:nth-child(2){ fill:#38bdf8; animation-delay:.5s; }
+.points circle:nth-child(3){ fill:#a78bfa; animation-delay:1s; }
+.points circle:nth-child(4){ fill:#facc15; animation-delay:1.5s; }
+
+@keyframes pointPulse {
+  0%,100% { transform: scale(1); opacity:.85; }
+  50% { transform: scale(1.25); opacity:1; }
+}
+
+/* Hover interaction */
+.opportunities-intro:hover .op-svg {
+  transform: scale(1.03);
+  filter: drop-shadow(0 8px 40px rgba(147,197,253,0.4));
+  transition: all .4s ease;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .opportunities-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .opportunities-visual { order: -1; }
+  .op-svg { max-width: 440px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .doors rect, .light-grid line, .points circle, .opportunities-bg {
+    animation: none !important;
+  }
+}
+</style>
+<section id="opportunities-pathways" class="section opp-pathways">
+  <div class="container opp-grid">
+    <!-- LEFT: content -->
+    <div class="opp-text">
+      <h2>Pathways to Get Involved</h2>
+      <p>
+        Opportunities at UTGEC are designed as clear, practical pathways. You can join
+        <strong>research assistantships</strong> with labs, apply for short
+        <strong>industry-style projects</strong>, contribute to
+        <strong>science communication & policy</strong>, or explore
+        <strong>bioinformatics build sprints</strong>. Each track pairs you with mentors,
+        milestones, and a peer group so you’re never starting alone.
+      </p>
+      <p>
+        Here’s how it works: discover open roles, submit a lightweight application,
+        get matched with a project or mentor, then build toward a final deliverable
+        (poster, repo, brief, or demo). Along the way you’ll get feedback, resources,
+        and community support—so you can grow skills and ship work you’re proud of.
+      </p>
+
+      <ul class="opp-badges" aria-label="Opportunity types">
+        <li>Research Assistantships</li>
+        <li>Industry Mini-Projects</li>
+        <li>Science Writing & Policy</li>
+        <li>Bioinformatics Sprints</li>
+        <li>Mentorship Pods</li>
+        <li>Community Outreach</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: unique animation -->
+    <div class="opp-visual" aria-hidden="true">
+      <svg class="pipeline-svg" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- distinct palette -->
+          <linearGradient id="oppLine" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"  stop-color="#fb923c"/>  <!-- orange -->
+            <stop offset="50%" stop-color="#0ea5e9"/>  <!-- sky -->
+            <stop offset="100%" stop-color="#7c3aed"/> <!-- violet -->
+          </linearGradient>
+          <radialGradient id="oppGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,.35)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- stage labels -->
+        <g class="stage-labels" fill="rgba(255,255,255,.8)">
+          <text x="60"  y="48">Discover</text>
+          <text x="240" y="48">Apply</text>
+          <text x="390" y="48">Match</text>
+          <text x="510" y="48">Build</text>
+        </g>
+
+        <!-- glowing hub -->
+        <circle cx="300" cy="180" r="70" fill="url(#oppGlow)" opacity=".35"></circle>
+
+        <!-- main pipelines -->
+        <g class="pipes" stroke="url(#oppLine)" stroke-width="5" fill="none" stroke-linecap="round">
+          <!-- upper highway -->
+          <path d="M40 80 C 160 80, 440 80, 560 80" class="flow"></path>
+          <!-- mid feeder to hub -->
+          <path d="M100 180 C 180 160, 230 160, 300 180 C 370 200, 420 200, 500 180" class="flow delay1"></path>
+          <!-- lower return / success lane -->
+          <path d="M40 280 C 160 300, 440 300, 560 260" class="flow delay2"></path>
+        </g>
+
+        <!-- moving packets -->
+        <g class="packets">
+          <!-- squares = applications -->
+          <rect x="0" y="74" width="12" height="12" rx="2" class="pkt pkt1"/>
+          <rect x="0" y="74" width="12" height="12" rx="2" class="pkt pkt2"/>
+          <rect x="0" y="74" width="12" height="12" rx="2" class="pkt pkt3"/>
+
+          <!-- circles = matches -->
+          <circle r="7" class="pkt pkt4" />
+          <circle r="7" class="pkt pkt5" />
+
+          <!-- diamonds = deliverables -->
+          <rect x="0" y="274" width="12" height="12" rx="2" class="pkt pkt6" transform="rotate(45)"/>
+          <rect x="0" y="274" width="12" height="12" rx="2" class="pkt pkt7" transform="rotate(45)"/>
+        </g>
+
+        <!-- milestones nodes -->
+        <g class="nodes" fill="url(#oppLine)">
+          <circle cx="40"  cy="80"  r="5"/>
+          <circle cx="200" cy="80"  r="5"/>
+          <circle cx="300" cy="80"  r="5"/>
+          <circle cx="420" cy="80"  r="5"/>
+          <circle cx="560" cy="80"  r="6"/>
+
+          <circle cx="100" cy="180" r="4.5"/>
+          <circle cx="300" cy="180" r="6.5"/>
+          <circle cx="500" cy="180" r="5.5"/>
+
+          <circle cx="40"  cy="280" r="4.5"/>
+          <circle cx="300" cy="300" r="5"/>
+          <circle cx="560" cy="260" r="5.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* ===== Opportunities Pathways (NEW SECTION) ===== */
+.opp-pathways{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(251,146,60,.06), rgba(14,165,233,.06));
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 90px 0;
+}
+.opp-grid{
+  display:grid;
+  grid-template-columns:1.06fr .94fr;
+  gap:40px;
+  align-items:center;
+}
+
+/* content */
+.opp-text h2{
+  font-size: clamp(32px,4.6vw,46px);
+  font-weight: 900;
+  margin:0 0 14px 0;
+  background: linear-gradient(90deg,#fb923c,#0ea5e9,#7c3aed);
+  -webkit-background-clip:text; color:transparent;
+}
+.opp-text p{
+  color:var(--muted);
+  font-size:17px; line-height:1.75; margin:0 0 12px 0;
+}
+.opp-badges{
+  display:flex; flex-wrap:wrap; gap:10px; padding:0; margin:14px 0 0 0; list-style:none;
+}
+.opp-badges li{
+  padding:8px 12px; border:1px solid rgba(255,255,255,.12);
+  border-radius:999px; font-size:13px; letter-spacing:.2px; color:#e9ecf7;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+}
+
+/* visual */
+.opp-visual{ display:flex; justify-content:center; align-items:center; }
+.pipeline-svg{ width:100%; max-width:540px; height:auto; filter:drop-shadow(0 10px 28px rgba(14,165,233,.28)); }
+
+/* lines animate with dash + subtle bob */
+.pipes .flow{
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: pipeDraw 2.6s ease-out forwards, pipeBob 6s ease-in-out infinite;
+}
+.pipes .delay1{ animation-delay:.25s, 0s; }
+.pipes .delay2{ animation-delay:.5s, 0s; }
+
+@keyframes pipeDraw { to{ stroke-dashoffset:0 } }
+@keyframes pipeBob  {
+  0%,100%{ transform:translateY(0) }
+  50%    { transform:translateY(-6px) }
+}
+
+/* packets ride along path via CSS offsets (simulated) */
+.packets .pkt{
+  fill:#fb923c; /* default orange for squares */
+  filter: drop-shadow(0 0 10px rgba(251,146,60,.6));
+  animation: pktMove 6.5s linear infinite;
+  transform-box: fill-box; transform-origin: center;
+}
+.packets .pkt2{ animation-delay:.8s }
+.packets .pkt3{ animation-delay:1.6s }
+.packets .pkt4, .packets .pkt5{
+  fill:#0ea5e9; filter: drop-shadow(0 0 10px rgba(14,165,233,.6));
+  animation-duration:7.2s;
+}
+.packets .pkt5{ animation-delay:1s }
+.packets .pkt6, .packets .pkt7{
+  fill:#7c3aed; filter: drop-shadow(0 0 10px rgba(124,58,237,.6));
+  animation-duration:6s;
+  animation-delay:.6s;
+}
+
+/* Simulated horizontal ride across lanes */
+@keyframes pktMove{
+  0%   { transform: translate(40px, 74px)  scale(1); opacity:.0 }
+  8%   { opacity:1 }
+  33%  { transform: translate(220px, 74px) scale(1.05) }
+  50%  { transform: translate(300px, 180px) scale(1.08) } /* hub */
+  75%  { transform: translate(450px, 210px) scale(1.03) }
+  100% { transform: translate(560px, 260px) scale(1); opacity:.95 }
+}
+
+/* stage labels & nodes */
+.stage-labels text{
+  font: 700 12px/1 ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+  letter-spacing:.3px;
+}
+.nodes circle{
+  animation: nodePulse 3s ease-in-out infinite;
+}
+@keyframes nodePulse{
+  0%,100%{ transform:scale(1); opacity:.85 }
+  50%    { transform:scale(1.25); opacity:1 }
+}
+
+/* hover */
+.opp-pathways:hover .pipeline-svg{
+  transform: scale(1.03);
+  transition: transform .35s ease, filter .35s ease;
+  filter: drop-shadow(0 14px 40px rgba(124,58,237,.35));
+}
+
+/* responsive */
+@media (max-width:1000px){
+  .opp-grid{ grid-template-columns:1fr; gap:28px; text-align:left }
+  .opp-visual{ order:-1 }
+  .pipeline-svg{ max-width:440px }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .pipes .flow, .packets .pkt, .nodes circle{ animation:none !important }
+}
+</style>
+
+ <section id="opportunities-types" class="section fx-oppsV2">
+  <div class="container">
+    <h2 class="reveal">Types of Opportunities</h2>
+    <p class="muted reveal" style="max-width:60ch">
+      Choose what fits your goals—quick wins, recurring roles, or a term-long build.
+    </p>
+
+    <div class="opps-grid">
+      <!-- 1 -->
+      <article class="opp-card" data-theme="blue" tabindex="0" aria-label="Research Assistantships">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Research</span>
+            <h3>Research Assistantships</h3>
+            <p class="muted">Shadow a lab, collect data, help analyze results.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>Lit scans & figure notes</li>
+              <li>Data wrangling (R/Python)</li>
+            </ul>
+            <a class="button ghost" href="#contact">Express interest</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="opp-card" data-theme="purple" tabindex="0" aria-label="Wet-Lab Volunteers">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Wet-Lab</span>
+            <h3>Wet-Lab Volunteers</h3>
+            <p class="muted">Pipetting, plating, record-keeping with mentors.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>PPE & notebook training</li>
+              <li>Cloning & minipreps</li>
+              <li>Weekly bench rotation</li>
+            </ul>
+            <a class="button ghost" href="#contact">Request onboarding</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="opp-card" data-theme="green" tabindex="0" aria-label="Bioinformatics Pod Roles">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Computational</span>
+            <h3>Bioinformatics Pods</h3>
+            <p class="muted">Build reusable notebooks and tiny datasets.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>Docs & tutorials</li>
+              <li>Dataset curation</li>
+            </ul>
+            <a class="button ghost" href="#contact">Join the pod</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="opp-card" data-theme="amber" tabindex="0" aria-label="Science Writing">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Communication</span>
+            <h3>Science Writing</h3>
+            <p class="muted">Blog posts, interviews, event recaps for our site.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>Feature an alum/lab</li>
+              <li>Technique explainers</li>
+              <li>Edit & publish</li>
+            </ul>
+            <a class="button ghost" href="/blog">Pitch a post</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="opp-card" data-theme="pink" tabindex="0" aria-label="Outreach & Comms">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Outreach</span>
+            <h3>Outreach & Comms</h3>
+            <p class="muted">Design, socials, and partnerships.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>IG/LinkedIn content</li>
+              <li>Brand templates</li>
+              <li>Partner emails</li>
+            </ul>
+            <a class="button ghost" href="#contact">Volunteer</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="opp-card" data-theme="gold" tabindex="0" aria-label="Grants & Funding">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Funding</span>
+            <h3>Grants & Funding</h3>
+            <p class="muted">Co-write micro-grants; manage small budgets.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>Find eligible calls</li>
+              <li>Draft 300–500 words</li>
+              <li>Budget & reporting</li>
+            </ul>
+            <a class="button ghost" href="#contact">Join grant team</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="opp-card" data-theme="teal" tabindex="0" aria-label="Competitions">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Build</span>
+            <h3>Competitions</h3>
+            <p class="muted">Hackathons, case comps, synbio challenges.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>Form a sprint squad</li>
+              <li>Mentor office hours</li>
+              <li>Showcase readiness</li>
+            </ul>
+            <a class="button ghost" href="#events">See dates</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="opp-card" data-theme="indigo" tabindex="0" aria-label="Mentorship / TA">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="inner">
+          <div class="face front">
+            <span class="pill">Mentor</span>
+            <h3>Mentorship / TA</h3>
+            <p class="muted">Host office hours or weekly mini-lessons.</p>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <ul class="muted">
+              <li>1:1 help slots</li>
+              <li>Slide templates</li>
+              <li>Ref letter track</li>
+            </ul>
+            <a class="button ghost" href="#contact">Apply to mentor</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ============ Opportunities v2 (scoped) ============ */
+.fx-oppsV2 { --cardPad:24px; --flipDur:600ms; --mag:12px; --pop:1.02; }
+.fx-oppsV2 .opps-grid{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:24px;
+  perspective:900px;
+}
+@media (max-width:1100px){ .fx-oppsV2 .opps-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:700px){  .fx-oppsV2 .opps-grid{grid-template-columns:1fr} }
+
+.fx-oppsV2 .opp-card{
+  position:relative; overflow:hidden; border:1px solid var(--line);
+  border-radius:var(--radius-2xl);
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  box-shadow:var(--shadow); outline:none;
+  /* tidy type */
+  line-height:1.35; word-break:break-word; overflow-wrap:anywhere;
+}
+
+.fx-oppsV2 .inner{
+  position:relative; height:100%;
+  transform-style:preserve-3d;
+  transition: transform var(--flipDur) cubic-bezier(.22,.9,.24,1);
+}
+
+/* Faces use same box so they never overlap text visually */
+.fx-oppsV2 .face{
+  position:absolute; inset:0; display:flex; flex-direction:column; gap:10px;
+  padding:var(--cardPad); backface-visibility:hidden; z-index:1;
+}
+.fx-oppsV2 .front{ transform:rotateY(0deg) }
+.fx-oppsV2 .back { transform:rotateY(180deg); overflow:auto }
+
+/* Ensure card auto-sizes to tallest face (JS sets min-height) */
+.fx-oppsV2 .opp-card{ min-height:220px }
+
+/* Pills */
+.fx-oppsV2 .pill{
+  align-self:flex-start; font-size:12px; padding:6px 10px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.12); color:var(--muted); backdrop-filter:blur(6px);
+}
+
+/* Animated border (different from other sections) */
+.fx-oppsV2 .opp-card::before{
+  content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px;
+  background: conic-gradient(from var(--spin,0deg),
+    var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-1));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity:.55; z-index:0; filter:saturate(1.1);
+  animation: oppsV2-border 8s linear infinite;
+}
+@keyframes oppsV2-border { to { transform: rotate(360deg) } }
+
+/* Spotlight sweep on hover */
+.fx-oppsV2 .opp-card::after{
+  content:""; position:absolute; inset:-30%; z-index:0;
+  background: radial-gradient(220px 220px at var(--sx,110%) var(--sy,-10%),
+    rgba(255,255,255,.18), transparent 60%);
+  transition: background 300ms ease;
+}
+
+/* Morphing blob behind content (no text overlap) */
+.fx-oppsV2 .blob{
+  position:absolute; inset:-40% -20% auto auto; width:180%; height:180%;
+  filter: blur(24px) saturate(1.15); opacity:.20; mix-blend-mode:screen; z-index:0;
+  animation: oppsV2-blob 14s ease-in-out infinite alternate;
+}
+@keyframes oppsV2-blob{
+  0%{ transform:translate3d(-6%,-8%,0) scale(1) rotate(0) }
+  50%{ transform:translate3d(-2%,-2%,0) scale(1.06) rotate(8deg) }
+  100%{transform:translate3d(-8%,0,0)  scale(1.02) rotate(-6deg)}
+}
+
+/* Theme blobs */
+.fx-oppsV2 .opp-card[data-theme="blue"]   .blob{background:
+  radial-gradient(120px 120px at 30% 30%, rgba(96,165,250,.60), transparent 60%),
+  radial-gradient(140px 140px at 70% 60%, rgba(167,139,250,.45), transparent 60%);}
+.fx-oppsV2 .opp-card[data-theme="purple"] .blob{background:
+  radial-gradient(120px 120px at 35% 30%, rgba(167,139,250,.60), transparent 60%),
+  radial-gradient(150px 150px at 70% 60%, rgba(96,165,250,.45), transparent 60%);}
+.fx-oppsV2 .opp-card[data-theme="green"]  .blob{background:
+  radial-gradient(120px 120px at 35% 35%, rgba(52,211,153,.55), transparent 60%),
+  radial-gradient(150px 150px at 70% 50%, rgba(96,165,250,.40), transparent 60%);}
+.fx-oppsV2 .opp-card[data-theme="amber"]  .blob{background:
+  radial-gradient(120px 120px at 40% 40%, rgba(246,217,139,.55), transparent 60%),
+  radial-gradient(150px 150px at 70% 50%, rgba(167,139,250,.35), transparent 60%);}
+.fx-oppsV2 .opp-card[data-theme="pink"]   .blob{background:
+  radial-gradient(120px 120px at 40% 40%, rgba(244,114,182,.50), transparent 60%),
+  radial-gradient(150px 150px at 70% 50%, rgba(96,165,250,.35), transparent 60%);}
+.fx-oppsV2 .opp-card[data-theme="gold"]   .blob{background:
+  radial-gradient(120px 120px at 40% 40%, rgba(246,217,139,.58), transparent 60%),
+  radial-gradient(150px 150px at 70% 50%, rgba(52,211,153,.30), transparent 60%);}
+.fx-oppsV2 .opp-card[data-theme="teal"]   .blob{background:
+  radial-gradient(120px 120px at 40% 40%, rgba(45,212,191,.50), transparent 60%),
+  radial-gradient(150px 150px at 70% 50%, rgba(96,165,250,.35), transparent 60%);}
+.fx-oppsV2 .opp-card[data-theme="indigo"] .blob{background:
+  radial-gradient(120px 120px at 40% 40%, rgba(129,140,248,.50), transparent 60%),
+  radial-gradient(150px 150px at 70% 50%, rgba(167,139,250,.35), transparent 60%);}
+
+/* Entrance cascade (clean, no jitter) */
+.fx-oppsV2 .opp-card{ opacity:0; transform:translateY(18px) }
+.fx-oppsV2 .opp-card.in{ opacity:1; transform:translateY(0) }
+.fx-oppsV2 .opp-card.in:nth-child(1){ transition:420ms var(--motion-ease) }
+.fx-oppsV2 .opp-card.in:nth-child(2){ transition:460ms var(--motion-ease) }
+.fx-oppsV2 .opp-card.in:nth-child(3){ transition:500ms var(--motion-ease) }
+.fx-oppsV2 .opp-card.in:nth-child(4){ transition:540ms var(--motion-ease) }
+.fx-oppsV2 .opp-card.in:nth-child(5){ transition:580ms var(--motion-ease) }
+.fx-oppsV2 .opp-card.in:nth-child(6){ transition:620ms var(--motion-ease) }
+.fx-oppsV2 .opp-card.in:nth-child(7){ transition:660ms var(--motion-ease) }
+.fx-oppsV2 .opp-card.in:nth-child(8){ transition:700ms var(--motion-ease) }
+
+/* Interactions (different from other sections) */
+.fx-oppsV2 .opp-card:hover .inner,
+.fx-oppsV2 .opp-card:focus .inner{ transform: rotateY(180deg) }
+
+.fx-oppsV2 .opp-card:hover{ transform:translate3d(var(--mx,0),var(--my,0),0) scale(var(--pop)) }
+.fx-oppsV2 .opp-card:focus{ box-shadow:0 0 0 3px rgba(96,165,250,.25), var(--shadow) }
+
+/* Keep text readable over visuals */
+.fx-oppsV2 .face *{ position:relative; z-index:2 }
+.fx-oppsV2 .face h3{ margin:0 }
+
+/* Reduced motion: disable flips/spotlights/blobs */
+@media (prefers-reduced-motion: reduce){
+  .fx-oppsV2 .opp-card,
+  .fx-oppsV2 .opp-card::before,
+  .fx-oppsV2 .opp-card::after,
+  .fx-oppsV2 .blob,
+  .fx-oppsV2 .inner{ animation:none !important; transition:none !important; }
+  .fx-oppsV2 .inner{ transform:none !important }
+  .fx-oppsV2 .blob{ display:none }
+}
+</style>
+<script>
+(function oppsV2(){
+  const scope = document.querySelector('#opportunities-types.fx-oppsV2');
+  if(!scope) return;
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards  = [...scope.querySelectorAll('.opp-card')];
+
+  // 1) Ensure both faces fit: set card min-height = tallest face
+  function sizeCard(card){
+    const front = card.querySelector('.front');
+    const back  = card.querySelector('.back');
+    if(!front || !back) return;
+    // Temporarily show back to measure if hidden by flip
+    const inner = card.querySelector('.inner');
+    const prev = inner.style.transform;
+    inner.style.transform = 'none';
+    const h = Math.max(front.scrollHeight, back.scrollHeight);
+    card.style.minHeight = (h + 0) + 'px';
+    inner.style.transform = prev;
+  }
+  function sizeAll(){ cards.forEach(sizeCard); }
+  sizeAll();
+  addEventListener('resize', ()=> requestAnimationFrame(sizeAll), {passive:true});
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(sizeAll); }
+
+  // 2) Entrance cascade
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:.12, rootMargin:'0px 0px -10% 0px'});
+  cards.forEach(c=> io.observe(c));
+
+  if(reduce) return;
+
+  // 3) Magnetic pull + spotlight coords
+  function onMove(e){
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const dx = (e.clientX - (rect.left + rect.width/2)) / (rect.width/2);
+    const dy = (e.clientY - (rect.top  + rect.height/2)) / (rect.height/2);
+    const mag = 12;
+    card.style.setProperty('--mx', (dx*mag).toFixed(1)+'px');
+    card.style.setProperty('--my', (dy*mag).toFixed(1)+'px');
+    // spotlight position for ::after
+    const sx = ((e.clientX - rect.left) / rect.width) * 100;
+    const sy = ((e.clientY - rect.top)  / rect.height) * 100;
+    card.style.setProperty('--sx', sx.toFixed(1)+'%');
+    card.style.setProperty('--sy', sy.toFixed(1)+'%');
+  }
+  function onLeave(e){
+    const card = e.currentTarget;
+    card.style.setProperty('--mx','0px');
+    card.style.setProperty('--my','0px');
+    card.style.removeProperty('--sx');
+    card.style.removeProperty('--sy');
+  }
+  cards.forEach(c=>{
+    c.addEventListener('mousemove', onMove, {passive:true});
+    c.addEventListener('mouseleave', onLeave, {passive:true});
+    c.addEventListener('touchend', onLeave, {passive:true});
+  });
+
+  // 4) Keyboard flip support (Enter/Space toggles briefly)
+  cards.forEach(c=>{
+    c.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        const inner = c.querySelector('.inner');
+        // toggle flip for 2.2s
+        const prev = getComputedStyle(inner).transform;
+        inner.style.transform = /matrix/.test(prev) ? '' : 'rotateY(180deg)';
+        setTimeout(()=> inner.style.transform = '', 2200);
+      }
+    });
+  });
+})();
+</script>
+
 
   <!-- ======  Events GRID (Leads) ====== -->
   <section class="section" id="leads">
@@ -1090,6 +1903,9 @@ function scrollToId(id){
 }
 
 
+  </script>
+  <script>
+    function submitForm(e){e.preventDefault();const msg=document.getElementById('msg');if(msg){msg.textContent='Thanks! We\'ll get back to you.';}return false;}
   </script>
 </body>
 </html>

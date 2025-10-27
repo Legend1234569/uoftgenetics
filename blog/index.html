@@ -643,6 +643,434 @@
       </div>
     </div>
   </header>
+<section id="intro-dnarain" class="section intro-dnarain">
+  <!-- animated background -->
+  <div class="dnarain-bg" aria-hidden="true">
+    <svg class="dnarain-svg" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" role="img">
+      <!-- 6 DNA streams; JS will randomize letters -->
+      <g class="stream" style="--x:40"><text x="40"  y="-20"></text></g>
+      <g class="stream" style="--x:120"><text x="120" y="-20"></text></g>
+      <g class="stream" style="--x:200"><text x="200" y="-20"></text></g>
+      <g class="stream" style="--x:280"><text x="280" y="-20"></text></g>
+      <g class="stream" style="--x:360"><text x="360" y="-20"></text></g>
+      <g class="stream" style="--x:440"><text x="440" y="-20"></text></g>
+      <g class="stream" style="--x:520"><text x="520" y="-20"></text></g>
+    </svg>
+  </div>
+
+  <div class="container intro-dnarain-grid">
+    <div class="intro-copy">
+      <h2>Where Ideas Become Experiments</h2>
+      <p class="lede">
+        Welcome to our journal of progress — a living notebook where we share breakthroughs,
+        failures that taught us more than success, and the questions that push us forward.
+        Read reflections from teams, conversations with mentors, and behind-the-scenes notes
+        from projects shaping the future of genetics at UTGEC.
+      </p>
+    </div>
+
+    <!-- optional accent card to the right (keeps balance on laptop) -->
+    <div class="intro-accent" aria-hidden="true">
+      <div class="accent-card">
+        <div class="dot"></div>
+        <div class="lines"></div>
+        <div class="hint">New posts weekly</div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+/* ===== DNA Rain Intro (unique & self-contained) ===== */
+.intro-dnarain{
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+  background: linear-gradient(180deg, rgba(13,18,30,.9), rgba(10,14,24,.96));
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* background: vertical DNA streams with soft vignette */
+.dnarain-bg{
+  position:absolute; inset:0; z-index:0;
+  pointer-events:none;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  opacity:.75;
+}
+.dnarain-svg{
+  width: min(1100px, 100%); height: 100%;
+  position:absolute; left:50%; top:0; transform:translateX(-50%);
+  filter: drop-shadow(0 8px 24px rgba(99,102,241,.22));
+}
+.stream text{
+  font: 700 18px/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  fill: url(#gradDNA);
+}
+/* gradient fill via paint-order trick using stroke; fallback to solid */
+.stream text{
+  fill: #8ab8ff;
+  stroke: #60a5fa; stroke-width: 0; paint-order: stroke fill;
+  letter-spacing: .02em;
+}
+
+/* animate each stream independently */
+.stream{
+  animation: fall 8s linear infinite;
+  animation-delay: calc(var(--x) * -0.02s);
+  transform: translateY(-360px);
+}
+@keyframes fall{
+  0%   { transform: translateY(-380px); opacity:.85; }
+  90%  { transform: translateY( 360px); opacity:.6; }
+  100% { transform: translateY( 380px); opacity:.0; }
+}
+
+/* slight hue drift overlay to keep it alive without distraction */
+.dnarain-bg::after{
+  content:""; position:absolute; inset:-20% -10%;
+  background: radial-gradient(40% 30% at 70% 20%, rgba(96,165,250,.08), transparent 70%),
+              radial-gradient(50% 35% at 20% 70%, rgba(124,58,237,.06), transparent 70%);
+  filter: saturate(1.1);
+  animation: drift 22s ease-in-out infinite alternate;
+}
+@keyframes drift{
+  0%{ transform: rotate(0deg) scale(1)}
+  100%{ transform: rotate(8deg) scale(1.06)}
+}
+
+/* foreground grid alignment */
+.intro-dnarain-grid{
+  position: relative; z-index: 2;
+  display: grid; gap: 40px;
+  grid-template-columns: 1.05fr .95fr; align-items: center;
+}
+
+/* copy */
+.intro-copy h2{
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 900;
+  margin: 0 0 14px 0;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #34d399);
+  -webkit-background-clip: text; color: transparent;
+}
+.intro-copy .lede{
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 18px;
+  max-width: 68ch;
+  margin: 0;
+  opacity: 0; transform: translateY(10px);
+  animation: fadeUp .7s cubic-bezier(.22,.9,.24,1) .2s forwards;
+}
+@keyframes fadeUp{ to{ opacity:1; transform: none } }
+
+/* right accent card (optional visual balance) */
+.intro-accent{ display:flex; justify-content:center; align-items:center; }
+.accent-card{
+  position: relative;
+  width: 100%; max-width: 520px; aspect-ratio: 4/3;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+/* moving scan lines inside card */
+.accent-card::before{
+  content:""; position:absolute; inset:0;
+  background-image: linear-gradient( to bottom,
+    rgba(96,165,250,.1) 0px, transparent 2px);
+  background-size: 100% 14px;
+  animation: scan 6s linear infinite;
+  opacity:.25;
+}
+@keyframes scan{ to { background-position-y: 14px; } }
+/* glowing node and lines */
+.accent-card .dot{
+  position:absolute; left:18%; top:28%;
+  width:10px; height:10px; border-radius:999px;
+  background:#facc15; filter: drop-shadow(0 0 14px rgba(250,204,21,.65));
+  animation: ping 2.6s ease-in-out infinite;
+}
+@keyframes ping{
+  0%,100%{ transform: scale(1); opacity: .95 }
+  50%    { transform: scale(1.25); opacity: 1 }
+}
+.accent-card .lines{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(600px 200px at 30% 30%, rgba(96,165,250,.18), transparent 60%),
+    radial-gradient(600px 200px at 80% 70%, rgba(167,139,250,.12), transparent 60%);
+  mix-blend-mode: screen;
+}
+.accent-card .hint{
+  position:absolute; right:14px; bottom:12px; font-size:12px;
+  color: rgba(255,255,255,.8); letter-spacing:.3px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 6px 10px; border-radius: 999px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px){
+  .intro-dnarain{ padding: 80px 0; }
+  .intro-dnarain-grid{ grid-template-columns: 1fr; gap: 28px; }
+  .intro-accent{ order: -1; }
+  .accent-card{ max-width: 420px; }
+  .stream text{ font-size: 16px; }
+}
+
+/* REDUCED MOTION: freeze background but keep layout clean */
+@media (prefers-reduced-motion: reduce){
+  .stream, .dnarain-bg::after, .accent-card::before{ animation: none !important; }
+  .intro-copy .lede{ animation: none !important; opacity:1; transform:none; }
+}
+</style>
+<script>
+(function(){
+  const letters = ['A','C','G','T'];
+  const rows = 26; // how many rows per stream
+  const streams = document.querySelectorAll('#intro-dnarain .stream text');
+  if(!streams.length) return;
+
+  // fill each column with random A/C/G/T
+  streams.forEach((t, i) => {
+    let s = '';
+    for(let r=0;r<rows;r++){
+      const ch = letters[Math.floor(Math.random()*letters.length)];
+      s += ch + '\n';
+    }
+    t.textContent = s.trimEnd();
+    // slight per-stream color shift via CSS filter
+    t.parentElement.style.filter = `hue-rotate(${(i*8)%24}deg)`;
+    // stagger animation
+    t.parentElement.style.animationDelay = `${i * -0.6}s`;
+  });
+})();
+</script>
+<!-- ========= BLOG • NEWS INTRO (unique + “radar + ticker” animation) ========= -->
+<section id="blog-news" class="section blog-news">
+  <!-- headline ticker ribbon (bottom) -->
+
+
+  <div class="container news-grid">
+    <!-- LEFT: text -->
+    <div class="news-text">
+      <h2>In The News</h2>
+      <p class="news-lede">
+        UTGEC tracks the pulse of genetics and biotechnology — from campus breakthroughs
+        to global insights. Our news highlights spotlight student achievements, rapid
+        progress in tools and methods, and the conversations shaping the future of
+        responsible innovation. Dive in for quick summaries, context you can trust,
+        and links to explore what matters next.
+      </p>
+    </div>
+
+    <!-- RIGHT: animated “news radar” (unique) -->
+    <div class="news-visual" aria-hidden="true">
+      <div class="radar">
+        <div class="radar-sweep"></div>
+        <svg class="radar-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img">
+          <!-- rings -->
+          <circle cx="160" cy="160" r="40"  class="ring"/>
+          <circle cx="160" cy="160" r="80"  class="ring"/>
+          <circle cx="160" cy="160" r="120" class="ring"/>
+          <circle cx="160" cy="160" r="150" class="ring"/>
+
+          <!-- blips -->
+          <g class="blip b1"><circle cx="230" cy="110" r="4"/></g>
+          <g class="blip b2"><circle cx="90"  cy="190" r="4"/></g>
+          <g class="blip b3"><circle cx="200" cy="240" r="4"/></g>
+          <g class="blip b4"><circle cx="60"  cy="120" r="4"/></g>
+
+          <!-- orbiting headline chips -->
+          <g class="orbit o1"><rect x="0" y="0" rx="6" ry="6" width="86" height="22"/><text x="10" y="15">CRISPR updates</text></g>
+          <g class="orbit o2"><rect x="0" y="0" rx="6" ry="6" width="112" height="22"/><text x="10" y="15">Single-cell trends</text></g>
+          <g class="orbit o3"><rect x="0" y="0" rx="6" ry="6" width="96" height="22"/><text x="10" y="15">AI in genomics</text></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ===== Unique palette so it stands apart from other sections ===== */
+:root{
+  --news-cyan:#22d3ee;
+  --news-indigo:#6366f1;
+  --news-lime:#34d399;
+  --news-gold:#f6d98b;
+}
+
+/* Section shell */
+.blog-news{
+  position:relative;
+  overflow:hidden;
+  padding: 96px 0 128px; /* extra bottom for ticker */
+  background:
+    radial-gradient(900px 500px at 85% 10%, rgba(34,211,238,.08), transparent 60%),
+    radial-gradient(700px 420px at 15% 80%, rgba(99,102,241,.07), transparent 60%),
+    #0b101b;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+/* Grid alignment */
+.news-grid{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap:40px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+
+/* Text */
+.news-text h2{
+  font-size: clamp(36px,5vw,52px);
+  font-weight: 900;
+  margin:0 0 14px 0;
+  background: linear-gradient(90deg, var(--news-cyan), var(--news-indigo), var(--news-lime));
+  -webkit-background-clip:text; color:transparent;
+}
+.news-lede{
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 18px;
+  max-width: 68ch;
+  margin: 0;
+  /* subtle reveal: focus glow + lift */
+  opacity: 0; transform: translateY(10px);
+  animation: newsLedeIn .7s cubic-bezier(.22,.9,.24,1) .15s forwards;
+}
+@keyframes newsLedeIn{ to{ opacity:1; transform:none } }
+
+/* ====== Radar visual ====== */
+.news-visual{ display:flex; justify-content:center; align-items:center; }
+.radar{
+  position:relative;
+  width: min(520px, 42vw);
+  aspect-ratio: 1/1;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.03), rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: 0 14px 40px rgba(0,0,0,.38);
+  overflow:hidden;
+}
+.radar-svg{
+  width:100%; height:100%;
+  filter: drop-shadow(0 8px 24px rgba(34,211,238,.25));
+}
+
+/* rings */
+.ring{
+  fill:none;
+  stroke: rgba(255,255,255,.14);
+  stroke-width: 1.2;
+  opacity:.75;
+}
+
+/* sweep (conic gradient overlay) */
+.radar-sweep{
+  position:absolute; inset:-20%;
+  background:
+    conic-gradient(from 0deg, rgba(34,211,238,.35), rgba(34,211,238,.0) 55%);
+  mix-blend-mode: screen;
+  filter: blur(10px) saturate(1.1);
+  animation: sweep 4.5s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes sweep{ to{ transform: rotate(360deg) } }
+
+/* blips */
+.blip circle{
+  fill: var(--news-gold);
+  filter: drop-shadow(0 0 10px rgba(246,217,139,.65));
+  animation: blip 2.2s ease-in-out infinite;
+}
+.b1 circle{ animation-delay:.2s }
+.b2 circle{ animation-delay:.8s }
+.b3 circle{ animation-delay:1.4s }
+.b4 circle{ animation-delay:1.8s }
+@keyframes blip{
+  0%,100%{ transform: scale(1); opacity:.9 }
+  50%    { transform: scale(1.35); opacity:1 }
+}
+
+/* orbiting chips */
+.orbit rect{
+  fill: rgba(255,255,255,.06);
+  stroke: rgba(255,255,255,.16);
+}
+.orbit text{
+  font: 700 10.5px/1 ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+  fill: rgba(255,255,255,.9);
+  letter-spacing:.2px;
+}
+.o1{ animation: orbit1 10s linear infinite; transform-origin:160px 160px; }
+.o2{ animation: orbit2 14s linear infinite reverse; transform-origin:160px 160px; }
+.o3{ animation: orbit3 18s linear infinite; transform-origin:160px 160px; }
+
+@keyframes orbit1{
+  0%{ transform: rotate(0deg) translate(100px, -20px) }
+  100%{ transform: rotate(360deg) translate(100px, -20px) }
+}
+@keyframes orbit2{
+  0%{ transform: rotate(0deg) translate(130px, 10px) }
+  100%{ transform: rotate(360deg) translate(130px, 10px) }
+}
+@keyframes orbit3{
+  0%{ transform: rotate(0deg) translate(70px, 40px) }
+  100%{ transform: rotate(360deg) translate(70px, 40px) }
+}
+
+/* ====== Ticker ====== */
+.news-ticker{
+  position:absolute; left:0; right:0; bottom:0;
+  height:42px;
+  background:
+    linear-gradient(90deg, rgba(34,211,238,.16), rgba(99,102,241,.16)),
+    rgba(255,255,255,.04);
+  border-top:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+  z-index:1;
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+.ticker-track{
+  position:absolute; white-space: nowrap;
+  will-change: transform;
+  animation: marquee 26s linear infinite;
+  font: 800 13px/42px ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+  letter-spacing:.2px;
+  color: rgba(255,255,255,.92);
+}
+@keyframes marquee{
+  0%{ transform: translateX(0) }
+  100%{ transform: translateX(-50%) } /* content pasted twice, so -50% loops */
+}
+.ticker-track .tag{
+  background: linear-gradient(90deg, var(--news-cyan), var(--news-indigo));
+  color:#0b101b; padding:4px 10px; border-radius:999px; margin:0 12px 0 18px;
+}
+.ticker-track .dot{ margin:0 12px; opacity:.7 }
+
+/* ====== Responsiveness & accessibility ====== */
+@media (max-width: 1000px){
+  .blog-news{ padding: 80px 0 96px; }
+  .news-grid{ grid-template-columns: 1fr; gap:28px; }
+  .news-visual{ order:-1 }
+  .radar{ width:min(440px, 88vw) }
+  .ticker-track{ animation-duration: 32s; }
+}
+@media (prefers-reduced-motion: reduce){
+  .radar-sweep, .blip circle, .orbit, .ticker-track{ animation: none !important; }
+}
+</style>
+
+
 
   <!-- ======  Events GRID (Leads) ====== -->
   <section class="section" id="leads">
@@ -908,6 +1336,9 @@ function scrollToId(id){
   window.scrollTo({ top: y, behavior: 'smooth' });
 }
 
+  </script>
+  <script>
+    function submitForm(e){e.preventDefault();const msg=document.getElementById('msg');if(msg){msg.textContent='Thanks! We\'ll get back to you.';}return false;}
   </script>
 </body>
 </html>
