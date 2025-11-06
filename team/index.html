@@ -592,6 +592,98 @@
   .team-photo-wrap{ transform:none !important; }
 }
 
+/* ===== Mentor-of-the-Month CTA ===== */
+.mentor-cta { padding-top: 40px; padding-bottom: 40px; }
+.mentor-cta .mentor-cta-wrap{
+  position: relative;
+  display: grid;
+  grid-template-columns: .95fr 1.05fr;
+  gap: 28px;
+  border:1px solid var(--line);
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  isolation:isolate;
+}
+
+.mentor-cta .mentor-cta-wrap::before{
+  /* animated border sheen */
+  content:"";
+  position:absolute; inset:-1px;
+  border-radius:inherit; padding:1px;
+  background: linear-gradient(120deg,var(--grad-1),var(--grad-2),var(--grad-3));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  animation: borderShift 10s linear infinite;
+  opacity:.6;
+}
+
+.mentor-cta .mentor-cta-photo{
+  position:relative; padding:26px;
+  display:grid; place-items:center; overflow:hidden;
+}
+.mentor-cta .mentor-cta-photo img{
+  width:100%; max-width: 420px; aspect-ratio: 4/3; object-fit: cover;
+  border-radius: 18px; box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  transform: translateZ(0) scale(1); will-change: transform, filter;
+  transition: transform 600ms var(--motion-ease), filter 600ms var(--motion-ease);
+}
+.mentor-cta .mentor-cta-wrap:hover .mentor-cta-photo img{
+  transform: scale(1.04) translateY(-2px);
+  filter: saturate(1.06) contrast(1.04);
+}
+.mentor-cta .mentor-cta-photo .glow{
+  position:absolute; inset:auto; width:80%; height:60%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(96,165,250,.18), transparent 60%),
+              radial-gradient(60% 60% at 55% 45%, rgba(167,139,250,.14), transparent 60%),
+              radial-gradient(60% 60% at 45% 60%, rgba(52,211,153,.12), transparent 60%);
+  filter: blur(14px); z-index:-1; border-radius: 24px; bottom: 8%; left: 10%;
+  animation: glowFloat 8s ease-in-out infinite alternate;
+}
+
+.mentor-cta .mentor-cta-copy{
+  padding: 26px 26px 26px 0; display:flex; flex-direction:column; gap:12px;
+}
+.mentor-cta .pill{
+  display:inline-block; font-size:12px; letter-spacing:.3px; color:var(--muted);
+  border:1px solid var(--line); border-radius:999px; padding:6px 10px; width:max-content;
+  background: rgba(255,255,255,.05);
+}
+.mentor-cta .title{
+  margin:6px 0 0 0; font-size: clamp(28px, 3.8vw, 42px); line-height:1.05; font-weight:1000;
+}
+.mentor-cta .grad{
+  background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation: shimmer 7s linear infinite;
+}
+.mentor-cta .cta-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
+.mentor-cta .micro{
+  list-style:none; padding:0; margin:10px 0 0 0; display:flex; gap:12px; flex-wrap:wrap; color:var(--muted);
+}
+.mentor-cta .micro li{ border:1px solid var(--line); border-radius:999px; padding:6px 10px; background:rgba(255,255,255,.04) }
+
+/* Ambient aurora strips */
+.mentor-cta .cta-aurora{
+  position:absolute; inset:auto; height:180%; width:38%;
+  filter:saturate(1.1) blur(10px); opacity:.20; pointer-events:none; mix-blend-mode:screen;
+  transform: rotate(8deg) translateZ(0);
+}
+.mentor-cta .cta-aurora.a1{ left:-8%; top:-20%; background: radial-gradient(60% 60% at 50% 50%, rgba(96,165,250,.55), transparent 60%); animation: sway 12s ease-in-out infinite; }
+.mentor-cta .cta-aurora.a2{ right:-12%; top:-30%; background: radial-gradient(60% 60% at 50% 50%, rgba(167,139,250,.55), transparent 60%); animation: sway 13s ease-in-out infinite reverse; }
+.mentor-cta .cta-aurora.a3{ left:30%; bottom:-40%; width:50%; background: radial-gradient(60% 60% at 50% 50%, rgba(52,211,153,.55), transparent 60%); animation: sway 15s ease-in-out infinite; }
+
+@keyframes glowFloat{ 0%{transform: translateY(0)} 100%{transform: translateY(-6px)} }
+@keyframes sway{ 0%{ transform: rotate(8deg) translateY(0) } 100%{ transform: rotate(-6deg) translateY(-12px) } }
+
+/* Responsive */
+@media (max-width: 1000px){
+  .mentor-cta .mentor-cta-wrap{ grid-template-columns: 1fr; }
+  .mentor-cta .mentor-cta-copy{ padding: 0 26px 26px 26px; }
+  .mentor-cta .cta-aurora{ display:none; }
+}
+
   </style>
 </head>
 <canvas id="bio" aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
@@ -1038,6 +1130,53 @@ When not planning events, Eissa enjoys translating neuroscience concepts into ap
     </div>
   </section>
 
+<!-- ====== MENTOR OF THE MONTH • Animated CTA ====== -->
+<section id="mentor-cta" class="section mentor-cta">
+  <div class="container">
+    <div class="mentor-cta-wrap">
+      <!-- floating aurora ribbons -->
+      <span class="cta-aurora a1" aria-hidden="true"></span>
+      <span class="cta-aurora a2" aria-hidden="true"></span>
+      <span class="cta-aurora a3" aria-hidden="true"></span>
+
+      <!-- left: photo -->
+      <div class="mentor-cta-photo">
+        <span class="glow" aria-hidden="true"></span>
+        <img src="/team/nabeel.jpg" alt="Mentor: Ammar Adlan" />
+      </div>
+
+      <!-- right: copy -->
+      <div class="mentor-cta-copy">
+        <div class="pill">Mentor of the Month</div>
+        <h3 class="title">Book a 1-on-1 with <span class="grad">Nabeel Alabassy</span></h3>
+        <p class="muted">
+          Get help with wet-lab skills, bioinformatics, and research planning—plus realistic advice on courses,
+          projects, and opportunities at UofT.
+        </p>
+
+        <div class="cta-actions">
+          <!-- Reuses your booking JS via .btn-book + data-url -->
+          <button
+            class="button primary btn-book"
+            data-mentor="Nabeel Alabassy"
+            data-url="https://iKxgrn.short.gy/WmdjMd"
+            type="button"
+          >
+            Book a meeting
+          </button>
+          <a class="button ghost" href="mailto:uoftgeneticeng@gmail.com">Ask a question</a>
+        </div>
+
+        <!-- micro-stats -->
+        <ul class="micro">
+          <li><strong>15 min</strong> focus</li>
+          <li><strong>Undergrad-friendly</strong> guidance</li>
+          <li><strong>Project & lab</strong> tips</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <section id="contact" class="section">
@@ -1160,6 +1299,16 @@ When not planning events, Eissa enjoys translating neuroscience concepts into ap
             fill="none"/>
     </svg>
   </button>
+<!-- ====== BOOKING MODAL (reuses your .booking-* CSS) ====== -->
+<div id="booking" class="booking-backdrop" aria-hidden="true" role="dialog" aria-label="Book a meeting">
+  <div class="booking-sheet" role="document">
+    <div class="booking-head">
+      <div class="booking-title" id="bookingTitle">Book a meeting</div>
+      <button id="bookingClose" class="booking-close" type="button" aria-label="Close dialog">Close</button>
+    </div>
+    <iframe id="bookingFrame" class="booking-frame" title="Mentor booking" src="about:blank" loading="lazy"></iframe>
+  </div>
+</div>
 
   <!-- ====== SCRIPTS (tiny, mirrors home behavior) ====== -->
   <script>
