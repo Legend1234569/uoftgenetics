@@ -1385,13 +1385,60 @@
       <h2 class="reveal">Contact Us</h2>
       <p class="muted reveal" style="max-width:60ch">Questions, collaborations, or membership? Send us a note and we’ll get back to you.</p>
       <div class="join">
-        <form class="panel reveal" name="club-requests" onsubmit="return submitForm(event)" netlify>
-          <div class="row"><input required placeholder="Full name" name="full_name" /><input type="email" name = "email" required placeholder="Email" /></div>
-          <input placeholder="Program / Year" name="program" style="margin-top:12px" />
-          <textarea rows="4" placeholder="What do you want to build or learn this year?" name="message" style="margin-top:12px"></textarea>
-          <button class="button primary submit" type="submit">Send</button>
-          <div id="msg" class="muted" style="margin-top:10px"></div>
-        </form>
+         <form class="panel reveal"
+            name="club-requests"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onsubmit="return submitForm(event)">
+        <input type="hidden" name="form-name" value="club-requests" />
+        <p style="display:none"><input name="bot-field" /></p>
+
+        <!-- your inputs ... -->
+         <div class="row">
+            <input required placeholder="Full name" name="full_name" />
+            <input type="email" name="email" required placeholder="Email" />
+         </div>
+        <input placeholder="Program / Year" name="program" style="margin-top:12px" />
+        <textarea rows="4" placeholder="What do you want to build or learn this year?" name="message" style="margin-top:12px"></textarea>
+
+        <button class="button primary submit" type="submit">Send</button>
+        <div id="msg" class="muted" style="margin-top:10px"></div>
+      </form>
+
+      <script>
+      function encode(data){
+        return Object.keys(data)
+          .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
+          .join("&");
+      }
+      async function submitForm(e){
+        e.preventDefault();
+        const form = e.target;
+        const msg = document.getElementById('msg');
+        const data = {
+          "form-name": form.getAttribute("name"),
+          full_name: form.full_name.value,
+          email: form.email.value,
+          program: form.program.value,
+          message: form.message.value,
+          "bot-field": form["bot-field"]?.value || ""
+        };
+        try{
+          await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode(data)
+          });
+          msg.textContent = "Thanks! We got your message.";
+          form.reset();
+        }catch(err){
+          msg.textContent = "Oops—something went wrong.";
+        }
+        return false;
+      }
+      </script>
+
         <div class="panel reveal">
           <h3>Connect</h3>
            <ul style="list-style:none;padding-left:0;margin:14px 0 0 0;color:var(--muted);display:grid;gap:10px">
@@ -1615,8 +1662,6 @@ function scrollToId(id){
 
 
   </script>
-  <script>
-    function submitForm(e){e.preventDefault();const msg=document.getElementById('msg');if(msg){msg.textContent='Thanks! We\'ll get back to you.';}return false;}
-  </script>
+
 </body>
 </html>
