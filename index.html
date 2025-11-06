@@ -7,18 +7,18 @@
   <meta name="description" content="University of Toronto Genetic Engineering Club — projects, mentorship, and events in synthetic biology." />
   <style>
     /* === UTGEC navbar logo === */
-.brand { display:flex; align-items:center; gap:10px } /* you already have this; okay if duplicated */
-.brand .utgec-logo{width:28px;height:28px;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
-.brand .utgec-logo .ring{transform-origin:50% 50%;animation:spin 18s linear infinite}
-.brand .utgec-logo .dna{stroke-dasharray:60 14;animation:dash 6s linear infinite}
-.brand .utgec-logo .orb{animation:float 3.8s ease-in-out infinite}
-.brand:hover .utgec-logo .ring{animation-duration:12s}    /* a tiny boost on hover */
-.brand:hover .utgec-logo .orb{animation-duration:2.8s}
-@media (prefers-reduced-motion: reduce){
-  .brand .utgec-logo .ring,
-  .brand .utgec-logo .dna,
-  .brand .utgec-logo .orb{animation:none}
-}
+    .brand { display:flex; align-items:center; gap:10px } /* you already have this; okay if duplicated */
+    .brand .utgec-logo{width:28px;height:28px;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+    .brand .utgec-logo .ring{transform-origin:50% 50%;animation:spin 18s linear infinite}
+    .brand .utgec-logo .dna{stroke-dasharray:60 14;animation:dash 6s linear infinite}
+    .brand .utgec-logo .orb{animation:float 3.8s ease-in-out infinite}
+    .brand:hover .utgec-logo .ring{animation-duration:12s}    /* a tiny boost on hover */
+    .brand:hover .utgec-logo .orb{animation-duration:2.8s}
+    @media (prefers-reduced-motion: reduce){
+      .brand .utgec-logo .ring,
+      .brand .utgec-logo .dna,
+      .brand .utgec-logo .orb{animation:none}
+    }
 
     :root{--bg:#06070b;--muted:#a3a8b8;--text:#eef0f7;--line:#1b1f2b;--grad-1:#60a5fa;--grad-2:#a78bfa;--grad-3:#34d399;--gold:#f6d98b;--shadow:0 10px 30px rgba(0,0,0,.45);--radius-2xl:22px}
     *{box-sizing:border-box}html,body{height:100%}
@@ -75,6 +75,53 @@
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
     @keyframes spin{to{transform:rotate(360deg)}}
 
+
+    /* --- Helix Orb (hero right) --- */
+    .helix-orb {
+      width: min(520px, 42vw);
+      height: min(520px, 42vw);
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,.45));
+    }
+
+    .helix-orb-svg { width: 100%; height: 100%; }
+
+    /* Smooth float to add life without chaos */
+    .helix-orb { animation: float 10s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(14px) } }
+
+    /* Rotations */
+    .spin     { animation: spin 12s linear infinite; transform-origin: 150px 150px; }
+    .spin-rev { animation: spin 16s linear infinite reverse; transform-origin: 150px 150px; }
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    /* Helix sway */
+    .helix { animation: helixSway 6s ease-in-out infinite; transform-origin: 150px 150px; }
+    @keyframes helixSway {
+      0%,100% { transform: translateX(0) }
+      50%     { transform: translateX(6px) }
+    }
+
+    /* Rungs animation (dash flow) */
+    .helix .rungs line {
+      stroke-dasharray: 32 16;
+      animation: rungDash 2.2s linear infinite;
+    }
+    @keyframes rungDash { to { stroke-dashoffset: -240 } }
+
+    /* Orbiting nodes with gentle hue spin */
+    .nodes .node { animation: orbit 9s linear infinite; transform-origin: 150px 150px; }
+    .nodes .n1 { animation-duration: 9s; }
+    .nodes .n2 { animation-duration: 12s; animation-direction: reverse; }
+    @keyframes orbit { to { transform: rotate(360deg) } }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .helix-orb, .spin, .spin-rev, .helix, .nodes .node { animation: none !important; }
+    }
+
+
     /* DNA background in hero */
     .dna-bg{position:absolute;inset:-40px 0 -40px 0;z-index:0;opacity:.28;pointer-events:none;filter:saturate(1.1)}
     .hero .reveal,.hero-visual{position:relative;z-index:1}
@@ -108,7 +155,7 @@
       flex-direction: row; /* Change from column to row */
       align-items: center;
     }
-    
+
     .dna-background {
       position: absolute;
       right: 0; /* Position to the right */
@@ -116,7 +163,7 @@
       transform: translateY(-50%);
       /* Remove any top positioning */
     }
-    
+
     .text-content {
       flex: 1;
       margin-right: 200px; /* Add space for DNA background */
@@ -224,7 +271,7 @@
     @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
     @keyframes hueSpin{to{filter:hue-rotate(360deg)}}
     .to-top.show svg path{animation:arrowBounce 1.6s ease-in-out infinite,hueSpin 8s linear infinite}
-   
+
 
    /* Seat hero text left and DNA right on desktop */
   .hero-text{order:1}
@@ -234,7 +281,7 @@
   @media (max-width:900px){
     .hero .container{grid-template-columns:1fr}
   }
-  
+
   @media (max-width: 900px){
   .dna-badge { display: none !important; }
    /* Make hero container single column so the text spans full width */
@@ -244,8 +291,257 @@
     gap: 10px;
   }
   }
+  /* ================================
+   MOTION TOKENS (one place to tune)
+   ================================ */
+:root{
+  --motion-ease: cubic-bezier(.22,.9,.24,1);     /* snappy, not harsh */
+  --motion-ease-soft: cubic-bezier(.18,.64,.22,1); /* gentle */
+  --motion-speed-fast: 280ms;
+  --motion-speed-med: 520ms;
+  --motion-speed-slow: 820ms;
+
+  /* micro-movement ranges (px/deg) */
+  --wiggle-y: 6px;       /* vertical bob range */
+  --parallax: 4px;       /* svg parallax on hover */
+  --card-hover-raise: 8px;
+  --icon-rotate: 4deg;   /* tiny rotation for life */
+
+  /* icon loop durations (can scale on mobile/desktop) */
+  --loop-pulse: 1.35s;
+  --loop-dash:  1.7s;
+  --loop-spin:  4.6s;
+
+  /* per-section reveal stagger step */
+  --stagger-step: 90ms;
+}
+
+/* Slightly calmer on small screens to match compact layout */
+@media (max-width: 900px){
+  :root{
+    --wiggle-y: 4px;
+    --parallax: 2px;
+    --card-hover-raise: 6px;
+    --loop-pulse: 1.5s;
+    --loop-dash:  1.9s;
+    --loop-spin:  5.2s;
+    --stagger-step: 70ms;
+  }
+}
+
+/* ================================
+   FOUNDATIONS: reveal & hover
+   ================================ */
+
+/* Cards/icons start “ready but quiet” (no layout thrash) */
+#focus .card, #offer .card, #nonlab .card {
+  transform: translateY(10px) scale(.995);
+  opacity: .0;
+  will-change: transform, opacity;
+  transition:
+    transform var(--motion-speed-med) var(--motion-ease),
+    opacity   var(--motion-speed-med) var(--motion-ease);
+}
+.section-in #focus .card,
+.section-in #offer .card,
+.section-in #nonlab .card,
+#focus .card.in, #offer .card.in, #nonlab .card.in {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Nesting: ensure icon SVGs are their own composite layer */
+#focus  svg.mini, #offer  svg.mini, #nonlab svg.mini {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Zippier but controlled card hover */
+#focus  .card:hover, #offer  .card:hover, #nonlab .card:hover {
+  transform: translateY(calc(var(--card-hover-raise) * -1)) scale(1.012);
+  transition-duration: var(--motion-speed-fast);
+  transition-timing-function: var(--motion-ease);
+}
+#focus  .card .bar, #offer  .card .bar, #nonlab .card .bar {
+  transition: width var(--motion-speed-fast) var(--motion-ease);
+}
+
+  /* ================================
+    MICRO-MOTION FOR ICONS (smooth)
+    ================================ */
+
+  /* Replace older wiggles with unified, tiny motions */
+  @keyframes micro-bob {
+    0%,100% { transform: translateY(0) rotate(0) }
+    50%     { transform: translateY(calc(var(--wiggle-y) * -1)) rotate(var(--icon-rotate)) }
+  }
+  @keyframes micro-dash {
+    to { stroke-dashoffset: -120 }
+  }
+  @keyframes micro-spin {
+    to { transform: rotate(360deg) }
+  }
+
+  /* Apply: pulse/dash/spin classes now map to our curves & durations */
+  #focus  .mini .pulse, #offer  .mini .pulse, #nonlab .mini .pulse {
+    animation: micro-bob var(--loop-pulse) var(--motion-ease-soft) infinite;
+  }
+  #focus  .mini .dash, #offer  .mini .dash, #nonlab .mini .dash {
+    animation: micro-dash var(--loop-dash) linear infinite;
+    stroke-dasharray: 6 6;
+  }
+  #focus  .mini .spin, #offer  .mini .spin, #nonlab .mini .spin {
+    animation: micro-spin var(--loop-spin) linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  /* Whole-SVG fallback motion (if a mini has no sub-parts) */
+  #focus  svg.mini.move,
+  #offer  svg.mini.move,
+  #nonlab svg.mini.move {
+    animation: micro-bob calc(var(--loop-pulse) * 1.2) var(--motion-ease-soft) infinite;
+  }
+
+  /* Hover parallax for icons to “fit content” interaction */
+  #focus  .card:hover svg.mini,
+  #offer  .card:hover svg.mini,
+  #nonlab .card:hover svg.mini {
+    transform: translate3d(0, calc(var(--parallax) * -1), 0);
+    transition: transform var(--motion-speed-fast) var(--motion-ease);
+  }
+
+  /* ================================
+    STAGGER (fits content rhythm)
+    ================================ */
+
+  /* A stagger map up to 12 items; JS adds .in with index-based delay */
+  #focus  .card.in:nth-child(1),
+  #offer  .card.in:nth-child(1),
+  #nonlab .card.in:nth-child(1)  { transition-delay: calc(var(--stagger-step) * 0); }
+  #focus  .card.in:nth-child(2),
+  #offer  .card.in:nth-child(2),
+  #nonlab .card.in:nth-child(2)  { transition-delay: calc(var(--stagger-step) * 1); }
+  #focus  .card.in:nth-child(3),
+  #offer  .card.in:nth-child(3),
+  #nonlab .card.in:nth-child(3)  { transition-delay: calc(var(--stagger-step) * 2); }
+  #focus  .card.in:nth-child(4),
+  #offer  .card.in:nth-child(4),
+  #nonlab .card.in:nth-child(4)  { transition-delay: calc(var(--stagger-step) * 3); }
+  #focus  .card.in:nth-child(5),
+  #offer  .card.in:nth-child(5),
+  #nonlab .card.in:nth-child(5)  { transition-delay: calc(var(--stagger-step) * 4); }
+  #focus  .card.in:nth-child(6),
+  #offer  .card.in:nth-child(6),
+  #nonlab .card.in:nth-child(6)  { transition-delay: calc(var(--stagger-step) * 5); }
+  #focus  .card.in:nth-child(7),
+  #offer  .card.in:nth-child(7),
+  #nonlab .card.in:nth-child(7)  { transition-delay: calc(var(--stagger-step) * 6); }
+  #focus  .card.in:nth-child(8),
+  #offer  .card.in:nth-child(8),
+  #nonlab .card.in:nth-child(8)  { transition-delay: calc(var(--stagger-step) * 7); }
+  #focus  .card.in:nth-child(9),
+  #offer  .card.in:nth-child(9),
+  #nonlab .card.in:nth-child(9)  { transition-delay: calc(var(--stagger-step) * 8); }
+  #focus  .card.in:nth-child(10),
+  #offer  .card.in:nth-child(10),
+  #nonlab .card.in:nth-child(10) { transition-delay: calc(var(--stagger-step) * 9); }
+  #focus  .card.in:nth-child(11),
+  #offer  .card.in:nth-child(11),
+  #nonlab .card.in:nth-child(11) { transition-delay: calc(var(--stagger-step) * 10); }
+  #focus  .card.in:nth-child(12),
+  #offer  .card.in:nth-child(12),
+  #nonlab .card.in:nth-child(12) { transition-delay: calc(var(--stagger-step) * 11); }
+
+  /* Accessibility: respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    #focus .card, #offer .card, #nonlab .card,
+    #focus svg.mini, #offer svg.mini, #nonlab svg.mini {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
+
+  @keyframes arrowBounce {
+  0%,100% { transform:translateY(0) }
+  50%     { transform:translateY(-3px) }
+  }
+
+  @keyframes hueSpin {
+    to { filter:hue-rotate(360deg) }
+  }
+
+  .to-top.show svg path {
+    animation: arrowBounce 1.6s ease-in-out infinite,
+              hueSpin 8s linear infinite;
+  }
+
+  /* Disable nav “active” highlight */
+  .nav a.active { color: inherit !important; }
+  .nav a.active::after { content: none !important; }
+
   </style>
 </head>
+<script>
+/* View-aware, staggered, smooth section motion
+   - Adds .section-in to the document when any target section is visible.
+   - Adds .in to each card and staggers them for a rhythm that matches the grid.
+   - Pauses unnecessary work offscreen automatically.
+*/
+(function(){
+  const sections = ['#focus', '#offer', '#nonlab']
+    .map(sel => document.querySelector(sel))
+    .filter(Boolean);
+
+  // Gather cards & minis for each section
+  const cards = sections.flatMap(sec => Array.from(sec.querySelectorAll('.card')));
+  const minis = sections.flatMap(sec => Array.from(sec.querySelectorAll('svg.mini')));
+
+  // Helper: mark document when any section is in-view (styling hook)
+  const docIO = new IntersectionObserver(entries => {
+    const anyVisible = entries.some(e => e.isIntersecting);
+    document.documentElement.classList.toggle('section-in', anyVisible);
+  }, { threshold: 0.08 });
+  sections.forEach(s => docIO.observe(s));
+
+  // Staggered reveal for cards
+  const cardIO = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // mark this card "in" once; keeps it smooth on revisit
+        entry.target.classList.add('in');
+        cardIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -5% 0px' });
+  cards.forEach(c => cardIO.observe(c));
+
+  // Optional: pause icon animations off-screen by toggling animation-play-state
+  const miniIO = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const el = entry.target;
+      el.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+      // Also pause known sub-parts if present
+      el.querySelectorAll('.pulse, .dash, .spin').forEach(p =>
+        p.style.animationPlayState = el.style.animationPlayState
+      );
+    });
+  }, { threshold: 0.01 });
+  minis.forEach(m => miniIO.observe(m));
+
+  // Mobile: if user opens the mobile menu or resizes dramatically, reset delays (prevents long queuing)
+  let resetTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => {
+      cards.forEach(c => { c.style.transitionDelay = ''; });
+    }, 150);
+  }, { passive: true });
+})();
+</script>
+
+
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="aurora" aria-hidden="true"></div>
@@ -269,7 +565,7 @@
 
     <!-- Tiny DNA glyph (two short helices + rungs) -->
     <path class="dna" d="M8 11 C 11 13.5, 21 13.5, 24 11
-                         M8 21 C 11 18.5, 21 18.5, 24 21" 
+                         M8 21 C 11 18.5, 21 18.5, 24 21"
           fill="none" stroke="url(#logoGrad)" stroke-width="1.6" stroke-linecap="round"/>
 
     <path class="dna" d="M10 12 h12 M10 14 h12 M10 16 h12 M10 18 h12 M10 20 h12"
@@ -281,12 +577,12 @@
   <span>UTGEC</span>
    </div>
       <button id='navToggle' class='hamburger' aria-label='Open menu' aria-expanded='false' type='button'><span></span><span></span><span></span></button>
-      <div class="nav-links">
-        <a class="btn" href="#home">Home</a>
-        <a class="btn" href="#about">About us</a>
-        <a class="btn" href="#team">Meet our team</a>
-        <a class="btn" href="#opportunities">Opportunities</a>
-        <a class="btn" href="#events">Events</a>
+       <div class="nav-links">
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/blog">Blog</a>
+        <a class="btn" href="/team">Meet our team</a>
+        <a class="btn" href="/opportunities">Opportunities</a>
+        <a class="btn" href="/events">Events</a>
         <a class="btn cta" href="#contact">Contact Us</a>
       </div>
     </div>
@@ -313,41 +609,65 @@
           <button class="button ghost" onclick="scrollToId('offer')">Explore What We Offer</button>
         </div>
       </div>
-      <div class="hero-visual reveal" aria-hidden="true">
-         <div class="orb-wrap float-slow" style="width:min(520px,42vw);height:min(520px,42vw);display:grid;place-items:center">
-          <!-- Animated DNA badge (matches site gradient) -->
-          <svg class="dna-badge" viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="dnaBadgeGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#60a5fa"/>
-                <stop offset="50%" stop-color="#a78bfa"/>
-                <stop offset="100%" stop-color="#34d399"/>
-              </linearGradient>
-              <style>
-                .spinL{animation:spin 14s linear infinite}
-                .spinR{animation:spin 16s linear infinite reverse}
-                .dash{stroke-dasharray:60 18; animation:dash 6s linear infinite}
-                @keyframes spin{to{transform:rotate(360deg)}}
-                @keyframes dash{to{stroke-dashoffset:-300}}
-              </style>
-            </defs>
-            <circle cx="100" cy="100" r="92" fill="#0d1120" stroke="url(#dnaBadgeGrad)" stroke-width="4" opacity=".9"/>
-            <path d="M60 14 C 78 38, 48 66, 60 100 C 72 134, 48 162, 60 186" stroke="url(#dnaBadgeGrad)" stroke-width="2.2" fill="none" opacity=".85" class="spinL"/>
-            <path d="M140 14 C 122 38, 152 66, 140 100 C 128 134, 152 162, 140 186" stroke="url(#dnaBadgeGrad)" stroke-width="2.2" fill="none" opacity=".65" class="spinR"/>
-            <g stroke="url(#dnaBadgeGrad)" stroke-width="2" opacity=".9" class="dash">
-              <line x1="72" y1="28" x2="128" y2="26"/>
-              <line x1="72" y1="46" x2="128" y2="44"/>
-              <line x1="72" y1="64" x2="128" y2="62"/>
-              <line x1="72" y1="82" x2="128" y2="80"/>
-              <line x1="72" y1="100" x2="128" y2="98"/>
-              <line x1="72" y1="118" x2="128" y2="116"/>
-              <line x1="72" y1="136" x2="128" y2="134"/>
-              <line x1="72" y1="154" x2="128" y2="152"/>
-              <line x1="72" y1="172" x2="128" y2="170"/>
-            </g>
-          </svg>
-        </div>
+    <div class="hero-visual reveal" aria-hidden="true">
+      <div class="helix-orb">
+        <svg class="helix-orb-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <!-- Site gradient -->
+            <linearGradient id="orbGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"  stop-color="var(--grad-1)"/>
+              <stop offset="55%" stop-color="var(--grad-2)"/>
+              <stop offset="100%" stop-color="var(--grad-3)"/>
+            </linearGradient>
+
+            <!-- Soft glow -->
+            <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.25)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+
+            <!-- Blur for glow ring -->
+            <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="8" />
+            </filter>
+          </defs>
+
+          <!-- Outer subtle glow disk -->
+          <circle cx="150" cy="150" r="120" fill="url(#orbGlow)"/>
+
+          <!-- Rotating gradient ring (thin) -->
+          <g class="ring spin">
+            <circle cx="150" cy="150" r="115" fill="none" stroke="url(#orbGrad)" stroke-width="2.5" opacity="0.9"/>
+          </g>
+
+          <!-- Secondary dashed ring rotating the other way -->
+          <g class="ring spin-rev">
+            <circle cx="150" cy="150" r="95" fill="none" stroke="url(#orbGrad)" stroke-width="2"
+                    stroke-dasharray="20 12" stroke-linecap="round" opacity="0.75"/>
+          </g>
+
+          <!-- Helix pair (mild sway + dashed rungs) -->
+          <g class="helix">
+            <path class="stemL" d="M110 40 C 125 95, 95 150, 110 205 C 125 260, 95 315, 110 370"
+                  transform="translate(0,-70)" fill="none" stroke="url(#orbGrad)" stroke-width="2"/>
+            <path class="stemR" d="M190 40 C 175 95, 205 150, 190 205 C 175 260, 205 315, 190 370"
+                  transform="translate(0,-70)" fill="none" stroke="url(#orbGrad)" stroke-width="2" opacity="0.8"/>
+            <!-- rungs -->
+            <g class="rungs" stroke="url(#orbGrad)" stroke-width="2" opacity="0.85"></g>
+          </g>
+
+          <!-- Inner soft core -->
+          <circle cx="150" cy="150" r="54" fill="#0d1120" stroke="url(#orbGrad)" stroke-width="2" opacity="0.9" filter="url(#softBlur)"/>
+
+          <!-- Orbiting nodes -->
+          <g class="nodes">
+            <circle class="node n1" cx="150" cy="38" r="5.5" fill="var(--gold)"/>
+            <circle class="node n2" cx="150" cy="262" r="4.5" fill="var(--gold)"/>
+          </g>
+        </svg>
       </div>
+  </div>
+
     </div>
   </header>
 
@@ -495,9 +815,9 @@
   <section id="opportunities" class="section">
     <div class="container">
       <h2 class="reveal">Opportunities</h2>
-      <p class="muted reveal" style="max-width:60ch">Opportunities will be posted here. Follow us for the latest lab, volunteering, and project openings.</p>
+      <p class="muted reveal" style="max-width:60ch">We offer opportunities in many fields. Follow us for the latest lab, volunteering, and project openings.</p>
       <div class="events">
-        <div class="event reveal"><div class="date">—</div><div><strong>Opportunities Coming Soon</strong><div class="muted">All club openings, projects, and volunteering roles will be posted here. Follow our Instagram and LinkedIn for updates.</div></div></div>
+        <div class="event reveal"><div class="date">—</div><div><strong>Opportunities Coming Soon</strong><div class="muted">All club openings, projects, and volunteering roles will be posted in the opportunities page. Follow our Instagram and LinkedIn for updates.</div></div></div>
       </div>
     </div>
   </section>
@@ -507,30 +827,838 @@
       <h2 class="reveal">Upcoming Events</h2>
       <p class="muted reveal" style="max-width:60ch">Learn by doing, connect with mentors, and present your builds.</p>
       <div class="events">
-        <div class="event reveal"><div class="date">—</div><div><strong>Upcoming Events</strong><div class="muted">All upcoming events will be shown here. Follow our Instagram for updates.</div></div></div>
+        <div class="event reveal"><div class="date">—</div><div><strong>Upcoming Events</strong><div class="muted">All upcoming events will be posted in the events page. Follow our Instagram for updates.</div></div></div>
       </div>
     </div>
   </section>
 
-  <section id="team" class="section">
-    <div class="container">
-      <h2 class="reveal">Meet our team</h2>
-      <div class="grid">
-        <div class="card reveal" data-tilt>
-          <div class="bar"></div>
-          <div class="body">
-            <div class="photo-wrap">
-              <img src="https://uoftgenetic.wordpress.com/wp-content/uploads/2025/07/screenshot-2025-07-03-124508.png" alt="Ammar Adlan" class="team-photo" onerror="this.style.display='none'; this.closest('.photo-wrap').querySelector('.avatar-fallback').style.display='grid'" />
-              <div class="avatar-fallback" style="display:none">AA</div>
-            </div>
-            <div class="tag">President</div>
-            <h3>Ammar Adlan</h3>
-            <p class="muted">Ammar is the founding President of UTGEC. He is a third-year Biology student with research interests in molecular genetics and synthetic biology. Passionate about mentorship and innovation.</p>
-          </div>
-        </div>
+<section id="connect" class="section connect-section">
+  <div class="container connect-grid">
+    <!-- LEFT: Text -->
+    <div class="connect-text">
+      <h2>Connect with Professors & Mentors</h2>
+      <p>
+        Every UTGEC event is an opportunity to build real scientific connections.
+        Meet professors, graduate researchers, and mentors who are excited to collaborate with students.
+        Whether you’re curious about CRISPR, gene circuits, or data analysis, our sessions help you turn ideas
+        into projects. You’ll learn how to ask research questions, find labs that match your interests, and
+        get feedback on your goals. <strong>Every conversation begins a new collaboration.</strong>
+      </p>
+      <p>
+        Our mentorship events are interactive and focused on growth — expect networking with purpose,
+        open Q&As, and pathways to join ongoing research. UTGEC is not just a club — it’s a living network
+        of future scientists learning from those already pushing the boundaries of genetics.
+      </p>
+    </div>
+
+    <!-- RIGHT: Animated visual -->
+    <div class="connect-visual" aria-hidden="true">
+      <svg class="connect-anim" viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="connectLineGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fbbf24"/>   <!-- amber -->
+            <stop offset="50%" stop-color="#ec4899"/>   <!-- pink -->
+            <stop offset="100%" stop-color="#8b5cf6"/>  <!-- violet -->
+          </linearGradient>
+          <radialGradient id="connectGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Connection lines -->
+        <g class="links" stroke="url(#connectLineGrad)" stroke-width="2" fill="none">
+          <path class="flow" d="M100 320 Q 280 120, 460 280"/>
+          <path class="flow delay1" d="M80 200 Q 280 60, 480 200"/>
+          <path class="flow delay2" d="M120 100 Q 280 180, 440 80"/>
+        </g>
+
+        <!-- Nodes (professors / students) -->
+        <g class="nodes">
+          <circle cx="100" cy="320" r="10" class="prof" />
+          <circle cx="80" cy="200" r="8"  class="student" />
+          <circle cx="120" cy="100" r="8" class="student" />
+          <circle cx="460" cy="280" r="10" class="prof" />
+          <circle cx="480" cy="200" r="9"  class="mentor" />
+          <circle cx="440" cy="80"  r="9"  class="mentor" />
+        </g>
+
+        <!-- Glowing centerpiece -->
+        <circle cx="280" cy="200" r="40" fill="url(#connectGlow)" class="pulse"/>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* === CONNECT SECTION === */
+.connect-section {
+  background: linear-gradient(180deg, rgba(251,191,36,0.06), rgba(139,92,246,0.06));
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.connect-text h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  background: linear-gradient(90deg, #fbbf24, #ec4899, #8b5cf6);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.connect-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 16px;
+  max-width: 65ch;
+}
+
+.connect-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect-anim {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.45));
+}
+
+/* --- Animation Styling --- */
+.connect-section .flow {
+  stroke-dasharray: 12 14;
+  animation: connectFlow 5s linear infinite;
+}
+.connect-section .flow.delay1 { animation-delay: .8s; }
+.connect-section .flow.delay2 { animation-delay: 1.6s; }
+
+.connect-section .nodes circle {
+  animation: connectGlow 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.connect-section .prof { fill: #fbbf24; }     /* amber */
+.connect-section .student { fill: #ec4899; }  /* pink */
+.connect-section .mentor { fill: #8b5cf6; }   /* violet */
+
+.connect-section .pulse {
+  animation: connectPulse 4s ease-in-out infinite;
+}
+
+/* --- Keyframes --- */
+@keyframes connectFlow {
+  to { stroke-dashoffset: -260; }
+}
+@keyframes connectGlow {
+  0%,100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+@keyframes connectPulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Hover interaction (desktop) */
+.connect-visual:hover .connect-anim {
+  transform: scale(1.02);
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 14px 40px rgba(251,191,36,0.3));
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 1000px) {
+  .connect-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 24px;
+  }
+  .connect-visual {
+    order: -1; /* show animation first on small screens */
+  }
+}
+</style>
+<section id="events-importance" class="section events-importance">
+  <div class="container events-grid">
+
+    <!-- LEFT: Text -->
+    <div class="events-text">
+      <h2>The Power of Events</h2>
+      <p>
+        Every UTGEC event begins as an idea — a moment of curiosity that turns into a shared experience.
+        Events are more than calendar dates; they’re catalysts for innovation. By gathering students, researchers,
+        and professionals under one goal, they spark creativity and make learning collaborative. Each workshop,
+        symposium, and showcase builds bridges between disciplines — from biology to computer science to design —
+        proving that discovery happens faster when knowledge is shared.
+      </p>
+      <p>
+        Creating events isn’t just about logistics; it’s about shaping culture. A single conversation at a poster session
+        can inspire a thesis. A casual Q&A can open a career path. Through UTGEC events, students learn to lead,
+        communicate, and collaborate — skills as vital as the science itself. <strong>Events are where ideas find people,
+        and people find purpose.</strong>
+      </p>
+    </div>
+
+    <!-- RIGHT: Neural Network Animation (same as before, recolored) -->
+    <div class="events-visual" aria-hidden="true">
+      <svg class="events-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="eventGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f59e0b"/>  <!-- amber -->
+            <stop offset="50%" stop-color="#ec4899"/>  <!-- pink -->
+            <stop offset="100%" stop-color="#38bdf8"/> <!-- sky blue -->
+          </linearGradient>
+        </defs>
+
+        <!-- connections -->
+        <g class="connections" stroke="url(#eventGrad)" stroke-width="2" opacity="0.7">
+          <line x1="300" y1="200" x2="180" y2="100"/>
+          <line x1="300" y1="200" x2="420" y2="120"/>
+          <line x1="300" y1="200" x2="480" y2="260"/>
+          <line x1="300" y1="200" x2="160" y2="260"/>
+          <line x1="180" y1="100" x2="100" y2="220"/>
+          <line x1="420" y1="120" x2="520" y2="80"/>
+          <line x1="420" y1="120" x2="500" y2="200"/>
+          <line x1="160" y1="260" x2="80" y2="320"/>
+          <line x1="480" y1="260" x2="540" y2="320"/>
+        </g>
+
+        <!-- flowing lines -->
+        <g class="pulse-lines" stroke="url(#eventGrad)" stroke-width="2" stroke-dasharray="6 12">
+          <line x1="300" y1="200" x2="180" y2="100"/>
+          <line x1="300" y1="200" x2="420" y2="120"/>
+          <line x1="300" y1="200" x2="480" y2="260"/>
+          <line x1="300" y1="200" x2="160" y2="260"/>
+        </g>
+
+        <!-- nodes -->
+        <g class="nodes">
+          <circle cx="300" cy="200" r="10" class="core"/>
+          <circle cx="180" cy="100" r="6" class="event"/>
+          <circle cx="420" cy="120" r="6" class="speaker"/>
+          <circle cx="480" cy="260" r="6" class="student"/>
+          <circle cx="160" cy="260" r="6" class="student"/>
+          <circle cx="520" cy="80"  r="5" class="guest"/>
+          <circle cx="500" cy="200" r="5" class="organizer"/>
+          <circle cx="100" cy="220" r="5" class="organizer"/>
+          <circle cx="80"  cy="320" r="5" class="student"/>
+          <circle cx="540" cy="320" r="5" class="speaker"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+<style>
+/* === POWER OF EVENTS (unique palette) === */
+.events-importance {
+  background: radial-gradient(
+    circle at 60% 40%,
+    rgba(251,146,60,0.10),  /* orange glow */
+    rgba(14,165,233,0.07) 40%,  /* sky blue tint */
+    rgba(79,70,229,0.05) 75%,   /* indigo fade */
+    transparent 100%
+  );
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 70px 0;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.events-text h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #fb923c, #facc15, #0ea5e9, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 18px;
+}
+
+.events-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 14px;
+  max-width: 65ch;
+}
+
+/* Animation container */
+.events-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.events-svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(251,146,60,0.3));
+}
+
+/* --- Animation Colors & Motion --- */
+.connections line {
+  stroke: url(#eventGrad);
+  stroke-dasharray: 12 14;
+  animation: networkFlow 8s linear infinite;
+}
+
+.pulse-lines line {
+  stroke: url(#eventGrad);
+  stroke-dasharray: 6 10;
+  animation: pulseFlow 2s linear infinite;
+}
+
+.nodes circle {
+  transform-origin: center;
+  animation: nodePulse 3.2s ease-in-out infinite;
+}
+
+/* Unique node colors (vivid + glowing) */
+.nodes .core       { fill: #f59e0b; animation-delay: 0.2s; } /* orange core */
+.nodes .event      { fill: #0ea5e9; }  /* sky blue */
+.nodes .student    { fill: #22d3ee; }  /* cyan */
+.nodes .organizer  { fill: #facc15; }  /* gold */
+.nodes .speaker    { fill: #fb923c; }  /* orange */
+.nodes .guest      { fill: #6366f1; }  /* indigo */
+
+/* KEYFRAMES */
+@keyframes networkFlow {
+  to { stroke-dashoffset: -400; }
+}
+@keyframes pulseFlow {
+  0%,100% { stroke-dashoffset: 0; opacity: .4; }
+  50% { stroke-dashoffset: -60; opacity: 1; }
+}
+@keyframes nodePulse {
+  0%,100% { transform: scale(1); opacity: .85; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Hover interaction */
+.events-visual:hover .events-svg {
+  transform: scale(1.03);
+  filter: drop-shadow(0 10px 40px rgba(14,165,233,0.45));
+  transition: transform .4s ease, filter .4s ease;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .events-visual {
+    order: -1;
+  }
+  .events-svg { max-width: 440px; }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .connections line,
+  .pulse-lines line,
+  .nodes circle {
+    animation: none !important;
+  }
+}
+</style>
+<section id="guest-speakers" class="section guest-speakers">
+  <div class="container guest-grid">
+
+    <!-- LEFT: Text -->
+    <div class="guest-text">
+      <h2>Guest Speakers</h2>
+      <p>
+        The heartbeat of every UTGEC event is the people who share their stories.
+        Our guest speakers bring science to life — researchers, physicians, innovators, and advocates who
+        connect complex discoveries with human experiences. Each talk is a window into real laboratories,
+        medical breakthroughs, and the challenges that inspire resilience. Through these conversations,
+        students learn that science is not just data — it’s people, passion, and purpose.
+      </p>
+      <p>
+        Listening to a guest speaker means seeing possibility. A single story can redefine how you view your field,
+        your studies, or even your future. These sessions remind us that knowledge grows when shared,
+        and progress begins when we dare to ask the next question.
+      </p>
+    </div>
+
+    <!-- RIGHT: Dynamic animation -->
+    <div class="guest-visual" aria-hidden="true">
+      <svg class="guest-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fb7185"/> <!-- rose -->
+            <stop offset="40%" stop-color="#fbbf24"/> <!-- gold -->
+            <stop offset="100%" stop-color="#f9a8d4"/> <!-- pink-peach -->
+          </linearGradient>
+          <linearGradient id="silhouetteGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fde68a"/>
+            <stop offset="100%" stop-color="#f472b6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Background audio wave motion -->
+        <g class="wave" fill="none" stroke="url(#waveGrad)" stroke-width="3" opacity="0.6">
+          <path d="M0 200 Q60 160, 120 200 T240 200 T360 200 T480 200 T600 200" />
+        </g>
+
+        <!-- Silhouettes of 3 speakers -->
+        <g class="speakers" fill="url(#silhouetteGrad)" opacity="0.95">
+          <path d="M260 220 q-30 -40 0 -80 q30 -40 60 0 q30 40 0 80 z" /> <!-- left -->
+          <path d="M320 220 q-35 -50 0 -90 q35 -40 70 10 q35 50 0 90 z" /> <!-- middle -->
+          <path d="M380 220 q-30 -40 0 -80 q30 -40 60 0 q30 40 0 80 z" /> <!-- right -->
+        </g>
+
+        <!-- Floating speech sparks -->
+        <g class="sparks">
+          <circle cx="280" cy="110" r="5"/>
+          <circle cx="340" cy="70"  r="4.5"/>
+          <circle cx="400" cy="120" r="4"/>
+          <circle cx="460" cy="80"  r="5"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+<style>
+/* === GUEST SPEAKERS SECTION === */
+.guest-speakers {
+  background: linear-gradient(180deg, rgba(251,113,133,0.08), rgba(249,168,212,0.05));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 80px 0;
+}
+
+.guest-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.guest-text h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #fb7185, #fbbf24, #f9a8d4);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 18px;
+}
+
+.guest-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 14px;
+  max-width: 65ch;
+}
+
+/* Animation container */
+.guest-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.guest-svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(251,113,133,0.25));
+}
+
+/* --- Animation motion --- */
+
+/* audio wave motion */
+.wave path {
+  animation: waveMotion 6s ease-in-out infinite alternate;
+}
+
+@keyframes waveMotion {
+  0%   { d: path("M0 200 Q60 160, 120 200 T240 200 T360 200 T480 200 T600 200"); }
+  50%  { d: path("M0 200 Q60 240, 120 200 T240 200 T360 200 T480 200 T600 200"); }
+  100% { d: path("M0 200 Q60 160, 120 200 T240 200 T360 200 T480 200 T600 200"); }
+}
+
+/* subtle breathing for silhouettes */
+.speakers path {
+  transform-origin: center bottom;
+  animation: breathe 4s ease-in-out infinite;
+}
+.speakers path:nth-child(2) { animation-delay: .6s; }
+.speakers path:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); opacity: .9; }
+  50%     { transform: scale(1.05); opacity: 1; }
+}
+
+/* speech sparks rising */
+.sparks circle {
+  fill: #fbbf24;
+  opacity: 0.8;
+  animation: float 5s ease-in-out infinite;
+}
+.sparks circle:nth-child(2){ fill:#f472b6; animation-delay: .5s; }
+.sparks circle:nth-child(3){ fill:#facc15; animation-delay: 1s; }
+.sparks circle:nth-child(4){ fill:#fb7185; animation-delay: 1.5s; }
+
+@keyframes float {
+  0%   { transform: translateY(0) scale(1); opacity:.9; }
+  50%  { transform: translateY(-30px) scale(1.15); opacity:1; }
+  100% { transform: translateY(0) scale(1); opacity:.8; }
+}
+
+/* Hover interaction */
+.guest-visual:hover .guest-svg {
+  transform: scale(1.04);
+  filter: drop-shadow(0 10px 40px rgba(249,168,212,0.4));
+  transition: transform .4s ease, filter .4s ease;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .guest-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .guest-visual {
+    order: -1;
+  }
+  .guest-svg { max-width: 440px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .wave path, .speakers path, .sparks circle {
+    animation: none !important;
+  }
+}
+</style>
+<section id="what-is-genetic-engineering" class="section genetic-section">
+  <div class="container genetic-grid">
+
+    <!-- LEFT: Text -->
+    <div class="genetic-text">
+      <h2>What Is Genetic Engineering?</h2>
+      <p>
+        Genetic engineering is the art and science of editing life’s code —
+        a process where scientists modify an organism’s DNA to enhance, repair, or
+        understand its functions. By altering specific genes, researchers can create
+        crops that resist disease, bacteria that clean pollution, and therapies that
+        correct genetic disorders. It’s where biology meets design: combining molecular
+        precision with imagination to reshape what’s possible in medicine, agriculture,
+        and sustainability.
+      </p>
+      <p>
+        At UTGEC, we see genetic engineering as a language — one that lets humanity
+        converse directly with nature. Learning this language empowers students to not
+        only decode life but to improve it. Every base pair changed carries potential:
+        to heal, to innovate, and to better understand the systems that make us who we are.
+      </p>
+    </div>
+
+    <!-- RIGHT: Animated DNA helix visualization -->
+    <div class="genetic-visual" aria-hidden="true">
+      <svg class="dna-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dnaGrad1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22d3ee"/> <!-- cyan -->
+            <stop offset="50%" stop-color="#06b6d4"/> <!-- teal -->
+            <stop offset="100%" stop-color="#0ea5e9"/> <!-- blue -->
+          </linearGradient>
+          <linearGradient id="dnaGrad2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a855f7"/> <!-- violet -->
+            <stop offset="100%" stop-color="#6366f1"/> <!-- indigo -->
+          </linearGradient>
+        </defs>
+
+        <!-- Left and right backbones -->
+        <path class="backbone left"  d="M180 50 Q200 200, 180 350" stroke="url(#dnaGrad1)" stroke-width="3" fill="none"/>
+        <path class="backbone right" d="M420 50 Q400 200, 420 350" stroke="url(#dnaGrad2)" stroke-width="3" fill="none"/>
+
+        <!-- Connecting rungs -->
+        <g class="rungs" stroke-width="2.5">
+          <line x1="180" y1="70"  x2="420" y2="100" stroke="url(#dnaGrad2)"/>
+          <line x1="180" y1="110" x2="420" y2="140" stroke="url(#dnaGrad1)"/>
+          <line x1="180" y1="150" x2="420" y2="180" stroke="url(#dnaGrad2)"/>
+          <line x1="180" y1="190" x2="420" y2="220" stroke="url(#dnaGrad1)"/>
+          <line x1="180" y1="230" x2="420" y2="260" stroke="url(#dnaGrad2)"/>
+          <line x1="180" y1="270" x2="420" y2="300" stroke="url(#dnaGrad1)"/>
+          <line x1="180" y1="310" x2="420" y2="340" stroke="url(#dnaGrad2)"/>
+        </g>
+
+        <!-- Floating particles -->
+        <g class="particles">
+          <circle cx="300" cy="80"  r="4"/>
+          <circle cx="260" cy="160" r="3"/>
+          <circle cx="340" cy="240" r="3.5"/>
+          <circle cx="310" cy="320" r="4"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+<style>
+/* === GENETIC ENGINEERING SECTION === */
+.genetic-section {
+  background: linear-gradient(180deg, rgba(14,165,233,0.07), rgba(99,102,241,0.05));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 80px 0;
+}
+
+.genetic-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.genetic-text h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #22d3ee, #06b6d4, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
+}
+
+.genetic-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 14px;
+  max-width: 65ch;
+}
+
+/* SVG container */
+.genetic-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dna-svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(14,165,233,0.25));
+}
+
+/* DNA animation */
+.backbone.left {
+  stroke-dasharray: 8 6;
+  animation: waveLeft 6s ease-in-out infinite alternate;
+}
+.backbone.right {
+  stroke-dasharray: 8 6;
+  animation: waveRight 6s ease-in-out infinite alternate;
+}
+
+.rungs line {
+  stroke-dasharray: 8 10;
+  animation: rungShift 4s linear infinite;
+}
+
+.particles circle {
+  fill: #a5f3fc;
+  animation: floatParticle 6s ease-in-out infinite;
+}
+.particles circle:nth-child(2){ animation-delay: .8s; fill:#93c5fd; }
+.particles circle:nth-child(3){ animation-delay: 1.6s; fill:#c084fc; }
+.particles circle:nth-child(4){ animation-delay: 2.4s; fill:#38bdf8; }
+
+/* Keyframes */
+@keyframes waveLeft {
+  0%   { d: path("M180 50 Q200 200, 180 350"); }
+  50%  { d: path("M180 50 Q160 200, 180 350"); }
+  100% { d: path("M180 50 Q200 200, 180 350"); }
+}
+@keyframes waveRight {
+  0%   { d: path("M420 50 Q400 200, 420 350"); }
+  50%  { d: path("M420 50 Q440 200, 420 350"); }
+  100% { d: path("M420 50 Q400 200, 420 350"); }
+}
+@keyframes rungShift {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -140; }
+}
+@keyframes floatParticle {
+  0%,100% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(-20px); opacity: 1; }
+}
+
+/* Hover */
+.genetic-visual:hover .dna-svg {
+  transform: scale(1.04);
+  filter: drop-shadow(0 10px 40px rgba(99,102,241,0.4));
+  transition: transform .4s ease, filter .4s ease;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .genetic-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .genetic-visual {
+    order: -1;
+  }
+  .dna-svg { max-width: 440px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .backbone, .rungs line, .particles circle {
+    animation: none !important;
+  }
+}
+</style>
+<style>
+/* ==== UTGEC Copilot (floating AI) ======================================= */
+:root{
+  --copilot-bg:#0b0f1a; --copilot-card:#12182a; --copilot-line:#22304a;
+  --copilot-text:#eaf0ff; --copilot-muted:#a7b0c7;
+}
+.utgec-copilot{position:fixed;right:18px;bottom:86px;z-index:3000}
+.utgec-copilot .fab{
+  width:56px;height:56px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(120deg,var(--grad-1),var(--grad-2),var(--grad-3));
+  color:#0b1020;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);
+  cursor:pointer;position:relative;overflow:hidden;transition:transform .2s ease, filter .2s ease;
+}
+.utgec-copilot .fab:hover{transform:translateY(-2px) scale(1.03)}
+.utgec-copilot .fab svg{width:26px;height:26px}
+.utgec-copilot .halo{
+  position:absolute;inset:-30%;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.35),transparent 60%);
+  filter:blur(18px);opacity:.35;animation:copilotHalo 6s ease-in-out infinite;pointer-events:none
+}
+@keyframes copilotHalo{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+/* Panel */
+.copilot-panel{
+  position:fixed;right:18px;bottom:156px;width:min(480px,92vw);max-height:min(72vh,720px);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid var(--copilot-line);border-radius:20px;box-shadow:0 18px 60px rgba(0,0,0,.45);
+  overflow:hidden;backdrop-filter:blur(8px);opacity:0;transform:translateY(14px) scale(.98);
+  pointer-events:none;transition:opacity .32s var(--motion-ease),transform .32s var(--motion-ease);
+}
+.copilot-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.copilot-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px;border-bottom:1px solid var(--copilot-line);
+  background:radial-gradient(1200px 400px at 10% -50%,rgba(96,165,250,.15),transparent 60%);
+}
+.copilot-title{display:flex;align-items:center;gap:10px;font-weight:900}
+.copilot-title .badge{
+  padding:4px 8px;border-radius:999px;font-size:12px;color:#0b1020;
+  background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));font-weight:900
+}
+.copilot-body{display:grid;grid-template-rows:1fr auto;min-height:280px;max-height:min(72vh,720px)}
+.copilot-stream{padding:12px 12px 6px 12px;overflow:auto;scroll-behavior:smooth}
+.copilot-msg{display:flex;gap:10px;margin:10px 0;align-items:flex-start}
+.copilot-msg .bubble{
+  max-width:78%;padding:10px 12px;border:1px solid var(--copilot-line);border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));line-height:1.55
+}
+.copilot-msg.user{justify-content:flex-end}
+.copilot-msg.user .bubble{background:#162035}
+.copilot-suggest{display:flex;flex-wrap:wrap;gap:8px;padding:0 12px 8px 12px}
+.copilot-chip{
+  padding:8px 10px;border-radius:999px;border:1px solid var(--copilot-line);cursor:pointer;
+  background:rgba(255,255,255,.04);transition:transform .18s ease,background .18s ease
+}
+.copilot-chip:hover{transform:translateY(-1px);background:rgba(255,255,255,.07)}
+
+.copilot-input{
+  display:flex;gap:8px;padding:10px;border-top:1px solid var(--copilot-line);background:#0d1220
+}
+.copilot-input input{
+  flex:1;padding:12px 12px;border-radius:12px;border:1px solid #1c2235;background:#0c111c;
+  color:var(--copilot-text);outline:none
+}
+.copilot-input button{
+  padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));color:#0b1020;font-weight:900;cursor:pointer
+}
+
+/* Inline utilities */
+.ut-cta{display:inline-grid;grid-auto-flow:column;gap:8px;margin-top:8px}
+.ut-cta a{
+  font-size:12px;padding:6px 8px;border-radius:999px;border:1px solid var(--copilot-line);
+  background:rgba(255,255,255,.05);color:var(--copilot-muted)
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .copilot-panel{transition:none}
+  .utgec-copilot .halo{animation:none}
+}
+
+/* Mobile niceties */
+@media (max-width:600px){
+  .copilot-panel{right:12px;left:12px;width:auto}
+}
+</style>
+<!-- ==== UTGEC Copilot mount ==== -->
+<div class="utgec-copilot" id="utgecCopilot">
+  <button class="fab" id="copilotFab" aria-label="Open UTGEC Copilot" title="UTGEC Copilot">
+    <div class="halo" aria-hidden="true"></div>
+    <!-- DNA chat icon -->
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 17c4 0 6-3 8-5s4-5 8-5" stroke="#0b1020" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M4 7c4 0 6 3 8 5s4 5 8 5" stroke="#0b1020" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <section class="copilot-panel" id="copilotPanel" aria-live="polite">
+    <header class="copilot-head">
+      <div class="copilot-title">
+        <span class="badge">UTGEC Copilot</span>
+        <span>Smart guide for projects, mentors & events</span>
+      </div>
+      <button id="copilotClose" class="button ghost" style="padding:8px 10px;font-weight:700">Close</button>
+    </header>
+
+    <div class="copilot-body">
+      <div class="copilot-stream" id="copilotStream" role="log"></div>
+
+      <!-- Quick suggestions -->
+      <div class="copilot-suggest" id="copilotSuggest">
+        <button class="copilot-chip" data-q="Find me a mentor for any department at uoft">Find a mentor </button>
+        <button class="copilot-chip" data-q="Draft an outreach email to a professor about joining their lab.">Draft a prof email</button>
+        <button class="copilot-chip" data-q="Explain CRISPR like I’m new to genetics in 5 bullet points.">CRISPR in 5 bullets</button>
+        <button class="copilot-chip" data-q="What UTGEC team should I join if I like writing and ethics?">Where should I join?</button>
+        <button class="copilot-chip" data-q="Give me 3 event ideas we could run next month.">Event ideas</button>
+      </div>
+
+      <!-- Input -->
+      <div class="copilot-input">
+        <input id="copilotInput" placeholder="Ask about mentors, events, genetics, or drafting messages…" />
+        <button id="copilotSend">Send</button>
       </div>
     </div>
   </section>
+</div>
 
   <section id="contact" class="section">
     <div class="container">
@@ -538,19 +1666,18 @@
       <p class="muted reveal" style="max-width:60ch">Questions, collaborations, or membership? Send us a note and we’ll get back to you.</p>
       <div class="join">
         <form class="panel reveal" name="club-requests" onsubmit="return submitForm(event)" netlify>
-          <div class="row"><input required placeholder="Full name" /><input type="email" required placeholder="Email" /></div>
-          <input placeholder="Program / Year" style="margin-top:12px" />
-          <textarea rows="4" placeholder="What do you want to build or learn this year?" style="margin-top:12px"></textarea>
+          <div class="row"><input required placeholder="Full name" name="full_name" /><input type="email" name = "email" required placeholder="Email" /></div>
+          <input placeholder="Program / Year" name="program" style="margin-top:12px" />
+          <textarea rows="4" placeholder="What do you want to build or learn this year?" name="message" style="margin-top:12px"></textarea>
           <button class="button primary submit" type="submit">Send</button>
           <div id="msg" class="muted" style="margin-top:10px"></div>
         </form>
         <div class="panel reveal">
           <h3>Connect</h3>
           <ul style="list-style:none;padding-left:0;margin:14px 0 0 0;color:var(--muted);display:grid;gap:10px">
-            <li>Instagram: <a href="https://instagram.com/utgenetic" target="_blank" rel="noopener">@utgenetic</a></li>
-            <li>LinkedIn: <a href="https://linkedin.com/company/utgec" target="_blank" rel="noopener">UTGEC</a></li>
-            <li>Website: <a href="https://uoftgenetic.wordpress.com/" target="_blank" rel="noopener">uoftgenetic.wordpress.com</a></li>
-            <li>Email: <a href="mailto:uoftgenetic@gmail.com">uoftgenetic@gmail.com</a></li>
+            <li>Instagram: <a href="https://instagram.com/uoft.genetics" target="_blank" rel="noopener">@uoftgenetic</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/company/109172110/admin/dashboard/" target="_blank" rel="noopener">UTGEC</a></li>
+            <li>Email: <a href="mailto:uoftgeneticeng@gmail.com">uoftgeneticeng@gmail.com</a></li>
           </ul>
           <p class="muted" style="font-size:14px;margin-top:14px">By contacting us, you agree to our community code of conduct and lab safety policies.</p>
         </div>
@@ -580,7 +1707,7 @@
 
   <script>
     // Smooth anchor scroll
-    function scrollToId(id){const el=document.getElementById(id); if(!el) return; const y=el.getBoundingClientRect().top+window.pageYOffset-72; window.scrollTo({top:y,behavior:'smooth'});} 
+    function scrollToId(id){const el=document.getElementById(id); if(!el) return; const y=el.getBoundingClientRect().top+window.pageYOffset-72; window.scrollTo({top:y,behavior:'smooth'});}
     document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear()});
 
     // DNA rungs build
@@ -620,6 +1747,169 @@
     // Simple form handler
     function submitForm(e){e.preventDefault();const msg=document.getElementById('msg');if(msg){msg.textContent='Thanks! We\'ll get back to you.';}return false;}
   </script>
+  <script>
+/* =======================
+   UTGEC Copilot – client AI
+   ======================= */
+(function(){
+  const qs = s => document.querySelector(s);
+  const qsa = s => Array.from(document.querySelectorAll(s));
+  const fab = qs('#copilotFab');
+  const panel = qs('#copilotPanel');
+  const closeBtn = qs('#copilotClose');
+  const stream = qs('#copilotStream');
+  const input = qs('#copilotInput');
+  const sendBtn = qs('#copilotSend');
+
+  // Open/Close
+  const open = () => panel.classList.add('open');
+  const close = () => panel.classList.remove('open');
+  fab.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if(e.key==='Escape') close(); });
+
+  // Suggestions
+  qsa('.copilot-chip').forEach(ch => ch.addEventListener('click', () => {
+    input.value = ch.dataset.q; send();
+  }));
+
+  // Stream helpers
+  function addMsg(text, who='bot'){
+    const wrap = document.createElement('div');
+    wrap.className = 'copilot-msg ' + (who==='user' ? 'user' : 'bot');
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.innerHTML = text;
+    wrap.appendChild(bubble);
+    stream.appendChild(wrap);
+    stream.scrollTop = stream.scrollHeight;
+  }
+
+  function spinner(){
+    const id = 'sp_'+Math.random().toString(36).slice(2);
+    const wrap = document.createElement('div'); wrap.className='copilot-msg';
+    const bubble = document.createElement('div'); bubble.className='bubble';
+    bubble.innerHTML = `<span id="${id}">Thinking<span class="dots">…</span></span>`;
+    wrap.appendChild(bubble); stream.appendChild(wrap); stream.scrollTop = stream.scrollHeight;
+    let n=0; const t=setInterval(()=>{qs('#'+id).querySelector('.dots').textContent='.'.repeat((n++%3)+1)},300);
+    return ()=>clearInterval(t);
+  }
+
+  // Tiny on-page “RAG”: index headings + cards for quick answers
+  const kb = (() => {
+    const blocks = [];
+    qsa('#about, #focus, #offer, #nonlab, #opportunities, #events, #connect, #events-importance, #guest-speakers, #what-is-genetic-engineering')
+      .forEach(sec=>{
+        const title = sec.querySelector('h2')?.textContent?.trim() || sec.id;
+        const text = Array.from(sec.querySelectorAll('p, h3, .tag')).map(x=>x.textContent.trim()).join(' • ');
+        blocks.push({ id: sec.id, title, text });
+      });
+    return blocks;
+  })();
+
+  // Lightweight fuzzy includes
+  function searchKB(q){
+    const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    const score = (t) => terms.reduce((s,w)=> s + (t.includes(w)?1:0), 0);
+    const ranked = kb
+      .map(b=>({b, s: score((b.title+' '+b.text).toLowerCase())}))
+      .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,4).map(x=>x.b);
+    return ranked;
+  }
+
+  // Utilities: templates & mini knowledge
+  const tools = {
+    emailProfessor(name='Professor', yourName='UTGEC member'){
+      return `
+<strong>Subject:</strong> Undergraduate research inquiry – ${yourName}<br><br>
+Dear ${name},<br>
+My name is ${yourName}, and I’m part of the University of Toronto Genetic Engineering Club (UTGEC). I’m very interested in your work and would love to ask a few questions about how undergraduates can get involved in your lab. If appropriate, I can share a short CV and specific interests.<br><br>
+Would you have 15–20 minutes for a brief chat? I’m flexible and can adapt to your schedule.<br><br>
+Thank you for your time,<br>
+${yourName}<br>
+`;
+    },
+    eventIdeas(){
+      return `
+• <strong>Benchless CRISPR Night:</strong> simulate edits in-browser, ethics debate, and journal figure walk-through.<br>
+• <strong>Bioinformatics Sprint:</strong> 90-min Python + FASTQ to variant mini-pipeline with reproducible notebooks.<br>
+• <strong>Careers Lightning Panel:</strong> grads + industry, 5-minute micro-talks + 30-minute round-tables.
+`;
+    },
+    crisprExplain(){
+      return `
+1) CRISPR is a programmable DNA “find-and-cut” system adapted from bacteria.<br>
+2) <em>Cas</em> proteins (like Cas9) make the cut; a guide RNA tells Cas where to go.<br>
+3) Cells repair the break, causing a small knockout or a precise edit if a template is given.<br>
+4) Delivery matters (plasmid, RNP, AAV), and off-target risk must be minimized.<br>
+5) Applications: functional genomics, gene therapy, diagnostics (e.g., SHERLOCK/DETECTR).
+`;
+    },
+    routeMe(q){
+      // Simple intent router
+      q = q.toLowerCase();
+      if(/email|prof|supervisor|reach out|contact/.test(q)) return { tool:'emailProfessor' };
+      if(/event|workshop|idea/.test(q)) return { tool:'eventIdeas' };
+      if(/crispr|gene edit/.test(q)) return { tool:'crisprExplain' };
+      if(/mentor|which team|where should i join|what team/.test(q)) return { tool:'teamSuggest' };
+      return { tool:'kb' };
+    },
+    teamSuggest(){
+      return `
+If you like to join <strong>our team</strong> → go to <em>the teams's page</em> (see “Meet our team”).<br>
+`;
+    }
+  };
+
+  // Answer generator (deterministic + KB)
+  function answer(q){
+    const intent = tools.routeMe(q);
+    if(intent.tool==='emailProfessor'){
+      return tools.emailProfessor('Professor', 'UTGEC member');
+    }
+    if(intent.tool==='eventIdeas'){
+      return tools.eventIdeas();
+    }
+    if(intent.tool==='crisprExplain'){
+      return tools.crisprExplain();
+    }
+    if(intent.tool==='teamSuggest'){
+      const hits = searchKB('No-Lab Activities Ethics Writing Panels Bioinformatics Synthetic Biology');
+      const links = hits.map(h => `<a href="#${h.id}">Go to “${h.title}”</a>`).join(' ');
+      return tools.teamSuggest() + `<div class="ut-cta"><a href="/team">Go to the teams Page</div>`;
+    }
+    // KB fallback
+    const hits = searchKB(q);
+    if(hits.length){
+      const items = hits.map(h => `<li><a href="#${h.id}"><strong>${h.title}</strong></a> — ${h.text.slice(0,120)}…</li>`).join('');
+      return `Here’s what I found on this page:<ul>${items}</ul>`;
+    }
+    // Generic fallback
+    return `I didn’t find that on this page, but try rephrasing like “Find a mentor in X” or “Draft an email about Y.”`;
+  }
+
+  // Send flow
+  function send(){
+    const v = (input.value||'').trim(); if(!v) return;
+    addMsg(v,'user'); input.value='';
+    const stop = spinner();
+    setTimeout(()=>{ stop(); addMsg(answer(v),'bot'); }, 420);
+  }
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('keydown', e => { if(e.key==='Enter'){ e.preventDefault(); send(); } });
+
+  // First greeting
+  setTimeout(()=>{
+    addMsg(`Hi! I’m <strong>UTGEC Copilot</strong>. I can:
+    <ul>
+      <li>Match you with a <em>team/mentor</em></li>
+      <li>Draft <em>emails/DMs</em></li>
+      <li>Suggest <em>events & workshops</em></li>
+      <li>Summarize sections of this page</li>
+    </ul>Try a chip below or ask anything.`);
+  }, 300);
+})();
+</script>
 
   <script>
 // === Disable scroll reveal animations ===
@@ -629,6 +1919,14 @@ document.addEventListener("DOMContentLoaded", () => {
     el.classList.add("show");   // ensure visible immediately
   });
 });
+(function(){
+  const nav = document.getElementById('nav');
+  // Keep only the scrolled shadow:
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 4);
+  }, { passive: true });
+})();
+
 </script>
 
 <style>
@@ -639,6 +1937,8 @@ document.addEventListener("DOMContentLoaded", () => {
   transition: none !important;
 }
 </style>
+
+
 
 </body>
 </html>

@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UTGEC • Meet Our Team</title>
+  <meta name="description" content="Meet the UTGEC leadership and mentors. Book a 1-on-1 with mentors for projects, careers, and skills." />
+
+  <!-- ====== SHARED STYLES (copied from home for visual consistency) ====== -->
+  <style>
+    :root{--bg:#06070b;--muted:#a3a8b8;--text:#eef0f7;--line:#1b1f2b;--grad-1:#60a5fa;--grad-2:#a78bfa;--grad-3:#34d399;--gold:#f6d98b;--shadow:0 10px 30px rgba(0,0,0,.45);--radius-2xl:22px}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:
+      radial-gradient(1200px 800px at 10% -20%,#15243f 0%,transparent 60%),
+      radial-gradient(1000px 700px at 90% 10%,#13231b 0%,transparent 60%),
+      var(--bg);
+      overflow-x:hidden; scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+
+    /* Background flourishes (same as home) */
+    .bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.18;background-image:linear-gradient(0deg,rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;animation:drift 40s linear infinite}
+    .aurora{position:fixed;inset:0;pointer-events:none;z-index:0;background:
+      radial-gradient(600px 300px at 20% 15%,rgba(96,165,250,.18),transparent 60%),
+      radial-gradient(700px 350px at 85% 25%,rgba(167,139,250,.14),transparent 60%),
+      radial-gradient(650px 320px at 50% 80%,rgba(52,211,153,.12),transparent 60%);
+      filter:saturate(1.2);mix-blend-mode:screen;animation:aur 12s ease-in-out infinite alternate}
+    @keyframes drift{0%{background-position:0 0,0 0}100%{background-position:600px 600px,600px 600px}}
+    @keyframes aur{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(12deg)}}
+
+     /* === UTGEC navbar logo === */
+    .brand { display:flex; align-items:center; gap:10px } /* you already have this; okay if duplicated */
+    .brand .utgec-logo{width:28px;height:28px;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+    .brand .utgec-logo .ring{transform-origin:50% 50%;animation:spin 18s linear infinite}
+    .brand .utgec-logo .dna{stroke-dasharray:60 14;animation:dash 6s linear infinite}
+    .brand .utgec-logo .orb{animation:float 3.8s ease-in-out infinite}
+    .brand:hover .utgec-logo .ring{animation-duration:12s}    /* a tiny boost on hover */
+    .brand:hover .utgec-logo .orb{animation-duration:2.8s}
+    @media (prefers-reduced-motion: reduce){
+      .brand .utgec-logo .ring,
+      .brand .utgec-logo .dna,
+      .brand .utgec-logo .orb{animation:none}
+    }
+
+    :root{--bg:#06070b;--muted:#a3a8b8;--text:#eef0f7;--line:#1b1f2b;--grad-1:#60a5fa;--grad-2:#a78bfa;--grad-3:#34d399;--gold:#f6d98b;--shadow:0 10px 30px rgba(0,0,0,.45);--radius-2xl:22px}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:radial-gradient(1200px 800px at 10% -20%,#15243f 0%,transparent 60%),radial-gradient(1000px 700px at 90% 10%,#13231b 0%,transparent 60%),var(--bg);overflow-x:hidden;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+
+    /* Background flourishes */
+    .bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.18;background-image:linear-gradient(0deg,rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;animation:drift 40s linear infinite}
+    .aurora{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(600px 300px at 20% 15%,rgba(96,165,250,.18),transparent 60%),radial-gradient(700px 350px at 85% 25%,rgba(167,139,250,.14),transparent 60%),radial-gradient(650px 320px at 50% 80%,rgba(52,211,153,.12),transparent 60%);filter:saturate(1.2);mix-blend-mode:screen;animation:aur 12s ease-in-out infinite alternate}
+    @keyframes drift{0%{background-position:0 0,0 0}100%{background-position:600px 600px,600px 600px}}
+    @keyframes aur{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(12deg)}}
+    .cursor{position:fixed;left:0;top:0;width:220px;height:220px;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);z-index:1;opacity:.18;filter:blur(30px);mix-blend-mode:screen;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 60%)}
+
+
+     /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;padding-top:120px;padding-bottom:100px;align-items:center;position:relative}
+    .headline{font-size:clamp(38px,5.6vw,70px);line-height:1.02;font-weight:1000;letter-spacing:.2px}
+    .highlight{background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
+    @keyframes shimmer{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+    .hero p{color:var(--muted);font-size:18px}
+    .hero-actions{display:flex;gap:14px;margin-top:18px}
+    .button{appearance:none;border:none;padding:14px 18px;border-radius:12px;cursor:pointer;font-weight:900;transform:translateZ(0);position:relative;overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+    .button:hover{transform:translateY(-1px) scale(1.02)}
+    .button:active{transform:translateY(0) scale(.99)}
+    .button.primary{color:#0b1020;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));box-shadow:var(--shadow)}
+    .button.ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.1)}
+    .button.ghost:hover{background:rgba(255,255,255,.09)}
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);background:rgba(10,11,16,.35);border-bottom:1px solid var(--line);transition:background .3s ease,box-shadow .3s ease}
+    .nav.scrolled{background:rgba(10,11,16,.6);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.2px}
+    .nav-links{display:flex;gap:8px}
+    .nav a.btn{padding:10px 14px;border-radius:12px;border:1px solid transparent;position:relative;overflow:hidden}
+    .nav a.btn:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+    .nav a.active{color:var(--gold)}
+    .nav a.active::after{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(255,255,255,.6),var(--gold));border-radius:2px}
+    .cta{background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));color:#0b1020;font-weight:900;box-shadow:0 8px 30px rgba(96,165,250,.28)}
+    .hamburger{display:none;width:42px;height:42px;align-items:center;justify-content:center;gap:4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;cursor:pointer}
+    .hamburger span{display:block;width:20px;height:2px;background:#e8ecf8;border-radius:2px;transform-origin:left center;transition:transform .25s ease,opacity .25s ease}
+    .hamburger.active span:nth-child(1){transform:rotate(38deg) translate(2px,-1px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-38deg) translate(2px,2px)}
+
+    /* Buttons */
+    .button{appearance:none;border:none;padding:14px 18px;border-radius:12px;cursor:pointer;font-weight:900;position:relative;overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+    .button:hover{transform:translateY(-1px) scale(1.02)}
+    .button.primary{color:#0b1020;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));box-shadow:var(--shadow)}
+    .button.ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.1)}
+
+    /* Sections / cards */
+    .section{padding:96px 0}
+    .section h2{font-size:36px;margin:0;position:relative}
+    .section h2::after{content:"";position:absolute;left:0;bottom:-10px;width:120px;height:3px;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));border-radius:2px;filter:saturate(1.2)}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:28px}
+    .card{border:1px solid var(--line);border-radius:var(--radius-2xl);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow);overflow:hidden;position:relative}
+    .card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(120deg,var(--grad-1),var(--grad-2),var(--grad-3));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;animation:borderShift 10s linear infinite}
+    @keyframes borderShift{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+    .card .bar{height:4px;width:0;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));transition:width .6s ease}
+    .card:hover .bar{width:100%}
+    .card .body{padding:26px}
+    .tag{display:inline-block;font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);margin-bottom:10px}
+    .team-photo{width:100%;aspect-ratio: 4/3;object-fit:cover;border-radius:12px;margin-bottom:12px;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+
+    /* Team hero */
+    .hero{position:relative;overflow:hidden}
+    .hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;padding-top:120px;padding-bottom:60px;align-items:center;position:relative}
+    .headline{font-size:clamp(38px,5.6vw,70px);line-height:1.02;font-weight:1000;letter-spacing:.2px}
+    .highlight{background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
+    @keyframes shimmer{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+
+    /* Booking modal */
+    .booking-backdrop{position:fixed;inset:0;background:rgba(8,10,16,.72);backdrop-filter:blur(8px);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .25s ease, visibility .25s ease;z-index:2000}
+    .booking-backdrop.show{opacity:1;visibility:visible}
+    .booking-sheet{width:min(1000px,92vw);height:min(760px,86vh);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:22px;box-shadow:0 25px 60px rgba(0,0,0,.45);position:relative;overflow:hidden;display:flex;flex-direction:column}
+    .booking-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+    .booking-title{font-weight:900}
+    .booking-close{appearance:none;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
+    .booking-frame{border:0;flex:1;background:#0b1020}
+
+    footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);margin-top:40px}
+
+    /* Responsive */
+      @media (max-width:900px){
+        .hero .container{grid-template-columns:1fr;padding-top:96px}
+        .grid{grid-template-columns:1fr}
+      }
+
+      /* Icon micro-animations to match home */
+      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
+      @keyframes dash{to{stroke-dashoffset:-60}}
+      @keyframes spin{to{transform:rotate(360deg)}}
+
+
+      /* Mobile */
+      @media (max-width:900px){
+        .hamburger{display:flex}
+        .nav-links{position:fixed;top:68px;left:0;right:0;display:flex;flex-direction:column;gap:8px;padding:12px;background:rgba(10,11,16,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:10001;height:calc(100vh - 68px);overflow:auto;transform:translateY(-120%);opacity:0;visibility:hidden;pointer-events:none;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s ease,visibility .35s}
+        .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+        .nav a.btn{display:block;width:100%;padding:16px 18px}
+        .hero .container{grid-template-columns:1fr;padding-top:96px;gap:22px}
+        .grid{grid-template-columns:1fr}
+        .stats-grid{grid-template-columns:1fr}
+        .join{grid-template-columns:1fr}
+        .section{padding:72px 0}
+        .headline{font-size:clamp(30px,7.5vw,46px)}
+        .section h2{font-size:28px}
+        .hero-actions{flex-direction:column}
+        .button{width:100%}
+        .stats{padding:36px 0}
+        .stat .num{font-size:34px}
+        .date{width:52px;height:52px}
+        .nav-links{transform:translateY(-120%); opacity:0; visibility:hidden; pointer-events:none; }
+        .nav-links.open{ transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto; }
+
+
+      }
+      @media (max-width:600px){
+        .section{padding:60px 0}
+        .headline{font-size:clamp(26px,8.2vw,40px)}
+        .section h2{font-size:24px}
+        .stat .num{font-size:30px}
+        .card .body{padding:20px}
+        .grid{gap:16px}
+        .events{gap:10px}
+        .event{padding:12px}
+        .date{width:46px;height:46px;border-radius:12px}
+      }
+      @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+      /* Hide biology object on tablets/phones */
+      @media (max-width:1024px){.hero-visual{display:none}}
+        /* Extra topic-specific motion for icons */
+      .mini .w1,.mini .w2{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:120 24;animation:dashWave 6s linear infinite}
+      .mini .w2{animation-duration:7.5s}
+      @keyframes dashWave{to{stroke-dashoffset:-300}}
+      .mini .node circle{transform-origin:center;animation:pulse 3.6s ease-in-out infinite}
+      .mini .dot,.mini .glow{animation:spin 8s linear infinite}
+      svg.mini{will-change:transform}
+      /* Ensure ALL minis visibly animate */
+      @keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+      @keyframes bobX{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+      /* Apply subtle motion fallbacks to basic shapes inside minis */
+      svg.mini.move circle{animation:pulse 4s ease-in-out infinite}
+      svg.mini.move rect, svg.mini.move line{transform-box:fill-box;transform-origin:center;animation:breath 6s ease-in-out infinite}
+      svg.mini.move path:not(.dash):not(.pulse){transform-box:fill-box;transform-origin:center;animation:breath 7s ease-in-out infinite}
+      /* If a mini is flagged as auto, spin its first group softly */
+      svg.mini[data-auto="1"] > g:first-child{transform-box:fill-box;transform-origin:center;animation:spin 18s linear infinite}
+      /* Extra wave motion for "Panels & 1-on-1s" and similar simple icons */
+      #nonlab .card:has(.tag:contains("Panels")) svg.mini path{animation:dash 4.5s linear infinite}
+      /* Safari fallback for :has and :contains not supported: JS will add .auto-dash where needed */
+      .auto-dash path{animation:dash 4.5s linear infinite}
+      .auto-bob *{animation:breath 7s ease-in-out infinite}
+
+      /* === Animated Scroll-to-top Arrow === */
+      .to-top{position:fixed;right:18px;bottom:22px;border-radius:999px;width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.06);display:grid;place-items:center;color:var(--text);cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .3s ease,transform .3s ease,background .2s ease,box-shadow .25s ease;backdrop-filter:blur(10px);z-index:2000}
+      .to-top.show{opacity:1;transform:translateY(0)}
+      .to-top:hover{background:rgba(255,255,255,.1);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+      .to-top svg{width:22px;height:22px;display:block}
+      @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+      @keyframes hueSpin{to{filter:hue-rotate(360deg)}}
+      .to-top.show svg path{animation:arrowBounce 1.6s ease-in-out infinite,hueSpin 8s linear infinite}
+
+
+      /* Seat hero text left and DNA right on desktop */
+      .hero-text{order:1}
+      .hero-visual{order:2; display:grid; place-items:center}
+
+      /* Mobile already stacks to 1 column via your media query; if not, keep this: */
+      @media (max-width:900px){
+        .hero .container{grid-template-columns:1fr}
+      }
+
+      @media (max-width: 900px){
+      .dna-badge { display: none !important; }
+      /* Make hero container single column so the text spans full width */
+      .hero .container{
+        padding-top: 30px;   /* was 120px */
+        padding-bottom: 40px;/* was 100px */
+        gap: 10px;
+      }
+      }
+      /* ================================
+      MOTION TOKENS (one place to tune)
+      ================================ */
+    :root{
+      --motion-ease: cubic-bezier(.22,.9,.24,1);     /* snappy, not harsh */
+      --motion-ease-soft: cubic-bezier(.18,.64,.22,1); /* gentle */
+      --motion-speed-fast: 280ms;
+      --motion-speed-med: 520ms;
+      --motion-speed-slow: 820ms;
+
+      /* micro-movement ranges (px/deg) */
+      --wiggle-y: 6px;       /* vertical bob range */
+      --parallax: 4px;       /* svg parallax on hover */
+      --card-hover-raise: 8px;
+      --icon-rotate: 4deg;   /* tiny rotation for life */
+
+      /* icon loop durations (can scale on mobile/desktop) */
+      --loop-pulse: 1.35s;
+      --loop-dash:  1.7s;
+      --loop-spin:  4.6s;
+
+      /* per-section reveal stagger step */
+      --stagger-step: 90ms;
+    }
+
+    /* Slightly calmer on small screens to match compact layout */
+    @media (max-width: 900px){
+      :root{
+        --wiggle-y: 4px;
+        --parallax: 2px;
+        --card-hover-raise: 6px;
+        --loop-pulse: 1.5s;
+        --loop-dash:  1.9s;
+        --loop-spin:  5.2s;
+        --stagger-step: 70ms;
+      }
+    }
+
+    @keyframes arrowBounce {
+      0%,100% { transform:translateY(0) }
+      50%     { transform:translateY(-3px) }
+    }
+
+    @keyframes hueSpin {
+      to { filter:hue-rotate(360deg) }
+    }
+
+    .to-top.show svg path {
+      animation: arrowBounce 1.6s ease-in-out infinite,
+      hueSpin 8s linear infinite;
+    }
+
+    /* === GENOME CROWN styles === */
+    .crown-wrap{
+      position:relative;
+      display:grid;
+      place-items:center;
+      /* slight lift and shadow for presence */
+      transform: translateZ(0);
+      will-change: transform, filter;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,.45));
+    }
+
+    .crown{
+      width:min(100%, 640px);
+      height:auto;
+      /* gentle entrance reveal */
+      opacity:0; transform:translateY(12px);
+      animation: crownEnter var(--motion-speed-med,520ms) var(--motion-ease-soft, cubic-bezier(.18,.64,.22,1)) forwards;
+    }
+
+    @keyframes crownEnter{
+      to { opacity:1; transform:translateY(0) }
+    }
+
+    /* Ribbon motion (lux, restrained) */
+    .ribbon{
+      stroke-linejoin:round;
+      filter: saturate(1.15) contrast(1.05);
+      animation: ribbonSway 6.8s var(--motion-ease-soft, cubic-bezier(.18,.64,.22,1)) infinite alternate;
+    }
+    .ribbon-front{ animation-delay: .12s }
+    .ribbon-gold{ animation-delay: .24s }
+
+    @keyframes ribbonSway{
+      0%   { transform: translateY(0) rotate(0.2deg) }
+      50%  { transform: translateY(-2px) rotate(-0.2deg) }
+      100% { transform: translateY(0) rotate(0.2deg) }
+    }
+
+    /* Ladder rungs shimmer */
+    .rungs .rung{
+      stroke-dasharray: 18 22;
+      animation: rungDash var(--loop-dash,1.7s) linear infinite;
+    }
+    @keyframes rungDash{ to { stroke-dashoffset:-40 } }
+
+    /* Gold twinkles */
+    .nano .dot{
+      transform-origin:center;
+      opacity:.7;
+      animation: twinkle 2.6s ease-in-out infinite;
+    }
+    .nano .dot:nth-child(odd){ animation-duration:3.2s }
+    .nano .dot:nth-child(3n){ animation-duration:2.1s }
+
+    @keyframes twinkle{
+      0%,100% { transform:scale(1);   opacity:.55 }
+      50%     { transform:scale(1.45);opacity:.95 }
+    }
+
+    /* Parallax hover (desktop) — driven by CSS vars set in JS */
+    .crown-wrap:hover .crown{
+      transform:
+        translateY(0)
+        translateX(var(--parallax-x,0px))
+        translateY(var(--parallax-y,0px));
+    }
+
+    /* Respect user motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      .crown, .ribbon, .rungs .rung, .nano .dot { animation:none !important }
+    }
+    @media (max-width: 600px){
+      .crown{ width: 100%; max-width: 420px }
+    }
+    .crown {
+      background-image: image-set(
+        url('fallback-crown@1x.png') 1x,
+        url('fallback-crown@2x.png') 2x
+      );
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .section h2 {
+      position:relative;
+      display:inline-block; /* makes the ::after stick to the word width */
+      cursor:default;
+    }
+
+    .section h2::after {
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-10px;
+      height:3px;
+      width:0;
+      background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));
+      border-radius:2px;
+      transition:width .5s ease;
+    }
+
+    .section h2:hover::after {
+      width:100%;  /* underline grows to match the word */
+    }
+
+
+    /* Events & forms */
+    .events{display:grid;gap:12px;margin-top:22px}
+    .event{display:flex;align-items:center;gap:16px;}
+
+    .join{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}  /* <- wraps the form + “Connect” panel */
+    .panel{border:1px solid var(--line);border-radius:var(--radius-2xl);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));padding:26px}
+
+    .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}                 /* <- two inputs side-by-side */
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;background:#0d0f16;border:1px solid #1c2230;color:var(--text);outline:none;transition:transform .2s ease,box-shadow .2s ease}
+    input:focus,textarea:focus{border-color:#2a3752;box-shadow:0 0 0 3px rgba(99,102,241,.15);transform:translateY(-1px)}
+    .submit{margin-top:10px}
+
+     /* DNA */
+    @media (min-width: 1024px) {
+    .dna-background-container {
+      display: flex;
+      flex-direction: row; /* Change from column to row */
+      align-items: center;
+    }
+
+    .dna-background {
+      position: absolute;
+      right: 0; /* Position to the right */
+      top: 50%; /* Center vertically */
+      transform: translateY(-50%);
+      /* Remove any top positioning */
+    }
+
+    .text-content {
+      flex: 1;
+      margin-right: 200px; /* Add space for DNA background */
+    }
+    }
+    /* Inline icon motion */
+    @keyframes gentle{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(.15deg)}}
+    svg.mini.move{animation:gentle 6s ease-in-out infinite}
+    .mini .pulse{animation:pulse 3s ease-in-out infinite}
+    .mini .spin{animation:spin 8s linear infinite}
+    .mini .dash{stroke-dasharray:6 6;animation:dash 3.5s linear infinite}
+    @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+    @keyframes dash{to{stroke-dashoffset:-60}}
+
+    /* Events & forms */
+    .events{display:grid;gap:12px;margin-top:22px}
+    .event{display:flex;align-items:center;gap:16px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border-radius:16px;padding:14px;position:relative;overflow:hidden;transition:transform .3s ease}
+    .event:hover{transform:translateY(-2px)}
+    .date{width:58px;height:58px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:#121525;border:1px solid var(--line);font-weight:900}
+    .event::after{content:"";position:absolute;left:-100%;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,var(--grad-1),var(--grad-2),var(--grad-3));transition:left .6s ease}
+    .event:hover::after{left:0}
+    .join{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+    .panel{border:1px solid var(--line);border-radius:var(--radius-2xl);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));padding:26px}
+    .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;background:#0d0f16;border:1px solid #1c2230;color:var(--text);outline:none;transition:transform .2s ease,box-shadow .2s ease}
+    input:focus,textarea:focus{border-color:#2a3752;box-shadow:0 0 0 3px rgba(99,102,241,.15);transform:translateY(-1px)}
+    .submit{margin-top:10px}
+    footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted)}
+
+    /* Focus grid responsive */
+    #focus .grid{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:1100px){#focus .grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:900px){#focus .grid{grid-template-columns:1fr}}
+
+    /* Offer grid */
+    #offer .grid{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){#offer .grid{grid-template-columns:1fr}}
+    @media (max-width:600px){#offer .grid{gap:14px}}
+
+    /* No-Lab grid */
+    #nonlab .grid{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:1100px){#nonlab .grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:900px){#nonlab .grid{grid-template-columns:1fr}}
+
+    /* Mobile */
+    @media (max-width:900px){
+      .hamburger{display:flex}
+      .nav-links{position:fixed;top:68px;left:0;right:0;display:flex;flex-direction:column;gap:8px;padding:12px;background:rgba(10,11,16,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:10001;height:calc(100vh - 68px);overflow:auto;transform:translateY(-120%);opacity:0;visibility:hidden;pointer-events:none;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s ease,visibility .35s}
+      .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+      .nav a.btn{display:block;width:100%;padding:16px 18px}
+      .hero .container{grid-template-columns:1fr;padding-top:96px;gap:22px}
+      .grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr}
+      .join{grid-template-columns:1fr}
+      .section{padding:72px 0}
+      .headline{font-size:clamp(30px,7.5vw,46px)}
+      .section h2{font-size:28px}
+      .hero-actions{flex-direction:column}
+      .button{width:100%}
+      .stats{padding:36px 0}
+      .stat .num{font-size:34px}
+      .date{width:52px;height:52px}
+    }
+    @media (max-width:600px){
+      .section{padding:60px 0}
+      .headline{font-size:clamp(26px,8.2vw,40px)}
+      .section h2{font-size:24px}
+      .stat .num{font-size:30px}
+      .card .body{padding:20px}
+      .grid{gap:16px}
+      .events{gap:10px}
+      .event{padding:12px}
+      .date{width:46px;height:46px;border-radius:12px}
+    }
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    /* Hide biology object on tablets/phones */
+    @media (max-width:1024px){.hero-visual{display:none}}
+      /* Extra topic-specific motion for icons */
+    .mini .w1,.mini .w2{fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:120 24;animation:dashWave 6s linear infinite}
+    .mini .w2{animation-duration:7.5s}
+    @keyframes dashWave{to{stroke-dashoffset:-300}}
+    .mini .node circle{transform-origin:center;animation:pulse 3.6s ease-in-out infinite}
+    .mini .dot,.mini .glow{animation:spin 8s linear infinite}
+    svg.mini{will-change:transform}
+    /* Ensure ALL minis visibly animate */
+    @keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+    @keyframes bobX{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+    /* Apply subtle motion fallbacks to basic shapes inside minis */
+    svg.mini.move circle{animation:pulse 4s ease-in-out infinite}
+    svg.mini.move rect, svg.mini.move line{transform-box:fill-box;transform-origin:center;animation:breath 6s ease-in-out infinite}
+    svg.mini.move path:not(.dash):not(.pulse){transform-box:fill-box;transform-origin:center;animation:breath 7s ease-in-out infinite}
+    /* If a mini is flagged as auto, spin its first group softly */
+    svg.mini[data-auto="1"] > g:first-child{transform-box:fill-box;transform-origin:center;animation:spin 18s linear infinite}
+    /* Extra wave motion for "Panels & 1-on-1s" and similar simple icons */
+    #nonlab .card:has(.tag:contains("Panels")) svg.mini path{animation:dash 4.5s linear infinite}
+    /* Safari fallback for :has and :contains not supported: JS will add .auto-dash where needed */
+    .auto-dash path{animation:dash 4.5s linear infinite}
+    .auto-bob *{animation:breath 7s ease-in-out infinite}
+
+    /* === Animated Scroll-to-top Arrow === */
+    .to-top{position:fixed;right:18px;bottom:22px;border-radius:999px;width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.06);display:grid;place-items:center;color:var(--text);cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .3s ease,transform .3s ease,background .2s ease,box-shadow .25s ease;backdrop-filter:blur(10px);z-index:2000}
+    .to-top.show{opacity:1;transform:translateY(0)}
+    .to-top:hover{background:rgba(255,255,255,.1);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .to-top svg{width:22px;height:22px;display:block}
+    @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+    @keyframes hueSpin{to{filter:hue-rotate(360deg)}}
+    .to-top.show svg path{animation:arrowBounce 1.6s ease-in-out infinite,hueSpin 8s linear infinite}
+
+  </style>
+  <style>
+/* ===== HYPER MOTION PACK (scoped) ===== */
+.fx-events { --fx-tilt: 10deg; --fx-pop: 1.018; --fx-parallax: 8px; --fx-glow: 0 18px 60px rgba(96,165,250,.22); }
+.fx-events .grid { perspective: 1000px; transform-style: preserve-3d; }
+
+/* Card base—enable 3D & glow */
+.fx-events .card {
+  transform: translateZ(0) rotateX(0) rotateY(0) scale(1);
+  transform-style: preserve-3d;
+  transition: transform 300ms var(--motion-ease), box-shadow 300ms var(--motion-ease), filter 300ms var(--motion-ease);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Sheen sweep on hover */
+.fx-events .card::after{
+  content:""; position:absolute; inset:-20%;
+  background: linear-gradient(110deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  transform: translateX(-120%) rotate(8deg);
+  filter: blur(6px);
+  pointer-events:none;
+}
+.fx-events .card:hover::after{ animation: fx-sheen 1100ms var(--motion-ease) forwards; }
+@keyframes fx-sheen { to { transform: translateX(120%) rotate(8deg); } }
+
+/* Subtle neon outline on hover */
+.fx-events .card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06), var(--fx-glow); }
+.fx-events .card:hover .bar { width: 100%; }
+
+/* Sparkle dust (very light) */
+.fx-events .card .body::before{
+  content:""; position:absolute; right:-40px; top:-40px; width:120px; height:120px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(167,139,250,.25) 0 2px, transparent 3px),
+    radial-gradient(circle at 60% 70%, rgba(96,165,250,.25) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 20%, rgba(52,211,153,.25) 0 2px, transparent 3px);
+  filter: blur(0.2px); opacity:.0; transform: rotate(0);
+  transition: opacity 400ms var(--motion-ease);
+  pointer-events:none;
+}
+.fx-events .card:hover .body::before{ opacity:.9; animation: fx-stars 3.6s linear infinite; }
+@keyframes fx-stars { from { transform: rotate(0) } to { transform: rotate(360deg) } }
+
+/* Icon parallax / pop */
+.fx-events .card svg.mini {
+  transform: translateZ(30px);
+  transition: transform 240ms var(--motion-ease);
+}
+.fx-events .card:hover svg.mini { transform: translate3d(0, calc(var(--parallax) * -1), 30px) scale(1.05); }
+
+/* Orbit rings on hover (auto if <circle> exists) */
+.fx-events .card:hover svg.mini circle { animation: micro-spin 4.6s linear infinite; }
+
+/* Click ripple */
+.fx-events .ripple {
+  position:absolute; width:10px; height:10px; border-radius:999px;
+  background: radial-gradient(circle, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 70%);
+  pointer-events:none; transform: translate(-50%, -50%) scale(1);
+  animation: fx-ripple 700ms var(--motion-ease) forwards;
+  mix-blend-mode: screen;
+}
+@keyframes fx-ripple { to { transform: translate(-50%, -50%) scale(20); opacity: 0; } }
+
+/* Confetti */
+.fx-events .confetti {
+  position:absolute; width:6px; height:10px; border-radius:2px; opacity:.95;
+  animation: fx-confetti 700ms cubic-bezier(.25,.7,.2,1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes fx-confetti {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(50px) rotate(180deg); opacity: 0; }
+}
+
+/* 3D tilt active (added by JS) */
+.fx-events .card.fx-tilting { transition: transform 80ms linear; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .fx-events .card, .fx-events .card::after, .fx-events .card .body::before,
+  .fx-events .ripple, .fx-events .confetti, .fx-events svg.mini, .fx-events .bar {
+    animation: none !important; transition: none !important;
+  }
+}
+</style>
+<script>
+(function superMotionPack(){
+  const scope = document.querySelector('#event-types.fx-events');
+  if(!scope) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1) Make all cards tilt-enabled
+  const cards = [...scope.querySelectorAll('.card')];
+  cards.forEach(c => c.dataset.tilt = '1');
+
+  if(!reduce){
+    // 3D Tilt + Parallax
+    const maxTilt = 10; // degrees
+    const parallax = 8; // px
+
+    function onMove(e){
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top  + rect.height/2;
+      const dx = (e.clientX - cx) / (rect.width/2);
+      const dy = (e.clientY - cy) / (rect.height/2);
+      const rx = (+dy * maxTilt).toFixed(2);
+      const ry = (-dx * maxTilt).toFixed(2);
+      card.classList.add('fx-tilting');
+      card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.018)`;
+      // Icon parallax
+      const mini = card.querySelector('svg.mini');
+      if(mini){
+        mini.style.transform = `translate3d(${(-dx*parallax).toFixed(1)}px, ${(-dy*parallax-2).toFixed(1)}px, 30px) scale(1.06)`;
+      }
+    }
+    function onLeave(e){
+      const card = e.currentTarget;
+      card.classList.remove('fx-tilting');
+      card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+      const mini = card.querySelector('svg.mini');
+      if(mini){ mini.style.transform = ''; }
+    }
+    cards.forEach(card=>{
+      card.addEventListener('mousemove', onMove, {passive:true});
+      card.addEventListener('mouseleave', onLeave, {passive:true});
+      card.addEventListener('touchend', onLeave, {passive:true});
+    });
+  }
+
+  // Ripple + tiny confetti on click
+  function spawnRipple(card, x, y){
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    r.style.left = x + 'px'; r.style.top = y + 'px';
+    card.appendChild(r);
+    r.addEventListener('animationend', ()=> r.remove());
+  }
+  function burstConfetti(card, x, y){
+    const colors = ['#60a5fa','#a78bfa','#34d399','#f6d98b'];
+    for(let i=0;i<6;i++){
+      const s = document.createElement('i');
+      s.className = 'confetti';
+      s.style.left = x + (Math.random()*16-8) + 'px';
+      s.style.top  = y + (Math.random()*6-3) + 'px';
+      s.style.background = colors[i%colors.length];
+      s.style.transform = `translateY(0) rotate(${Math.random()*120-60}deg)`;
+      s.style.animationDelay = (Math.random()*0.12)+'s';
+      card.appendChild(s);
+      s.addEventListener('animationend', ()=> s.remove());
+    }
+  }
+  cards.forEach(card=>{
+    card.addEventListener('click', (e)=>{
+      if(reduce) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left, y = e.clientY - rect.top;
+      spawnRipple(card, x, y);
+      burstConfetti(card, x, y);
+    });
+  });
+
+  // Optional: sheen replay on keyboard focus (a11y)
+  cards.forEach(card=>{
+    card.setAttribute('tabindex','0');
+    card.addEventListener('focus', ()=>{
+      if(reduce) return;
+      card.style.setProperty('--replay', Date.now()); // force a style change
+      card.classList.add('fx-focus');
+      // trigger sheen via reflow (toggle hover-like)
+      card.style.animation = 'none';
+      requestAnimationFrame(()=> card.style.animation = '');
+      card.dispatchEvent(new Event('mouseenter'));
+      setTimeout(()=> card.dispatchEvent(new Event('mouseleave')), 350);
+    });
+  });
+})();
+</script>
+
+</head>
+<canvas id="bio" aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"></div>
+
+  <!-- ====== NAV (same links as home; “Meet our team” active) ====== -->
+   <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+  <svg class="utgec-logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Uses your site gradient colors via CSS variables -->
+      <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%"  style="stop-color: var(--grad-1)"/>
+        <stop offset="55%" style="stop-color: var(--grad-2)"/>
+        <stop offset="100%" style="stop-color: var(--grad-3)"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Outer animated ring -->
+    <circle class="ring" cx="16" cy="16" r="12" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+
+    <!-- Tiny DNA glyph (two short helices + rungs) -->
+    <path class="dna" d="M8 11 C 11 13.5, 21 13.5, 24 11
+                         M8 21 C 11 18.5, 21 18.5, 24 21"
+          fill="none" stroke="url(#logoGrad)" stroke-width="1.6" stroke-linecap="round"/>
+
+    <path class="dna" d="M10 12 h12 M10 14 h12 M10 16 h12 M10 18 h12 M10 20 h12"
+          fill="none" stroke="url(#logoGrad)" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- Small orbiting node -->
+    <circle class="orb" cx="16" cy="4" r="2.2" fill="var(--gold)"/>
+  </svg>
+  <span>UTGEC</span>
+   </div>
+      <button id='navToggle' class='hamburger' aria-label='Open menu' aria-expanded='false' type='button'><span></span><span></span><span></span></button>
+      <div class="nav-links">
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/blog">Blog</a>
+        <a class="btn" href="/team">Meet our team</a>
+        <a class="btn" href="/opportunities">Opportunities</a>
+        <a class="btn" href="/events">Events</a>
+        <a class="btn cta" href="#contact">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+  <!-- ====== HERO ====== -->
+  <header class="hero">
+    <div class="container">
+      <div>
+        <div class="headline">Events — <span class="highlight">Conferences, Hakathons, and Seminars</span></div>
+        <p class="muted" style="max-width:60ch;margin-top:8px">
+           We offer different events, Hakathons, and workships that are interesting for students.
+        </p>
+
+      </div>
+      <div aria-hidden="true" style="display:grid;place-items:center">
+              <canvas id="hero-anim"></canvas>
+
+              <style>
+              #hero-anim {
+                position:absolute;
+                inset:0;
+                width:100%;
+                height:100%;
+                z-index:0;
+              }
+              </style>
+
+              <script>
+              const canvas = document.getElementById('hero-anim');
+              const ctx = canvas.getContext('2d');
+              let w,h,particles=[];
+
+              function resize(){
+                w=canvas.width=window.innerWidth;
+                h=canvas.height=window.innerHeight;
+                particles=[];
+                for(let x=0;x<w;x+=40){
+                  for(let y=0;y<h;y+=40){
+                    particles.push({x,y,baseY:y});
+                  }
+                }
+              }
+              resize();
+              window.addEventListener('resize',resize);
+
+              function draw(t){
+                ctx.clearRect(0,0,w,h);
+                ctx.fillStyle='rgba(130,180,255,0.9)';
+                particles.forEach(p=>{
+                  const offset=Math.sin((t/800)+(p.x*0.02))*12;
+                  ctx.beginPath();
+                  ctx.arc(p.x,p.baseY+offset,2,0,Math.PI*2);
+                  ctx.fill();
+                });
+                requestAnimationFrame(draw);
+              }
+              draw(0);
+              </script>
+
+      </div>
+    </div>
+  </header>
+<section id="events-intro" class="section events-intro">
+  <div class="bg-wave" aria-hidden="true"></div>
+  <div class="bg-spark" aria-hidden="true"></div>
+
+  <div class="container intro-grid">
+    <div class="intro-text">
+      <h2>Events That Inspire Discovery</h2>
+      <p>
+        At UTGEC, events are more than gatherings — they’re catalysts for growth.
+        Each session blends science, creativity, and collaboration to help you explore
+        new ideas, connect with mentors, and experience discovery firsthand.
+      </p>
+      <p>
+        From research symposia to coding workshops, every event is crafted to ignite
+        curiosity and empower students to build the future of biology — one question at a time.
+      </p>
+    </div>
+
+    <div class="intro-visual" aria-hidden="true">
+      <svg class="wave-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="40%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#34d399"/>
+          </linearGradient>
+        </defs>
+
+        <path class="wave" d="M0 200 Q150 150, 300 200 T600 200 T900 200" stroke="url(#waveGrad)" stroke-width="4" fill="none"/>
+        <path class="wave2" d="M0 210 Q150 260, 300 210 T600 210 T900 210" stroke="url(#waveGrad)" stroke-width="3" fill="none" opacity=".7"/>
+        <g class="dots">
+          <circle cx="120" cy="190" r="6"/>
+          <circle cx="280" cy="210" r="5"/>
+          <circle cx="440" cy="195" r="6"/>
+          <circle cx="620" cy="205" r="5.5"/>
+          <circle cx="760" cy="190" r="6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* ===== EVENTS INTRO (Aligned & Animated) ===== */
+.events-intro {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20,25,40,0.6), rgba(12,14,20,0.8));
+  overflow: hidden;
+  padding: 120px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Maintain grid alignment with container sections */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* ---- Text styling ---- */
+.intro-text h2 {
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 900;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #60a5fa, #a855f7, #34d399);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(255,255,255,0.08);
+}
+
+.intro-text p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 14px;
+  animation: fadeSlide 1.2s ease forwards;
+  opacity: 0;
+}
+
+.intro-text p:nth-of-type(1) { animation-delay: .4s; }
+.intro-text p:nth-of-type(2) { animation-delay: .8s; }
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Dynamic wave animation ---- */
+.intro-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wave-svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  filter: drop-shadow(0 10px 40px rgba(96,165,250,0.25));
+}
+
+/* flowing sine waves */
+.wave, .wave2 {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: waveDraw 4s ease-out forwards, wavePulse 6s ease-in-out infinite alternate;
+}
+.wave2 { animation-delay: .3s; }
+
+@keyframes waveDraw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes wavePulse {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-8px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.9; }
+}
+
+/* glowing moving dots */
+.dots circle {
+  fill: #facc15;
+  filter: drop-shadow(0 0 10px rgba(250,204,21,0.6));
+  animation: dotFloat 3s ease-in-out infinite;
+}
+.dots circle:nth-child(2){ animation-delay:.3s; fill:#a855f7; }
+.dots circle:nth-child(3){ animation-delay:.6s; fill:#60a5fa; }
+.dots circle:nth-child(4){ animation-delay:.9s; fill:#34d399; }
+.dots circle:nth-child(5){ animation-delay:1.2s; fill:#fbbf24; }
+
+@keyframes dotFloat {
+  0%,100% { transform: translateY(0); opacity:.9; }
+  50% { transform: translateY(-10px); opacity:1; }
+}
+
+/* ---- Background motion (subtle layer) ---- */
+.bg-wave {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(96,165,250,0.12), transparent 60%),
+              radial-gradient(circle at 30% 60%, rgba(167,139,250,0.08), transparent 60%);
+  animation: bgDrift 20s linear infinite;
+  z-index: 0;
+  opacity: .6;
+}
+@keyframes bgDrift {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(20px,10px) scale(1.05); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+/* glowing spark noise overlay */
+.bg-spark {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+  opacity: .08;
+  animation: sparkShift 12s linear infinite;
+}
+@keyframes sparkShift {
+  to { background-position: 300px 300px; }
+}
+
+/* Hover energy pulse */
+.events-intro:hover .wave-svg {
+  transform: scale(1.04);
+  filter: drop-shadow(0 8px 40px rgba(96,165,250,0.35));
+  transition: all .4s ease;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1000px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .intro-visual { order: -1; }
+  .wave-svg { max-width: 440px; }
+  .intro-text h2 { font-size: 36px; }
+  .intro-text p { font-size: 16.5px; }
+}
+
+/* ---- Accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  .wave, .wave2, .dots circle, .bg-wave, .bg-spark {
+    animation: none !important;
+  }
+}
+</style>
+
+
+  <!-- ======  Events GRID (Leads) ====== -->
+
+  <section id="event-types" class="section">
+  <div class="container">
+    <h2 class="reveal">Event Types</h2>
+    <p class="muted reveal" style="max-width:60ch">A quick look at the kinds of sessions we run—hybrid when possible, beginner-friendly always.</p>
+
+    <div class="grid">
+      <!-- 1. Hack Night -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="14" y="18" width="92" height="28" rx="6" stroke="#60a5fa"/>
+          <path class="dash" d="M24 30 h30" stroke="#a78bfa"/>
+          <circle class="pulse" cx="88" cy="30" r="5" fill="#34d399"/>
+        </svg>
+        <div class="tag">Weekly</div>
+        <h3>Hack Night (Bioinformatics)</h3>
+        <p class="muted">Bring a dataset or jump into a shared notebook—pair up, ship small wins.</p>
+      </div></div>
+
+      <!-- 2. Wet-Lab Workshop -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <path d="M40 18 v24" stroke="#60a5fa"/>
+          <path d="M80 18 v24" stroke="#60a5fa"/>
+          <path class="dash" d="M40 30 H80" stroke="#a78bfa"/>
+          <circle class="pulse" cx="60" cy="30" r="6" fill="#34d399"/>
+        </svg>
+        <div class="tag">Hands-on</div>
+        <h3>Wet-Lab Workshop</h3>
+        <p class="muted">Pipetting, dilutions, cloning basics—bench skills with checklists & mentors.</p>
+      </div></div>
+
+      <!-- 3. Lightning Talks -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <polygon class="spin" points="32,20 80,32 32,44" fill="#60a5fa" opacity=".8"/>
+          <circle cx="90" cy="32" r="6" fill="#f6d98b" class="pulse"/>
+        </svg>
+        <div class="tag">5×5</div>
+        <h3>Lightning Talks</h3>
+        <p class="muted">Five speakers, five minutes each—share tools, tips, or results.</p>
+      </div></div>
+
+      <!-- 4. Journal Club -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="20" y="18" width="36" height="28" rx="4" stroke="#a78bfa"/>
+          <rect x="64" y="18" width="36" height="28" rx="4" stroke="#a78bfa"/>
+          <path class="dash" d="M24 26 h28 M68 26 h28" stroke="#60a5fa"/>
+        </svg>
+        <div class="tag">Read • Discuss</div>
+        <h3>Journal Club</h3>
+        <p class="muted">Figure deconstruction, methods critique, and 2-slide summaries.</p>
+      </div></div>
+
+      <!-- 5. Mentor Office Hours -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <circle cx="30" cy="28" r="8" stroke="#34d399"/>
+          <circle cx="90" cy="28" r="8" stroke="#60a5fa"/>
+          <path class="dash" d="M38 28 H82" stroke="#a78bfa"/>
+        </svg>
+        <div class="tag">Drop-in</div>
+        <h3>Mentor Office Hours</h3>
+        <p class="muted">Quick questions on projects, resumes, or course concepts.</p>
+      </div></div>
+
+      <!-- 6. Ethics Debate -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <path d="M24 40 l12 -12 l-12 -12" stroke="#60a5fa"/>
+          <path d="M96 40 l-12 -12 l12 -12" stroke="#a78bfa"/>
+          <circle class="pulse" cx="60" cy="28" r="6" fill="#34d399"/>
+        </svg>
+        <div class="tag">Debate</div>
+        <h3>Ethics & Policy</h3>
+        <p class="muted">Structured pro/con with brief position papers and live rebuttals.</p>
+      </div></div>
+
+      <!-- 7. Build Sprint -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <g class="spin">
+            <circle cx="40" cy="32" r="6" fill="#60a5fa"/>
+            <circle cx="60" cy="32" r="6" fill="#a78bfa"/>
+            <circle cx="80" cy="32" r="6" fill="#34d399"/>
+          </g>
+        </svg>
+        <div class="tag">Weekend</div>
+        <h3>Build Sprint</h3>
+        <p class="muted">48-hour focused push on a shared repo or bench protocol.</p>
+      </div></div>
+
+      <!-- 8. Career Panel -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="28" r="6" fill="#60a5fa"/>
+          <circle cx="60" cy="28" r="6" fill="#a78bfa"/>
+          <circle cx="88" cy="28" r="6" fill="#34d399"/>
+          <path class="dash" d="M20 42 h80" stroke="#a78bfa"/>
+        </svg>
+        <div class="tag">Panel</div>
+        <h3>Careers in Genomics</h3>
+        <p class="muted">Grad students, faculty, and industry—Q&A and networking.</p>
+      </div></div>
+
+      <!-- 9. Tool Demo (IGV / BLAST / Benchling) -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="18" y="16" width="84" height="32" rx="8" stroke="#34d399"/>
+          <path class="dash" d="M28 30 h64" stroke="#60a5fa"/>
+          <circle class="pulse" cx="50" cy="30" r="4" fill="#a78bfa"/>
+        </svg>
+        <div class="tag">Demo</div>
+        <h3>Tool Walkthrough</h3>
+        <p class="muted">Live demo of IGV/BLAST/Benchling with mini datasets.</p>
+      </div></div>
+
+      <!-- 10. Showcase / Poster Night -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <rect x="20" y="16" width="80" height="32" rx="4" stroke="#a78bfa"/>
+          <path class="dash" d="M30 24 h60 M30 32 h40" stroke="#60a5fa"/>
+          <circle cx="86" cy="38" r="4" class="pulse" fill="#34d399"/>
+        </svg>
+        <div class="tag">End-of-term</div>
+        <h3>Project Showcase</h3>
+        <p class="muted">Lightning posters & short demos—celebrate wins and lessons.</p>
+      </div></div>
+
+      <!-- 11. Grant & Writing Jam -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <path d="M24 20 h72 v24 h-72 z" stroke="#60a5fa"/>
+          <path class="dash" d="M32 28 h56" stroke="#a78bfa"/>
+          <circle class="pulse" cx="32" cy="36" r="3" fill="#34d399"/>
+        </svg>
+        <div class="tag">Co-write</div>
+        <h3>Grant & Writing Jam</h3>
+        <p class="muted">Draft micro-grants, blog posts, or abstracts together with feedback.</p>
+      </div></div>
+
+      <!-- 12. Lab Tour / Field Trip -->
+      <div class="card reveal"><div class="bar"></div><div class="body">
+        <svg class="mini move" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <circle cx="30" cy="32" r="8" stroke="#60a5fa"/>
+          <path d="M38 32 L86 32" stroke="#a78bfa"/>
+          <circle class="pulse" cx="90" cy="32" r="6" fill="#34d399"/>
+        </svg>
+        <div class="tag">Visit</div>
+        <h3>Lab Tour</h3>
+        <p class="muted">Meet researchers, see instruments, and learn lab workflows.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+
+  <section class="section" id="leads">
+    <div class="container">
+      <h2>Upcoming Events</h2>
+        <p class="muted" style="max-width:60ch;margin-top:8px">
+           All the upcoming events will be posted here
+        </p>
+       <div class="grid" style="display:grid; justify-items:center; margin:2em 0;">
+  <div style="position:relative; width:min(95vw, 1200px); aspect-ratio:16/9;
+              box-shadow:0 2px 12px rgba(63,69,81,0.2); border-radius:12px; overflow:hidden;">
+    <iframe loading="lazy"
+      src=" https://www.canva.com/design/DAG02a0yt5w/-19z4MWbs6qtg7IxJUntpA/view?embed
+
+"
+      style="position:absolute; inset:0; width:100%; height:100%; border:none;">
+    </iframe>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+<section id="hackathon" class="section hackathon-section">
+  <div class="hackathon-bg" aria-hidden="true"></div>
+  <div class="container hackathon-grid">
+
+    <!-- TEXT -->
+    <div class="hackathon-text">
+      <h2>Bioinformatics Hackathon</h2>
+      <h3 class="coming-soon">🚀 Coming Soon</h3>
+      <p>
+        A new kind of challenge is coming to UTGEC — a 48-hour hackathon merging biology, data science,
+        and innovation. Participants will design, analyze, and visualize real biological data to uncover
+        insights hidden in genomes, proteins, and pathways.
+      </p>
+      <p>
+        Whether you’re a coder, a biologist, or simply curious, this event will test how far collaboration
+        and creativity can push modern science.
+        <strong>Get ready to decode life — one algorithm at a time.</strong>
+      </p>
+    </div>
+
+    <!-- ANIMATION -->
+    <div class="hackathon-visual" aria-hidden="true">
+      <svg class="hack-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gridGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22d3ee"/>
+            <stop offset="50%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#6366f1"/>
+          </linearGradient>
+          <radialGradient id="pulseGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#a855f7" stop-opacity="1" />
+            <stop offset="100%" stop-color="transparent" />
+          </radialGradient>
+        </defs>
+
+        <!-- Dynamic pulsing core -->
+        <circle class="pulse" cx="300" cy="200" r="80" fill="url(#pulseGrad)" opacity="0.3" />
+        <circle class="pulse2" cx="300" cy="200" r="40" fill="url(#pulseGrad)" opacity="0.6" />
+
+        <!-- Tech grid lines -->
+        <g class="grid" stroke="url(#gridGrad)" stroke-width="1" opacity="0.5">
+          <line x1="0" y1="100" x2="600" y2="100" />
+          <line x1="0" y1="200" x2="600" y2="200" />
+          <line x1="0" y1="300" x2="600" y2="300" />
+          <line x1="100" y1="0" x2="100" y2="400" />
+          <line x1="300" y1="0" x2="300" y2="400" />
+          <line x1="500" y1="0" x2="500" y2="400" />
+        </g>
+
+        <!-- Floating data nodes -->
+        <g class="data-nodes">
+          <circle cx="150" cy="180" r="5"/>
+          <circle cx="240" cy="120" r="4.5"/>
+          <circle cx="360" cy="260" r="5"/>
+          <circle cx="450" cy="180" r="4"/>
+          <circle cx="520" cy="240" r="4.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<style>
+/* ===== HACKATHON SECTION ===== */
+.hackathon-section {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+  background: radial-gradient(circle at 50% 20%, rgba(56,189,248,0.05), rgba(17,24,39,0.95));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Subtle circuit background grid */
+.hackathon-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: bgMove 20s linear infinite;
+  z-index: 0;
+}
+@keyframes bgMove {
+  to { background-position: 60px 60px; }
+}
+
+/* Layout */
+.hackathon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Text styling */
+.hackathon-text h2 {
+  font-size: clamp(34px, 4vw, 50px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #22d3ee, #10b981, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
+.hackathon-text .coming-soon {
+  font-size: 22px;
+  color: #fbbf24;
+  font-weight: 600;
+  margin-bottom: 20px;
+  animation: flicker 2s infinite alternate;
+}
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: .4; }
+}
+
+.hackathon-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 14px;
+  animation: fadeInUp 1.5s ease forwards;
+  opacity: 0;
+}
+.hackathon-text p:nth-of-type(1){ animation-delay:.3s; }
+.hackathon-text p:nth-of-type(2){ animation-delay:.7s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Visual (SVG) */
+.hack-svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  filter: drop-shadow(0 6px 20px rgba(34,211,238,0.25));
+}
+
+/* Pulsing center */
+.pulse, .pulse2 {
+  animation: pulseAnim 4s ease-in-out infinite;
+  transform-origin: center;
+}
+.pulse2 { animation-delay: 1s; }
+
+@keyframes pulseAnim {
+  0%,100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+/* Data nodes floating */
+.data-nodes circle {
+  fill: #10b981;
+  filter: drop-shadow(0 0 10px rgba(34,197,94,0.5));
+  animation: floatNode 5s ease-in-out infinite;
+}
+.data-nodes circle:nth-child(2){ animation-delay:.5s; fill:#22d3ee; }
+.data-nodes circle:nth-child(3){ animation-delay:1s; fill:#6366f1; }
+.data-nodes circle:nth-child(4){ animation-delay:1.5s; fill:#facc15; }
+.data-nodes circle:nth-child(5){ animation-delay:2s; fill:#34d399; }
+
+@keyframes floatNode {
+  0%,100% { transform: translateY(0) scale(1); opacity:.85; }
+  50% { transform: translateY(-12px) scale(1.15); opacity:1; }
+}
+
+/* Hover effect */
+.hackathon-section:hover .hack-svg {
+  transform: scale(1.03);
+  filter: drop-shadow(0 8px 40px rgba(34,211,238,0.35));
+  transition: all .4s ease;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .hackathon-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .hackathon-visual { order: -1; }
+  .hack-svg { max-width: 440px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hackathon-bg, .pulse, .pulse2, .data-nodes circle {
+    animation: none !important;
+  }
+}
+</style>
+
+
+<section id="contact" class="section">
+    <div class="container">
+      <h2 class="reveal">Contact Us</h2>
+      <p class="muted reveal" style="max-width:60ch">Questions, collaborations, or membership? Send us a note and we’ll get back to you.</p>
+      <div class="join">
+        <form class="panel reveal" name="club-requests" onsubmit="return submitForm(event)" netlify>
+          <div class="row"><input required placeholder="Full name" name="full_name" /><input type="email" name = "email" required placeholder="Email" /></div>
+          <input placeholder="Program / Year" name="program" style="margin-top:12px" />
+          <textarea rows="4" placeholder="What do you want to build or learn this year?" name="message" style="margin-top:12px"></textarea>
+          <button class="button primary submit" type="submit">Send</button>
+          <div id="msg" class="muted" style="margin-top:10px"></div>
+        </form>
+        <div class="panel reveal">
+          <h3>Connect</h3>
+           <ul style="list-style:none;padding-left:0;margin:14px 0 0 0;color:var(--muted);display:grid;gap:10px">
+            <li>Instagram: <a href="https://instagram.com/uoft.genetics" target="_blank" rel="noopener">@uoftgenetic</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/company/109172110/admin/dashboard/" target="_blank" rel="noopener">UTGEC</a></li>
+            <li>Email: <a href="mailto:uoftgeneticeng@gmail.com">uoftgeneticeng@gmail.com</a></li>
+          </ul>
+          <p class="muted" style="font-size:14px;margin-top:14px">By contacting us, you agree to our community code of conduct and lab safety policies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ====== FAQ SECTION ====== -->
+<section class="section" id="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-grid">
+
+       <div class="faq-item">
+  <h3>How often does the club host events?</h3>
+  <p class="muted">
+    We host 2–3 events each semester, including academic talks, workshops, and social mixers.
+    Special events may also be added throughout the year.
+  </p>
+</div>
+
+<div class="faq-item">
+  <h3>Do I need to register for events?</h3>
+  <p class="muted">
+    Yes — most events require free registration so we can manage capacity and materials.
+    Registration links are always shared on Instagram and through our mailing list.
+  </p>
+</div>
+
+<div class="faq-item">
+  <h3>Are events free to attend?</h3>
+  <p class="muted">
+    All regular club events are free for members. Some workshops may require a small fee to
+    cover lab supplies or materials, which will be noted in the event details.
+  </p>
+</div>
+
+<div class="faq-item">
+  <h3>Can non-members join events?</h3>
+  <p class="muted">
+    Absolutely! Many of our events are open to all UofT students.
+    Some specialized sessions may be exclusive to club members.
+  </p>
+</div>
+
+<div class="faq-item">
+  <h3>Will events be in-person or online?</h3>
+  <p class="muted">
+    Most events are in-person at UTM, but we also host virtual talks and info sessions
+    so students outside campus can join.
+  </p>
+</div>
+
+<div class="faq-item">
+  <h3>Where can I find event updates?</h3>
+  <p class="muted">
+    All updates are posted on our Instagram and sent through our mailing list.
+    You can also check this website’s events page for the latest announcements.
+  </p>
+</div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      © <span id="year"></span> UTGEC — University of Toronto Genetic Engineering Club
+      <a class="muted" href="#">Back to top ↑</a>
+    </div>
+  </footer>
+  <button id="toTop" class="to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <!-- Gradient stroke for the arrow -->
+        <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#60a5fa"/>
+          <stop offset="50%" stop-color="#a78bfa"/>
+          <stop offset="100%" stop-color="#34d399"/>
+        </linearGradient>
+      </defs>
+      <!-- The arrow line itself -->
+      <path d="M12 19V5M5 12l7-7 7 7"
+            stroke="url(#arrowGrad)"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"/>
+    </svg>
+  </button>
+
+  <!-- ====== SCRIPTS (tiny, mirrors home behavior) ====== -->
+  <script>
+    // Year
+    document.addEventListener('DOMContentLoaded',()=>{const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear()});
+
+    // Sticky nav shadow
+    addEventListener('scroll',()=>{document.getElementById('nav')?.classList.toggle('scrolled',scrollY>4)},{passive:true});
+
+    // Booking modal wiring (same pattern as your home-page snippet)
+    (function(){
+      const backdrop = document.getElementById('booking');
+      const frame = document.getElementById('bookingFrame');
+      const title = document.getElementById('bookingTitle');
+      const closeBtn = document.getElementById('bookingClose');
+
+      function openModal(name, url){
+        title.textContent = `Book with ${name}`;
+        frame.src = url; // Calendly/Google booking link
+        backdrop.classList.add('show');
+        backdrop.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(()=> closeBtn?.focus(), 60);
+      }
+      function closeModal(){
+        backdrop.classList.remove('show');
+        backdrop.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        frame.src = 'about:blank';
+      }
+
+      document.querySelectorAll('.btn-book').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const url = btn.getAttribute('data-url');
+          const name = btn.getAttribute('data-mentor') || 'mentor';
+          if(url) openModal(name,url);
+        });
+      });
+      closeBtn?.addEventListener('click', closeModal);
+      backdrop?.addEventListener('click', e=>{ if(e.target===backdrop) closeModal(); });
+      addEventListener('keydown', e=>{ if(e.key==='Escape' && backdrop?.classList.contains('show')) closeModal(); });
+    })();
+
+    // Mobile nav toggle
+        (function(){
+      const btn = document.getElementById('navToggle');
+      const panel = document.querySelector('.nav-links');
+      if(!btn || !panel) return;
+
+      const open = () => {
+        panel.classList.add('open');
+        btn.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+        document.body.style.overflow='hidden';   // prevents background scroll
+      };
+
+      const close = () => {
+        panel.classList.remove('open');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded','false');
+        document.body.style.overflow='';
+      };
+
+      const toggle = () => panel.classList.contains('open') ? close() : open();
+
+      btn.addEventListener('click', toggle);
+      btn.addEventListener('touchstart', e => { e.preventDefault(); toggle(); }, { passive:false });
+
+      panel.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', close);      // close after selecting a link
+        a.addEventListener('touchend', () => close(), { passive:true });
+      });
+
+      addEventListener('resize', () => { if(innerWidth > 900) close(); });
+      addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+    })();
+
+    (function(){
+      const b = document.getElementById('toTop');
+      addEventListener('scroll', () => {
+        b.classList.toggle('show', scrollY > 500);
+      }, { passive:true });
+
+      b && b.addEventListener('click', () =>
+        scrollTo({ top: 0, behavior: 'smooth' })
+      );
+    })();
+
+
+    (function(){
+      const wrap = document.querySelector('.crown-wrap');
+      if(!wrap) return;
+
+      // skip on touch devices (keeps it crisp on mobile)
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      if(isTouch) return;
+
+      const MAX = 6; // px range (subtle = luxurious)
+      let raf = 0;
+
+      function onMove(e){
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(()=>{
+          const rect = wrap.getBoundingClientRect();
+          const cx = rect.left + rect.width/2;
+          const cy = rect.top  + rect.height/2;
+          const dx = (e.clientX - cx) / (rect.width/2);
+          const dy = (e.clientY - cy) / (rect.height/2);
+          wrap.style.setProperty('--parallax-x', `${(dx*MAX).toFixed(2)}px`);
+          wrap.style.setProperty('--parallax-y', `${(dy*MAX).toFixed(2)}px`);
+        });
+      }
+
+    window.addEventListener('mousemove', onMove, { passive:true });
+  })();
+
+ // Biology objects canvas
+  (function(){const c=document.getElementById('bio'); if(!c) return; const ctx=c.getContext('2d'); let w,h,dpr,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches; function rs(){dpr=Math.min(2,devicePixelRatio||1); w=c.width=innerWidth*dpr; h=c.height=innerHeight*dpr; c.style.width=innerWidth+'px'; c.style.height=innerHeight+'px';} rs(); addEventListener('resize',rs); function rnd(a,b){return a+Math.random()*(b-a)} const types=['cell','plasmid','bacterium']; const orgs=Array.from({length:14},(_,i)=>({type:types[i%3],x:rnd(0,w),y:rnd(0,h),vx:rnd(-0.08,0.08)*dpr,vy:rnd(-0.08,0.08)*dpr,r:rnd(18,34)*dpr,rot:rnd(0,Math.PI*2),spin:rnd(-0.002,0.002),hue:190+Math.random()*140,alpha:0.12+Math.random()*0.12})); function cell(o){const g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r*1.4); g.addColorStop(0,`hsla(${o.hue},85%,70%,${o.alpha*1.2})`); g.addColorStop(1,'hsla(0,0%,0%,0.1)'); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(o.x,o.y,o.r*1.4,0,Math.PI*2); ctx.fill(); ctx.lineWidth=Math.max(1,o.r*0.08); ctx.strokeStyle=`hsla(${o.hue},90%,75%,${o.alpha*1.6})`; ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,Math.PI*2); ctx.stroke(); } function plasmid(o){ctx.save(); ctx.translate(o.x,o.y); ctx.rotate(o.rot); ctx.lineWidth=Math.max(1,o.r*0.12); ctx.strokeStyle=`hsla(${o.hue},85%,70%,${o.alpha*1.4})`; ctx.setLineDash([o.r*0.5,o.r*0.25]); ctx.lineDashOffset=-o.rot*o.r; ctx.beginPath(); ctx.arc(0,0,o.r*0.9,0,Math.PI*2); ctx.stroke(); ctx.setLineDash([]); ctx.restore(); } function bacterium(o){ctx.save(); ctx.translate(o.x,o.y); ctx.rotate(o.rot); const rx=o.r*0.55, ry=o.r*0.9; ctx.fillStyle=`hsla(${o.hue-20},75%,60%,${o.alpha*1.2})`; round(-rx,-ry*0.6,rx*2,ry*1.2,ry*0.6,); ctx.fill(); ctx.lineWidth=Math.max(1,o.r*0.06); ctx.strokeStyle=`hsla(${o.hue-10},80%,70%,${o.alpha*1.5})`; round(-rx,-ry*0.6,rx*2,ry*1.2,ry*0.6); ctx.stroke(); ctx.restore(); function round(x,y,wc,hc,r){const r2=Math.min(r,hc/2,wc/2); ctx.beginPath(); ctx.moveTo(x+r2,y); ctx.lineTo(x+wc-r2,y); ctx.quadraticCurveTo(x+wc,y,x+wc,y+r2); ctx.lineTo(x+wc,y+hc-r2); ctx.quadraticCurveTo(x+wc,y+hc,x+wc-r2,y+hc); ctx.lineTo(x+r2,y+hc); ctx.quadraticCurveTo(x,y+hc,x,y+hc-r2); ctx.lineTo(x,y+r2); ctx.quadraticCurveTo(x,y,x+r2,y);} } function step(){ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation='lighter'; for(const o of orgs){ if(!reduce){o.x+=o.vx;o.y+=o.vy;o.rot+=o.spin;} if(o.x<-100||o.x>w+100)o.vx*=-1; if(o.y<-100||o.y>h+100)o.vy*=-1; ({cell,plasmid,bacterium}[o.type])(o);} ctx.globalCompositeOperation='source-over'; if(!reduce)requestAnimationFrame(step);} step();})();
+function scrollToId(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const y = el.getBoundingClientRect().top + window.pageYOffset - 72;
+  window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+
+  </script>
+  <script>
+    function submitForm(e){e.preventDefault();const msg=document.getElementById('msg');if(msg){msg.textContent='Thanks! We\'ll get back to you.';}return false;}
+  </script>
+</body>
+</html>
